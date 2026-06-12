@@ -1,64 +1,141 @@
 import { useEffect, useRef, useState } from 'react'
 import { fmtDuration } from '../lib/format.js'
 
-// Transport UI. Playback is simulated in this prototype (no audio stream is bundled);
-// the data shape leaves room for a real <audio> source when the backend lands.
-export default function AudioPlayer({ durationSec = 180 }) {
+/**
+ * Real audio transport with a single <audio> element per instance.
+ *
+ * When `src` is null, renders the disabled state — the user sees the control
+ * but it's grayed out and clicks do nothing. This is intentional for catalog
+ * rows that don't have a playable URL yet (e.g., Jamendo tracks before the
+ * Phase 7.5 enrichment script runs).
+ *
+ * Cross-instance coordination: when any AudioPlayer starts playing, all other
+ * <audio> elements on the page are paused. Implemented via a browser-native
+ * 'play' event handler — no React context needed.
+ */
+export default function AudioPlayer({ src = null, durationSec = 180, compact = false }) {
+  const audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [pos, setPos] = useState(0)
-  const raf = useRef()
-  const last = useRef(null)
+  const [realDuration, setRealDuration] = useState(durationSec)
+
+  const disabled = !src
 
   useEffect(() => {
-    if (!playing) return
-    const tick = (ts) => {
-      if (last.current != null) {
-        const dt = (ts - last.current) / 1000
-        setPos((p) => {
-          const next = p + dt * 4 // 4× so the demo moves along
-          if (next >= durationSec) {
-            setPlaying(false)
-            return 0
-          }
-          return next
-        })
-      }
-      last.current = ts
-      raf.current = requestAnimationFrame(tick)
-    }
-    raf.current = requestAnimationFrame(tick)
-    return () => {
-      cancelAnimationFrame(raf.current)
-      last.current = null
-    }
-  }, [playing, durationSec])
+    const audio = audioRef.current
+    if (!audio) return
 
-  const pct = Math.min(100, (pos / durationSec) * 100)
+    const onTime = () => setPos(audio.currentTime)
+    const onLoad = () => {
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        setRealDuration(audio.duration)
+      }
+    }
+    const onPlay = () => {
+      setPlaying(true)
+      // Pause every OTHER <audio> on the page so only one plays at a time.
+      document.querySelectorAll('audio').forEach((a) => {
+        if (a !== audio && !a.paused) a.pause()
+      })
+    }
+    const onPause = () => setPlaying(false)
+    const onEnded = () => {
+      setPlaying(false)
+      setPos(0)
+    }
+
+    audio.addEventListener('timeupdate', onTime)
+    audio.addEventListener('loadedmetadata', onLoad)
+    audio.addEventListener('play', onPlay)
+    audio.addEventListener('pause', onPause)
+    audio.addEventListener('ended', onEnded)
+
+    return () => {
+      audio.removeEventListener('timeupdate', onTime)
+      audio.removeEventListener('loadedmetadata', onLoad)
+      audio.removeEventListener('play', onPlay)
+      audio.removeEventListener('pause', onPause)
+      audio.removeEventListener('ended', onEnded)
+    }
+  }, [src])
+
+  const toggle = () => {
+    const audio = audioRef.current
+    if (!audio || disabled) return
+    if (audio.paused) {
+      const p = audio.play()
+      if (p && typeof p.catch === 'function') p.catch(() => setPlaying(false))
+    } else {
+      audio.pause()
+    }
+  }
+
+  const seek = (e) => {
+    const audio = audioRef.current
+    if (!audio || disabled || !realDuration) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
+    audio.currentTime = ratio * realDuration
+    setPos(audio.currentTime)
+  }
+
+  const pct = realDuration ? Math.min(100, (pos / realDuration) * 100) : 0
+
+  const sizeBtn = compact ? 'h-7 w-7' : 'h-9 w-9'
+  const sizeIcon = compact ? 10 : 12
 
   return (
-    <div className="flex items-center gap-3" title="Playback is simulated in this prototype">
+    <div
+      className="flex items-center gap-3"
+      title={disabled ? 'No preview available' : (playing ? 'Pause' : 'Play preview')}
+    >
+      {src ? (
+        <audio ref={audioRef} src={src} preload="metadata" crossOrigin="anonymous" />
+      ) : null}
       <button
-        onClick={() => setPlaying((p) => !p)}
+        type="button"
+        onClick={toggle}
+        disabled={disabled}
         aria-label={playing ? 'Pause' : 'Play'}
-        className="grid h-9 w-9 shrink-0 place-items-center border border-line bg-elev text-ink transition-colors hover:border-accent hover:text-accent"
+        className={`grid ${sizeBtn} shrink-0 place-items-center border transition-colors ${
+          disabled
+            ? 'cursor-not-allowed opacity-40'
+            : 'hover:border-accent hover:text-accent'
+        }`}
+        style={{
+          borderColor: 'var(--color-line)',
+          background: 'var(--color-elev)',
+          color: 'var(--color-ink)',
+        }}
       >
         {playing ? (
-          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <svg width={sizeIcon} height={sizeIcon} viewBox="0 0 12 12" aria-hidden="true">
             <rect x="2" y="1.5" width="3" height="9" fill="currentColor" />
             <rect x="7" y="1.5" width="3" height="9" fill="currentColor" />
           </svg>
         ) : (
-          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <svg width={sizeIcon} height={sizeIcon} viewBox="0 0 12 12" aria-hidden="true">
             <path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor" />
           </svg>
         )}
       </button>
-      <div className="relative h-1 flex-1 bg-line">
-        <div className="h-full bg-accent" style={{ width: `${pct}%` }} />
-      </div>
-      <span className="shrink-0 font-mono text-[11px] tabular-nums text-faint">
-        {fmtDuration(pos)} / {fmtDuration(durationSec)}
-      </span>
+      {!compact && (
+        <>
+          <div
+            className="relative h-1 flex-1 cursor-pointer"
+            style={{ background: 'var(--color-line)' }}
+            onClick={seek}
+          >
+            <div className="h-full" style={{ width: `${pct}%`, background: 'var(--color-accent)' }} />
+          </div>
+          <span
+            className="shrink-0 font-mono text-[11px] tabular-nums"
+            style={{ color: 'var(--color-faint)' }}
+          >
+            {fmtDuration(pos)} / {fmtDuration(realDuration)}
+          </span>
+        </>
+      )}
     </div>
   )
 }

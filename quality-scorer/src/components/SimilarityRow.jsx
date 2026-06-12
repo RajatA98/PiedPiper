@@ -1,22 +1,15 @@
+import AudioPlayer from './AudioPlayer.jsx'
+import { audioUrlFor } from '../lib/api.js'
+
 /**
  * SimilarityRow — one row in the top-3 closest tracks list.
  *
- * Visual contract: ui_mockup_v2_suno_flare.html, `.sim-row` block.
- *
  * Renders:
- *   [rank]  Title — Artist        [───── bar ─────]   87%
+ *   [rank]  [▶]  Title — Artist        [───── bar ─────]   87.3%
  *
- * Muted variant (`isReference={true}`) is used in Case B for the "for reference,
- * not matches" tracks under the "Completely unique" headline. Same shape, ~60%
- * opacity, no green accent on the bar.
- *
- * @param {Object} props
- * @param {number} props.rank        - 1-indexed rank in the top-3.
- * @param {string} props.title       - track title.
- * @param {string} props.artist      - track artist.
- * @param {number} props.similarity  - cosine [0, 1] from neighbors[].meanPooledSimilarity.
- * @param {string} [props.linkOut]   - URL to the source platform (iTunes / Jamendo).
- * @param {boolean} [props.isReference=false] - muted styling for Case B "closest tracks" block.
+ * The play button is a compact <AudioPlayer>; it uses the real <audio> element
+ * and auto-pauses the others on the page when activated. If the track has no
+ * playable audio URL (e.g., un-enriched Jamendo row), the button renders disabled.
  */
 export default function SimilarityRow({
   rank,
@@ -24,8 +17,10 @@ export default function SimilarityRow({
   artist,
   similarity,
   linkOut,
+  track,
   isReference = false,
 }) {
+  const audioUrl = audioUrlFor(track)
   const pct = Math.round((Number(similarity) || 0) * 1000) / 10
   const widthStyle = { width: `${pct}%` }
 
@@ -33,7 +28,7 @@ export default function SimilarityRow({
     <div
       className="grid items-center gap-3 border-t py-3"
       style={{
-        gridTemplateColumns: '18px minmax(180px, 1.4fr) 2fr 52px',
+        gridTemplateColumns: '18px 28px minmax(160px, 1.4fr) 2fr 52px',
         borderColor: 'var(--color-line)',
         opacity: isReference ? 0.6 : 1,
       }}
@@ -45,11 +40,23 @@ export default function SimilarityRow({
         {rank}
       </span>
 
+      <AudioPlayer src={audioUrl} compact />
+
       <span className="text-[15px]">
-        {/* TODO(codex): when linkOut is provided, wrap title+artist in an <a>.
-            Use Apple/iTunes attribution requirement from corpus.json's
-            attribution_required field — show a small "iTunes ↗" hint inline. */}
-        {title} <span style={{ color: 'var(--color-dim)' }}>— {artist}</span>
+        {linkOut ? (
+          <a
+            href={linkOut}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline hover:underline"
+            style={{ color: 'inherit' }}
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )}{' '}
+        <span style={{ color: 'var(--color-dim)' }}>— {artist}</span>
       </span>
 
       <span

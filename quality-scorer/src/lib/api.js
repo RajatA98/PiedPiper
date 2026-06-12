@@ -88,6 +88,27 @@ export async function neighborsUpload(file, k = 5) {
 }
 
 /**
+ * Pull the playable audio URL out of a catalog track, if any.
+ *
+ * Returns:
+ *   - string URL  → for iTunes (previewUrl, 30s m4a) or Jamendo (audioStreamUrl from enrichment)
+ *   - null        → no playable audio for this track (renders the play button disabled)
+ *
+ * Pure function. Component-agnostic. Future sources just add a new key here.
+ */
+export function audioUrlFor(track) {
+  if (!track) return null
+  const ext = track.external_ids ?? track.externalIds ?? {}
+  return (
+    ext.previewUrl
+    ?? ext.jamendoAudioUrl
+    ?? ext.jamendoStreamUrl
+    ?? track.preview_url
+    ?? null
+  )
+}
+
+/**
  * Apply the locked threshold rule to a /neighbors response.
  * Returns { caseA: bool, topPct: number|null, topMatch: object|null }.
  *

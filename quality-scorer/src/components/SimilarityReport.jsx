@@ -110,6 +110,7 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
+                track={n.track}
               />
             ))}
           </div>
@@ -152,6 +153,7 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
+                track={n.track}
                 isReference
               />
             ))}
