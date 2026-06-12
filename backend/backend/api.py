@@ -38,6 +38,17 @@ from . import __version__, acrcloud_engine, clap_engine, clap_windowed, config, 
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
+# Optional Sentry error tracking. No-op when SENTRY_DSN is unset.
+_sentry_dsn = os.getenv("SENTRY_DSN", "").strip()
+if _sentry_dsn:
+    import sentry_sdk
+    sentry_sdk.init(
+        dsn=_sentry_dsn,
+        traces_sample_rate=float(os.getenv("SENTRY_TRACES_SAMPLE_RATE", "0.1")),
+        environment=os.getenv("SENTRY_ENVIRONMENT", "production"),
+        release=__version__,
+    )
+
 # CPU torch isn't reliably thread-safe; serialize CLAP encodes.
 _clap_lock = threading.Lock()
 
