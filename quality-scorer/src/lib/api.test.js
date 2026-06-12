@@ -69,7 +69,7 @@ describe('deriveHeadline', () => {
     expect(out.topMatch).toBe(null)
   })
 
-  it('rounds the headline percentage', () => {
+  it('formats the headline percentage to one decimal so close cosines stay distinguishable', () => {
     const out = deriveHeadline({
       neighbors: [
         { trackId: 'x', meanPooledSimilarity: 0.8734, track: {} },
@@ -77,7 +77,23 @@ describe('deriveHeadline', () => {
       topMeanPooledSimilarity: 0.8734,
       thresholdDefault: 0.70,
     })
-    expect(out.topPct).toBe(87)
+    expect(out.topPct).toBe(87.3)
+  })
+
+  it('distinguishes near-identical cosines at one-decimal precision', () => {
+    const a = deriveHeadline({
+      neighbors: [{ trackId: 'a', meanPooledSimilarity: 0.998, track: {} }],
+      topMeanPooledSimilarity: 0.998,
+      thresholdDefault: 0.70,
+    })
+    const b = deriveHeadline({
+      neighbors: [{ trackId: 'b', meanPooledSimilarity: 0.996, track: {} }],
+      topMeanPooledSimilarity: 0.996,
+      thresholdDefault: 0.70,
+    })
+    expect(a.topPct).toBe(99.8)
+    expect(b.topPct).toBe(99.6)
+    expect(a.topPct).not.toBe(b.topPct)
   })
 
   it('uses 0.70 as default threshold when missing', () => {

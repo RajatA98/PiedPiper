@@ -26,7 +26,7 @@ export default function SimilarityRow({
   linkOut,
   isReference = false,
 }) {
-  const pct = Math.round((Number(similarity) || 0) * 100)
+  const pct = Math.round((Number(similarity) || 0) * 1000) / 10
   const widthStyle = { width: `${pct}%` }
 
   return (

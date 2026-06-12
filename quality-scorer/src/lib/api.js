@@ -103,7 +103,7 @@ export function deriveHeadline(response) {
   const threshold = response.thresholdDefault ?? 0.70
   return {
     caseA: sim >= threshold,
-    topPct: Math.round(sim * 100),
+    topPct: Math.round(sim * 1000) / 10,
     topMatch: top,
   }
 }
