@@ -13,7 +13,7 @@ import { fmtDuration } from '../lib/format.js'
  * <audio> elements on the page are paused. Implemented via a browser-native
  * 'play' event handler — no React context needed.
  */
-export default function AudioPlayer({ src = null, durationSec = 180, compact = false }) {
+export default function AudioPlayer({ src = null, durationSec = 180, compact = false, artwork = null, size = 36 }) {
   const audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [pos, setPos] = useState(0)
@@ -81,6 +81,69 @@ export default function AudioPlayer({ src = null, durationSec = 180, compact = f
 
   const pct = realDuration ? Math.min(100, (pos / realDuration) * 100) : 0
 
+  // Compact + artwork → render artwork as the button itself with a play overlay.
+  if (compact && artwork !== null) {
+    return (
+      <button
+        type="button"
+        onClick={toggle}
+        disabled={disabled}
+        aria-label={playing ? 'Pause' : (disabled ? 'No preview available' : 'Play preview')}
+        className={`group relative shrink-0 overflow-hidden transition-opacity ${
+          disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+        }`}
+        style={{
+          width: size,
+          height: size,
+          background: 'var(--color-elev)',
+          border: '1px solid var(--color-line)',
+        }}
+        title={disabled ? 'No preview available' : (playing ? 'Pause' : 'Play preview')}
+      >
+        {src ? (
+          <audio ref={audioRef} src={src} preload="metadata" crossOrigin="anonymous" />
+        ) : null}
+        {artwork ? (
+          <img
+            src={artwork}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+            onError={(e) => { e.currentTarget.style.display = 'none' }}
+          />
+        ) : (
+          // Placeholder: a musical-note glyph centered on the empty tile.
+          <span
+            className="absolute inset-0 grid place-items-center text-[14px]"
+            style={{ color: 'var(--color-faint)' }}
+          >
+            ♪
+          </span>
+        )}
+        {!disabled && (
+          <span
+            className={`absolute inset-0 grid place-items-center transition-opacity ${
+              playing ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            }`}
+            style={{ background: 'rgba(14, 22, 32, 0.55)' }}
+          >
+            {playing ? (
+              <svg width={12} height={12} viewBox="0 0 12 12" aria-hidden="true" style={{ color: '#FAFAF7' }}>
+                <rect x="2" y="1.5" width="3" height="9" fill="currentColor" />
+                <rect x="7" y="1.5" width="3" height="9" fill="currentColor" />
+              </svg>
+            ) : (
+              <svg width={12} height={12} viewBox="0 0 12 12" aria-hidden="true" style={{ color: '#FAFAF7' }}>
+                <path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor" />
+              </svg>
+            )}
+          </span>
+        )}
+      </button>
+    )
+  }
+
+  // Compact, no artwork → simple icon-only button (existing behavior).
   const sizeBtn = compact ? 'h-7 w-7' : 'h-9 w-9'
   const sizeIcon = compact ? 10 : 12
 

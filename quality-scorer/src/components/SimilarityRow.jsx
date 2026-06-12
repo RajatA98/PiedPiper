@@ -1,5 +1,5 @@
 import AudioPlayer from './AudioPlayer.jsx'
-import { audioUrlFor } from '../lib/api.js'
+import { audioUrlFor, artworkUrlFor } from '../lib/api.js'
 
 /**
  * SimilarityRow — one row in the top-3 closest tracks list.
@@ -21,6 +21,7 @@ export default function SimilarityRow({
   isReference = false,
 }) {
   const audioUrl = audioUrlFor(track)
+  const artworkUrl = artworkUrlFor(track, 100)
   const pct = Math.round((Number(similarity) || 0) * 1000) / 10
   const widthStyle = { width: `${pct}%` }
 
@@ -28,7 +29,7 @@ export default function SimilarityRow({
     <div
       className="grid items-center gap-3 border-t py-3"
       style={{
-        gridTemplateColumns: '18px 28px minmax(160px, 1.4fr) 2fr 52px',
+        gridTemplateColumns: '18px 40px minmax(160px, 1.4fr) 2fr 52px',
         borderColor: 'var(--color-line)',
         opacity: isReference ? 0.6 : 1,
       }}
@@ -40,7 +41,7 @@ export default function SimilarityRow({
         {rank}
       </span>
 
-      <AudioPlayer src={audioUrl} compact />
+      <AudioPlayer src={audioUrl} compact artwork={artworkUrl} size={40} />
 
       <span className="text-[15px]">
         {linkOut ? (

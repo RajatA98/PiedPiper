@@ -88,6 +88,22 @@ export async function neighborsUpload(file, k = 5) {
 }
 
 /**
+ * Pull the artwork URL out of a catalog track, scaled to the requested size.
+ *
+ * iTunes URLs end with `/100x100bb.jpg` — we can request larger by string-replace.
+ * Jamendo URLs (added during the Phase 7.5 enrichment) come pre-sized at 300x300.
+ *
+ * Returns null when no artwork is available (renders a placeholder tile).
+ */
+export function artworkUrlFor(track, size = 100) {
+  if (!track) return null
+  const url = track.artwork_url ?? track.artworkUrl ?? null
+  if (!url) return null
+  // iTunes pattern — replace the trailing /NNNxNNNbb.jpg with desired size.
+  return url.replace(/\d+x\d+bb\.jpg$/, `${size}x${size}bb.jpg`)
+}
+
+/**
  * Pull the playable audio URL out of a catalog track, if any.
  *
  * Returns:

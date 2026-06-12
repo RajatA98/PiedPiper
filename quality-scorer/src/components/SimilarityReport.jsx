@@ -36,6 +36,8 @@
  * @param {number}  props.topPct        - rounded headline percentage for Case A
  */
 import SimilarityRow from './SimilarityRow.jsx'
+import AudioPlayer from './AudioPlayer.jsx'
+import { audioUrlFor, artworkUrlFor } from '../lib/api.js'
 
 const EMPTY_HEADLINE = "Completely unique"
 const EMPTY_SUBHEAD =
@@ -47,45 +49,48 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
 
   // ---- Case A — match above threshold -------------------------------------
   if (caseA && top) {
+    const topAudio = audioUrlFor(top.track)
+    const topArt = artworkUrlFor(top.track, 300)
     return (
       <section>
         <Kicker>TOP MATCH</Kicker>
-        <div className="mt-2 flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <div className="flex flex-wrap items-baseline gap-3">
-              <span
-                className="font-display tabular-nums"
+        <div className="mt-2 flex flex-wrap items-start justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <AudioPlayer src={topAudio} compact artwork={topArt} size={96} />
+            <div>
+              <div className="flex flex-wrap items-baseline gap-3">
+                <span
+                  className="font-display tabular-nums"
+                  style={{
+                    fontSize: '64px',
+                    lineHeight: 0.9,
+                    fontWeight: 700,
+                    letterSpacing: '-0.04em',
+                    color: 'var(--color-accent)',
+                  }}
+                >
+                  {topPct}%
+                </span>
+                <span className="text-base" style={{ color: 'var(--color-dim)' }}>
+                  similar to
+                </span>
+              </div>
+              <div
+                className="mt-1.5 font-display"
                 style={{
-                  fontSize: '64px',
-                  lineHeight: 0.9,
-                  fontWeight: 700,
-                  letterSpacing: '-0.04em',
-                  color: 'var(--color-accent)',
+                  fontSize: '32px',
+                  fontWeight: 600,
+                  letterSpacing: '-0.02em',
                 }}
               >
-                {topPct}%
-              </span>
-              <span className="text-base" style={{ color: 'var(--color-dim)' }}>
-                similar to
-              </span>
-            </div>
-            <div
-              className="mt-1.5 font-display"
-              style={{
-                fontSize: '32px',
-                fontWeight: 600,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              {top.track?.title ?? top.trackId} —{' '}
-              <span style={{ color: 'var(--color-dim)' }}>
-                {top.track?.artist ?? 'Unknown artist'}
-              </span>
+                {top.track?.title ?? top.trackId} —{' '}
+                <span style={{ color: 'var(--color-dim)' }}>
+                  {top.track?.artist ?? 'Unknown artist'}
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* TODO(codex): when top.track.attribution_required is true,
-              link to top.track.track_view_url with "[↗ open in iTunes]". */}
           {top.track?.track_view_url && (
             <a
               href={top.track.track_view_url}
