@@ -46,6 +46,11 @@ RUN python -c "from transformers import ClapModel, ClapProcessor; \
     ClapProcessor.from_pretrained('laion/larger_clap_music')"
 
 ENV PORT=7860 HF_HOME=/app/.hf_cache
+# The corpus copy target above is /app/quality-scorer/public/corpus. The
+# Python default would resolve to /quality-scorer/public/corpus inside the
+# flattened container layout (parents[2] of /app/backend/api.py is /, not /app),
+# so override explicitly.
+ENV CORPUS_DIR=/app/quality-scorer/public/corpus
 EXPOSE 7860
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
