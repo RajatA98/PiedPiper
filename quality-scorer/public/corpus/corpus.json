@@ -222,69 +222,77 @@
   {
     "track_id": "tier2:jamendo:382",
     "tier": "tier2",
-    "title": "Jamendo 382",
-    "artist": "artist_000020",
+    "title": "Soon and Very Soon (Negro Spiritual)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/382",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/382",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=382",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "382"
+      "jamendoTrackId": "382",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=382&format=mp31&from=kFoV7b%2BHvEJtuIuWDwuUgQ%3D%3D%7CyH8hfxK6sA4Rx3ILjhWtvw%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:773",
     "tier": "tier2",
-    "title": "Jamendo 773",
-    "artist": "artist_000104",
+    "title": "The Final Rewind",
+    "artist": "Tryad",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/773",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/773",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=126&width=300&trackid=773",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "773"
+      "jamendoTrackId": "773",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=773&format=mp31&from=GwetJRDOkr1P18meRprpYA%3D%3D%7CwtNDIJcP70TCcChlYjhlpQ%3D%3D",
+      "jamendoAlbum": "Tryad Demo (Public Domain)"
     }
   },
   {
     "track_id": "tier2:jamendo:2634",
     "tier": "tier2",
-    "title": "Jamendo 2634",
-    "artist": "artist_000379",
+    "title": "Le pont du petit parc",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2634",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2634",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2634",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2634"
+      "jamendoTrackId": "2634",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2634&format=mp31&from=4b2LTbrsn550mVZY197uVg%3D%3D%7C5tfK3XiUzvKM8LElcdF0jQ%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43411",
     "tier": "tier2",
-    "title": "Jamendo 43411",
-    "artist": "artist_005716",
+    "title": "H-Stadt (Herzlich Willkommen...)",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43411",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43411",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43411",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43411"
+      "jamendoTrackId": "43411",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43411&format=mp31&from=bJfc220X3elng7Tboj4wJQ%3D%3D%7CQ8CbuA55zsbsranonA8nAA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
@@ -307,1514 +315,1692 @@
   {
     "track_id": "tier2:jamendo:247",
     "tier": "tier2",
-    "title": "Jamendo 247",
-    "artist": "artist_000005",
+    "title": "Je le veux aussi",
+    "artist": "Both",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/247",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/247",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=247",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "247"
+      "jamendoTrackId": "247",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=247&format=mp31&from=IcjOAkwEK6VZKManM%2B2%2B4w%3D%3D%7CoQGp60uUJ73NWEvEFm77MA%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:241",
     "tier": "tier2",
-    "title": "Jamendo 241",
-    "artist": "artist_000005",
+    "title": "Simple Exercice",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/241",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/241",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=241",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "241"
+      "jamendoTrackId": "241",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=241&format=mp31&from=MixPCqTi3aRY48tTBUsJAA%3D%3D%7CewbTn8DTd1MnXS5teLSvqw%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:383",
     "tier": "tier2",
-    "title": "Jamendo 383",
-    "artist": "artist_000020",
+    "title": "Go tell it on the mountain (Negro Spiritual)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/383",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/383",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=383",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "383"
+      "jamendoTrackId": "383",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=383&format=mp31&from=ExC%2FfMY4X1yAA5B2J%2BXY9A%3D%3D%7CShsz3uPZvK0QBPOElj4WzQ%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:774",
     "tier": "tier2",
-    "title": "Jamendo 774",
-    "artist": "artist_000104",
+    "title": "I see",
+    "artist": "Tryad",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/774",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/774",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=126&width=300&trackid=774",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "774"
+      "jamendoTrackId": "774",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=774&format=mp31&from=%2FreVifMLegjeYS5LsJe4KQ%3D%3D%7CjGLgqSrRSNlMQIWx%2BbBTvg%3D%3D",
+      "jamendoAlbum": "Tryad Demo (Public Domain)"
     }
   },
   {
     "track_id": "tier2:jamendo:2635",
     "tier": "tier2",
-    "title": "Jamendo 2635",
-    "artist": "artist_000379",
+    "title": "La valse des heures",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2635",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2635",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2635",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2635"
+      "jamendoTrackId": "2635",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2635&format=mp31&from=8hFc9%2B%2BCMfxehVKsr4sldg%3D%3D%7CWP3EylMLycGx12bJ7ZTOUw%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43412",
     "tier": "tier2",
-    "title": "Jamendo 43412",
-    "artist": "artist_005716",
+    "title": "Salutiert Vor Uns!",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43412",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43412",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43412",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43412"
+      "jamendoTrackId": "43412",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43412&format=mp31&from=Qd12L%2B8AyjSvudH5oY5P%2Fw%3D%3D%7CbEGL6EvGOrh4gz1jOhmmVA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:3933",
     "tier": "tier2",
-    "title": "Jamendo 3933",
-    "artist": "artist_000573",
+    "title": "l'\u00e2ne au piquet",
+    "artist": "The Links",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/3933",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/3933",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=615&width=300&trackid=3933",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "3933"
+      "jamendoTrackId": "3933",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=3933&format=mp31&from=QCFNbHAfafeQ5Rh1jpA8uQ%3D%3D%7C6UnZecRKoU%2Fdl9JaGAwEEA%3D%3D",
+      "jamendoAlbum": "una musica \"rabelaisien\""
     }
   },
   {
     "track_id": "tier2:jamendo:759",
     "tier": "tier2",
-    "title": "Jamendo 759",
-    "artist": "artist_000103",
+    "title": "Sunlight",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/759",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/759",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=759",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "759"
+      "jamendoTrackId": "759",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=759&format=mp31&from=O9BWuyPhtO2lCZ2luI3YEA%3D%3D%7CpqsfP2MYQMKBePSDou9hDA%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:242",
     "tier": "tier2",
-    "title": "Jamendo 242",
-    "artist": "artist_000005",
+    "title": "R\u00e9veille le Hippie",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/242",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/242",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=242",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "242"
+      "jamendoTrackId": "242",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=242&format=mp31&from=SYjLsaUNOLYsEOigmwEFpA%3D%3D%7C%2BH8tSOMQfizrmMaOBME%2BDQ%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:384",
     "tier": "tier2",
-    "title": "Jamendo 384",
-    "artist": "artist_000020",
+    "title": "Let us break bread (Negro Spiritual)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/384",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/384",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=384",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "384"
+      "jamendoTrackId": "384",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=384&format=mp31&from=2tJA7z2F%2B0hZWeNuprlP%2Bg%3D%3D%7CnZh7u8E0nzelWQqUuRj6tw%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:776",
     "tier": "tier2",
-    "title": "Jamendo 776",
-    "artist": "artist_000104",
+    "title": "Our Lives change",
+    "artist": "Tryad",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/776",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/776",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=126&width=300&trackid=776",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "776"
+      "jamendoTrackId": "776",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=776&format=mp31&from=dlhYhHXWXRrA%2BJZAhKJDuA%3D%3D%7Cz2alYPq1codZw3GxEtNXbw%3D%3D",
+      "jamendoAlbum": "Tryad Demo (Public Domain)"
     }
   },
   {
     "track_id": "tier2:jamendo:2636",
     "tier": "tier2",
-    "title": "Jamendo 2636",
-    "artist": "artist_000379",
+    "title": "Mes amis",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2636",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2636",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2636",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2636"
+      "jamendoTrackId": "2636",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2636&format=mp31&from=tOUX%2F3QRGtuPHbHE5o%2BvFg%3D%3D%7CRpmXAlSdE30mIEl9knpX8g%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43413",
     "tier": "tier2",
-    "title": "Jamendo 43413",
-    "artist": "artist_005716",
+    "title": "Track F\u00fcr Track",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43413",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43413",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43413",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43413"
+      "jamendoTrackId": "43413",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43413&format=mp31&from=0y7y%2BnatK%2F7a7L5fq1%2BtrA%3D%3D%7CPF3ZtjK977QWdfA9WdEAdA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:3935",
     "tier": "tier2",
-    "title": "Jamendo 3935",
-    "artist": "artist_000573",
+    "title": "strip tease",
+    "artist": "The Links",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/3935",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/3935",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=615&width=300&trackid=3935",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "3935"
+      "jamendoTrackId": "3935",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=3935&format=mp31&from=PY34ODh1QH8NSDZ5al47hg%3D%3D%7C9g8AHqo%2FrUI%2FRhBl7Cezcw%3D%3D",
+      "jamendoAlbum": "una musica \"rabelaisien\""
     }
   },
   {
     "track_id": "tier2:jamendo:760",
     "tier": "tier2",
-    "title": "Jamendo 760",
-    "artist": "artist_000103",
+    "title": "World that you know",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/760",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/760",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=760",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "760"
+      "jamendoTrackId": "760",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=760&format=mp31&from=QIDkt1Ijwuck%2BOtoL6Lp1w%3D%3D%7C6wp3Urgpg0%2FssC1%2B5H8XBg%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:243",
     "tier": "tier2",
-    "title": "Jamendo 243",
-    "artist": "artist_000005",
+    "title": "The Monster",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/243",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/243",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=243",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "243"
+      "jamendoTrackId": "243",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=243&format=mp31&from=CDM%2FdURqEbn%2FKHPAtAkfPw%3D%3D%7CRu7HvI0VLYi3%2BXJ2f5T%2BSA%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:385",
     "tier": "tier2",
-    "title": "Jamendo 385",
-    "artist": "artist_000020",
+    "title": "Ave Maria (Sylvain Zimmer)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/385",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/385",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=385",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "385"
+      "jamendoTrackId": "385",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=385&format=mp31&from=214ZHNWTum7nyUxri1EiwA%3D%3D%7CkaSdRya7cLt04wzgcGw02w%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1091",
     "tier": "tier2",
-    "title": "Jamendo 1091",
-    "artist": "artist_000159",
+    "title": "Intro",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1091",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1091",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1091",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1091"
+      "jamendoTrackId": "1091",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1091&format=mp31&from=hEnYYd2BFI6IawfsXFVjdg%3D%3D%7CqvQLLiTnPcm8hIzrvT0CTg%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2637",
     "tier": "tier2",
-    "title": "Jamendo 2637",
-    "artist": "artist_000379",
+    "title": "La ballade d\u00e9catie",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2637",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2637",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2637",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2637"
+      "jamendoTrackId": "2637",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2637&format=mp31&from=Ok13o%2F8%2B%2BS7s%2BieAQ1Ua%2FQ%3D%3D%7ChwfadJhsYjn%2BfWC8AMUwKA%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43415",
     "tier": "tier2",
-    "title": "Jamendo 43415",
-    "artist": "artist_005716",
+    "title": "Fu\u00df In Der T\u00fcr",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43415",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43415",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43415",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43415"
+      "jamendoTrackId": "43415",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43415&format=mp31&from=ADQbyVux4%2FS5xi3CsjkuSA%3D%3D%7CuzG1awo7BFcCqZEQimntQA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:3936",
     "tier": "tier2",
-    "title": "Jamendo 3936",
-    "artist": "artist_000573",
+    "title": "jeromino",
+    "artist": "The Links",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/3936",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/3936",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=615&width=300&trackid=3936",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "3936"
+      "jamendoTrackId": "3936",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=3936&format=mp31&from=csAAv9iyShfSM78MzzQ%2BwQ%3D%3D%7C%2Fce7bZh1%2F2OkFDCAF3cjxg%3D%3D",
+      "jamendoAlbum": "una musica \"rabelaisien\""
     }
   },
   {
     "track_id": "tier2:jamendo:761",
     "tier": "tier2",
-    "title": "Jamendo 761",
-    "artist": "artist_000103",
+    "title": "Modern Life",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/761",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/761",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=761",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "761"
+      "jamendoTrackId": "761",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=761&format=mp31&from=%2FAB6rzv6SDS10%2BkUbEYugQ%3D%3D%7CLEEHw0ByRpjqTxBpU6NrEA%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:244",
     "tier": "tier2",
-    "title": "Jamendo 244",
-    "artist": "artist_000005",
+    "title": "Qui D\u00e9chante",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/244",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/244",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=244",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "244"
+      "jamendoTrackId": "244",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=244&format=mp31&from=ipN8V0cQFEJaUOxSP8TQqA%3D%3D%7Cra0aNBPfKTCnHPlbYOjZTw%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:386",
     "tier": "tier2",
-    "title": "Jamendo 386",
-    "artist": "artist_000020",
+    "title": "Cantate Domino (Johann Cr\u00fcger)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/386",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/386",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=386",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "386"
+      "jamendoTrackId": "386",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=386&format=mp31&from=IyBpzf5ex%2B1p6v3xZAVU8Q%3D%3D%7CnQVPUuI63W7rd0rD07WyIw%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1092",
     "tier": "tier2",
-    "title": "Jamendo 1092",
-    "artist": "artist_000159",
+    "title": "The Game",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1092",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1092",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1092",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1092"
+      "jamendoTrackId": "1092",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1092&format=mp31&from=pevYdZK9Gfis%2BJJnspTNAA%3D%3D%7CVbMU%2BOMrMQ1Qtj3M7MtbYw%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2639",
     "tier": "tier2",
-    "title": "Jamendo 2639",
-    "artist": "artist_000379",
+    "title": "La jeune fille en vert",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2639",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2639",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2639",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2639"
+      "jamendoTrackId": "2639",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2639&format=mp31&from=PX51hybOl4Tn6S1oafkE9A%3D%3D%7CL4mbueLCYdoySxovN4u1mg%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43416",
     "tier": "tier2",
-    "title": "Jamendo 43416",
-    "artist": "artist_005716",
+    "title": "K.Os Rhymes",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43416",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43416",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43416",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43416"
+      "jamendoTrackId": "43416",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43416&format=mp31&from=rv0skeiZr85bEUv2ENx9Rg%3D%3D%7CjWaoa1ZaqZMzH6uq%2BQgBWA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:3939",
     "tier": "tier2",
-    "title": "Jamendo 3939",
-    "artist": "artist_000573",
+    "title": "destructuration",
+    "artist": "The Links",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/3939",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/3939",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=615&width=300&trackid=3939",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "3939"
+      "jamendoTrackId": "3939",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=3939&format=mp31&from=Jlj7L1jB0cQ3z%2Fx495lo7w%3D%3D%7COXvTZIcfSBoTgHX0YClefw%3D%3D",
+      "jamendoAlbum": "una musica \"rabelaisien\""
     }
   },
   {
     "track_id": "tier2:jamendo:762",
     "tier": "tier2",
-    "title": "Jamendo 762",
-    "artist": "artist_000103",
+    "title": "Healing Luna",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/762",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/762",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=762",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "762"
+      "jamendoTrackId": "762",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=762&format=mp31&from=xS7nI9nPJuTF04V2XAwvLQ%3D%3D%7CLgA71tWa0Sub1f78SqLFdA%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:245",
     "tier": "tier2",
-    "title": "Jamendo 245",
-    "artist": "artist_000005",
+    "title": "J.E.T. Apostrophe A.I.M.E",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/245",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/245",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=245",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "245"
+      "jamendoTrackId": "245",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=245&format=mp31&from=W5Zt%2B2uj%2BAjyw%2Fdpy0Cuqg%3D%3D%7Cj%2BACvHu9QBn9kDRc3JZaWA%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:387",
     "tier": "tier2",
-    "title": "Jamendo 387",
-    "artist": "artist_000020",
+    "title": "Cantique de Jean Racine (Gabriel Faur\u00e9)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/387",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/387",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=387",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "387"
+      "jamendoTrackId": "387",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=387&format=mp31&from=M4Nl4L5Mp8T53yoRbN2wyw%3D%3D%7CJ583WhH4MNnoUCRspCy3Dg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1093",
     "tier": "tier2",
-    "title": "Jamendo 1093",
-    "artist": "artist_000159",
+    "title": "Marion in the Morning",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1093",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1093",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1093",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1093"
+      "jamendoTrackId": "1093",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1093&format=mp31&from=seOy4wN7wG12qVGRlbO%2FKw%3D%3D%7CJOE%2BUTARtHRWjzb%2FFzIeMw%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2641",
     "tier": "tier2",
-    "title": "Jamendo 2641",
-    "artist": "artist_000379",
+    "title": "Valse an\u00e9mi\u00e9e",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2641",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2641",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2641",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2641"
+      "jamendoTrackId": "2641",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2641&format=mp31&from=RfauSFqfp%2Blu3UGpbfJ69A%3D%3D%7CQ9r7KHD0Sv2B94beJZnR2w%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43418",
     "tier": "tier2",
-    "title": "Jamendo 43418",
-    "artist": "artist_005716",
+    "title": "Release Verschoben",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43418",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43418",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43418",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43418"
+      "jamendoTrackId": "43418",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43418&format=mp31&from=vp%2FQ%2BFMkxVhREhF%2Foq6r0Q%3D%3D%7CWNOutTIR47EsVdgG5VKvng%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:4889",
     "tier": "tier2",
-    "title": "Jamendo 4889",
-    "artist": "artist_000696",
+    "title": "R\u00eave",
+    "artist": "Tom La Meche",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/4889",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/4889",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=751&width=300&trackid=4889",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "4889"
+      "jamendoTrackId": "4889",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=4889&format=mp31&from=wf%2B1oTCPZ5KTwQA%2FkIhtmQ%3D%3D%7CXCWLNpm6RvRQrKnjBStyJA%3D%3D",
+      "jamendoAlbum": "Voyageur"
     }
   },
   {
     "track_id": "tier2:jamendo:763",
     "tier": "tier2",
-    "title": "Jamendo 763",
-    "artist": "artist_000103",
+    "title": "Dance",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/763",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/763",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=763",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "763"
+      "jamendoTrackId": "763",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=763&format=mp31&from=k9LlEbFZpQCsKKwFcpuxug%3D%3D%7C7REl2mjm6WU4MGpZOEWPwA%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:246",
     "tier": "tier2",
-    "title": "Jamendo 246",
-    "artist": "artist_000005",
+    "title": "Take Up Arms",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/246",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/246",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=33&width=300&trackid=246",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "246"
+      "jamendoTrackId": "246",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=246&format=mp31&from=WjghpAWZaTvAZ4RY95YRZw%3D%3D%7CrD4jfLVedNZ0DA3gDDfMaQ%3D%3D",
+      "jamendoAlbum": "Simple Exercice"
     }
   },
   {
     "track_id": "tier2:jamendo:388",
     "tier": "tier2",
-    "title": "Jamendo 388",
-    "artist": "artist_000020",
+    "title": "Jubilemus Exultemus (Fran\u00e7ois Couperin)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/388",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/388",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=388",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "388"
+      "jamendoTrackId": "388",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=388&format=mp31&from=fOMhuDUf1EG6zxJM%2FLZ36g%3D%3D%7CXgy15NsC3YrECOSUZS2K%2Bw%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1094",
     "tier": "tier2",
-    "title": "Jamendo 1094",
-    "artist": "artist_000159",
+    "title": "Fuckin' Sound",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1094",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1094",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1094",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1094"
+      "jamendoTrackId": "1094",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1094&format=mp31&from=ZCPlRlZRP27nBhXoN3aUTw%3D%3D%7CuBUZpoeKMzzg%2B5b5Mu%2BNoQ%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2644",
     "tier": "tier2",
-    "title": "Jamendo 2644",
-    "artist": "artist_000379",
+    "title": "La fausse note",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2644",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2644",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2644",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2644"
+      "jamendoTrackId": "2644",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2644&format=mp31&from=T68sE%2FIUMleLxdt4N8EHYg%3D%3D%7Cln64szxuoSnPfzoMQbtUSw%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43419",
     "tier": "tier2",
-    "title": "Jamendo 43419",
-    "artist": "artist_005716",
+    "title": "Ich Will",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43419",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43419",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43419",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43419"
+      "jamendoTrackId": "43419",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43419&format=mp31&from=gJMX8l5YJ%2Fzm2kwpXjm5Cw%3D%3D%7CiLB6%2FoEru24k3UwbFngQlA%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:6729",
     "tier": "tier2",
-    "title": "Jamendo 6729",
-    "artist": "artist_000937",
+    "title": "When I Was With You",
+    "artist": "Steven Dunston",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/6729",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/6729",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1020&width=300&trackid=6729",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "6729"
+      "jamendoTrackId": "6729",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=6729&format=mp31&from=8WjEDiNV4TQ3Uj2Gxgo6tg%3D%3D%7CW89CecGeX95AeYuMHsIwrA%3D%3D",
+      "jamendoAlbum": "Hymns About Her (advance)"
     }
   },
   {
     "track_id": "tier2:jamendo:764",
     "tier": "tier2",
-    "title": "Jamendo 764",
-    "artist": "artist_000103",
+    "title": "Peace on earth",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/764",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/764",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=764",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "764"
+      "jamendoTrackId": "764",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=764&format=mp31&from=vmJVYfDQ87jgv54gFf8WMQ%3D%3D%7CbDNVvY1luXfqr25z%2FQt0%2FA%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:1100",
     "tier": "tier2",
-    "title": "Jamendo 1100",
-    "artist": "artist_000005",
+    "title": "En attendant d'aller sur Mars",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1100",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1100",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1100",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1100"
+      "jamendoTrackId": "1100",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1100&format=mp31&from=d3gONp4BgQAQfOqoBXw1Qg%3D%3D%7CWoBujmx4HUy%2FWfE9ZzrvEA%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:389",
     "tier": "tier2",
-    "title": "Jamendo 389",
-    "artist": "artist_000020",
+    "title": "Nocturnes (W.A. Mozart)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/389",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/389",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=389",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "389"
+      "jamendoTrackId": "389",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=389&format=mp31&from=pmjapQ%2BP%2BxazqdIIw8o3KA%3D%3D%7CzUeadf2Bkti6AkpiyVokYg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1095",
     "tier": "tier2",
-    "title": "Jamendo 1095",
-    "artist": "artist_000159",
+    "title": "I Was Just a Looser",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1095",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1095",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1095",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1095"
+      "jamendoTrackId": "1095",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1095&format=mp31&from=uw9VTVcrzirjfuhuH%2BxlCg%3D%3D%7C5CibvddgR0dxA%2BMVQ5gzVg%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2645",
     "tier": "tier2",
-    "title": "Jamendo 2645",
-    "artist": "artist_000379",
+    "title": "La cascade du bois de Vincennes",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2645",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2645",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2645",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2645"
+      "jamendoTrackId": "2645",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2645&format=mp31&from=UJ5CnHIUNazkbJdwNXPNgA%3D%3D%7CVUcAYDAEkajfaG9PcqLzmg%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43420",
     "tier": "tier2",
-    "title": "Jamendo 43420",
-    "artist": "artist_005716",
+    "title": "Ca$h Money",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43420",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43420",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43420",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43420"
+      "jamendoTrackId": "43420",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43420&format=mp31&from=Vv7hnZe2kPFKr6VzrU0YiQ%3D%3D%7CvT0xKQ%2BxjhUhVTluoECJXg%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:8560",
     "tier": "tier2",
-    "title": "Jamendo 8560",
-    "artist": "artist_001301",
+    "title": "Nuit sur Flandres",
+    "artist": "Manu Cornet",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/8560",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/8560",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1290&width=300&trackid=8560",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "8560"
+      "jamendoTrackId": "8560",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=8560&format=mp31&from=cTHb2zXetPj2F9aSgDPMYA%3D%3D%7Cb5IY%2BEUmAqiMQQPzdMzW0g%3D%3D",
+      "jamendoAlbum": "Distance & Temps"
     }
   },
   {
     "track_id": "tier2:jamendo:765",
     "tier": "tier2",
-    "title": "Jamendo 765",
-    "artist": "artist_000103",
+    "title": "Bedtime",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/765",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/765",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=124&width=300&trackid=765",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "765"
+      "jamendoTrackId": "765",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=765&format=mp31&from=eulNj4WWLVRxUZ8beZXSug%3D%3D%7ClbnWL3ejPx%2FpvmTJU0pKRw%3D%3D",
+      "jamendoAlbum": "00"
     }
   },
   {
     "track_id": "tier2:jamendo:1102",
     "tier": "tier2",
-    "title": "Jamendo 1102",
-    "artist": "artist_000005",
+    "title": "Une charogne",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1102",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1102",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1102",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1102"
+      "jamendoTrackId": "1102",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1102&format=mp31&from=BPd1be0b83qNfzLOpw2N8Q%3D%3D%7ClU6oYpenW0BRzzGOvNj4jw%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:390",
     "tier": "tier2",
-    "title": "Jamendo 390",
-    "artist": "artist_000020",
+    "title": "Psaume 61 (Joseph Haydn)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/390",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/390",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=390",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "390"
+      "jamendoTrackId": "390",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=390&format=mp31&from=DcYeXOm3KbBpMMK%2FdaB0vA%3D%3D%7Cm6Nu%2B3BLGkLgr3WueWuClg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1096",
     "tier": "tier2",
-    "title": "Jamendo 1096",
-    "artist": "artist_000159",
+    "title": "Lullaby",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1096",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1096",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1096",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1096"
+      "jamendoTrackId": "1096",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1096&format=mp31&from=4HqNsKnrHefSwge%2FyMkAjw%3D%3D%7CqssIx%2BH%2FqJnSH5Fw8%2BU4BA%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2652",
     "tier": "tier2",
-    "title": "Jamendo 2652",
-    "artist": "artist_000379",
+    "title": "Le blues de la vache",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2652",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2652",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2652",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2652"
+      "jamendoTrackId": "2652",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2652&format=mp31&from=CDXOssfMk9o%2FKuHm7u45tA%3D%3D%7CCdiQwmwy6jgr%2FCFdx61tKg%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43421",
     "tier": "tier2",
-    "title": "Jamendo 43421",
-    "artist": "artist_005716",
+    "title": "Der Lauf Der Dinge",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43421",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43421",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43421",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43421"
+      "jamendoTrackId": "43421",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43421&format=mp31&from=3G%2B5d%2BA1dOfIe2Y6rFLdUA%3D%3D%7CchWmPhu7g2PEhuE32SVqYw%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:8563",
     "tier": "tier2",
-    "title": "Jamendo 8563",
-    "artist": "artist_001301",
+    "title": "D\u00e9but Septembre",
+    "artist": "Manu Cornet",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/8563",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/8563",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1290&width=300&trackid=8563",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "8563"
+      "jamendoTrackId": "8563",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=8563&format=mp31&from=ma5Uq%2B5iY6K9Hyd9Z4d40w%3D%3D%7CylitzsoOA22nKxZe8jmaag%3D%3D",
+      "jamendoAlbum": "Distance & Temps"
     }
   },
   {
     "track_id": "tier2:jamendo:766",
     "tier": "tier2",
-    "title": "Jamendo 766",
-    "artist": "artist_000103",
+    "title": "Balance",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/766",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/766",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=766",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "766"
+      "jamendoTrackId": "766",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=766&format=mp31&from=LznsZw9lK28YuXT6Q4ztFg%3D%3D%7CdKxTbHdhi5NaMu%2F%2BKyK4uQ%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1104",
     "tier": "tier2",
-    "title": "Jamendo 1104",
-    "artist": "artist_000005",
+    "title": "Elles disent",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1104",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1104",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1104",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1104"
+      "jamendoTrackId": "1104",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1104&format=mp31&from=5u%2FgeAqNP4WrJefa7VUuGA%3D%3D%7CIddrdJiJrwY43WptLL0YPg%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:391",
     "tier": "tier2",
-    "title": "Jamendo 391",
-    "artist": "artist_000020",
+    "title": "Cantate Domino (G.O. Pitoni)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/391",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/391",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=391",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "391"
+      "jamendoTrackId": "391",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=391&format=mp31&from=yLfIYBMK%2BmwCxrvk4F0kBQ%3D%3D%7CJUGAOZoBkJbbJ6uoeRQ3lg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1097",
     "tier": "tier2",
-    "title": "Jamendo 1097",
-    "artist": "artist_000159",
+    "title": "Jonathan",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1097",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1097",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1097",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1097"
+      "jamendoTrackId": "1097",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1097&format=mp31&from=vc5t%2BEO7TzVVyz51PeQ62Q%3D%3D%7CQJLslteWoxD6ZpZZC6AQIQ%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:2653",
     "tier": "tier2",
-    "title": "Jamendo 2653",
-    "artist": "artist_000379",
+    "title": "Le cowboy d\u00e9racin\u00e9",
+    "artist": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2653",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2653",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=412&width=300&trackid=2653",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2653"
+      "jamendoTrackId": "2653",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2653&format=mp31&from=owNK4ieHhGBuPOoHu%2FiPJQ%3D%3D%7CXFS%2B51O6YRf%2FbbHc%2FJWVGg%3D%3D",
+      "jamendoAlbum": "Le Collectif Unifi\u00e9 de la Cr\u00e9celle"
     }
   },
   {
     "track_id": "tier2:jamendo:43423",
     "tier": "tier2",
-    "title": "Jamendo 43423",
-    "artist": "artist_005716",
+    "title": "Schlampe (Killt Die Ho's!)",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43423",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43423",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43423",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43423"
+      "jamendoTrackId": "43423",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43423&format=mp31&from=FXBl3a9A30fhT6Ibh6%2BYtQ%3D%3D%7CwmRFS55CSokkinn1OrAPzg%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:17490",
     "tier": "tier2",
-    "title": "Jamendo 17490",
-    "artist": "artist_002449",
+    "title": "DEHi",
+    "artist": "Piergiorgio Lucidi",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/17490",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/17490",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=2470&width=300&trackid=17490",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "17490"
+      "jamendoTrackId": "17490",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=17490&format=mp31&from=%2BmjYn7tBc2r691VS1zOKIA%3D%3D%7CGa%2Bt4AWTGUVRXvb4ndUZ8w%3D%3D",
+      "jamendoAlbum": "JazzMoves"
     }
   },
   {
     "track_id": "tier2:jamendo:767",
     "tier": "tier2",
-    "title": "Jamendo 767",
-    "artist": "artist_000103",
+    "title": "Once Again",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/767",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/767",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=767",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "767"
+      "jamendoTrackId": "767",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=767&format=mp31&from=Kb7MSbK%2FpH5594OEv%2Fj2sw%3D%3D%7CdIp278aJZ5FkdmEDYDel1g%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1105",
     "tier": "tier2",
-    "title": "Jamendo 1105",
-    "artist": "artist_000005",
+    "title": "Now or never",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1105",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1105",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1105",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1105"
+      "jamendoTrackId": "1105",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1105&format=mp31&from=6163BDcAyKXaDMxxK4f47w%3D%3D%7CGJH8PATudMS449wTr5ZeDA%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:392",
     "tier": "tier2",
-    "title": "Jamendo 392",
-    "artist": "artist_000020",
+    "title": "Messe \u00e0 3 voix (Antonio Lotti)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/392",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/392",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=392",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "392"
+      "jamendoTrackId": "392",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=392&format=mp31&from=rmJP2McldrPGeaZhK8CqTw%3D%3D%7CR8BFZ9RB07IWUSDQrsjfkg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1098",
     "tier": "tier2",
-    "title": "Jamendo 1098",
-    "artist": "artist_000159",
+    "title": "Escape From Madness",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1098",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1098",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1098",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1098"
+      "jamendoTrackId": "1098",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1098&format=mp31&from=%2BZJy7Y9hOJt%2Br2PYOtW97A%3D%3D%7CQ5OqoRZCvT0Hqq4eFJLXXA%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:6725",
     "tier": "tier2",
-    "title": "Jamendo 6725",
-    "artist": "artist_000937",
+    "title": "Tonic and Gin",
+    "artist": "Steven Dunston",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/6725",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/6725",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1020&width=300&trackid=6725",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "6725"
+      "jamendoTrackId": "6725",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=6725&format=mp31&from=lkHkRon7SKyQnmmH30KF5A%3D%3D%7COaNdfbeCa4Y8A88CrSF49A%3D%3D",
+      "jamendoAlbum": "Hymns About Her (advance)"
     }
   },
   {
     "track_id": "tier2:jamendo:43424",
     "tier": "tier2",
-    "title": "Jamendo 43424",
-    "artist": "artist_005716",
+    "title": "Lasst Mich Allein! (Stept Weg!)",
+    "artist": "K.Os Rhymes",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/43424",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/43424",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=5234&width=300&trackid=43424",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "43424"
+      "jamendoTrackId": "43424",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=43424&format=mp31&from=ZyC4nURhCFV4Nh%2F4rDdf3g%3D%3D%7CJ4%2F2vRtY9SIvNDmdAKq4Hg%3D%3D",
+      "jamendoAlbum": "Fu\u00df In Der T\u00fcr"
     }
   },
   {
     "track_id": "tier2:jamendo:17492",
     "tier": "tier2",
-    "title": "Jamendo 17492",
-    "artist": "artist_002449",
+    "title": "JazzMoves",
+    "artist": "Piergiorgio Lucidi",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/17492",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/17492",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=2470&width=300&trackid=17492",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "17492"
+      "jamendoTrackId": "17492",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=17492&format=mp31&from=0wU26LwEnRW6okWQfmwoRQ%3D%3D%7CGzhNC0VdiNPs0g46mEDcCg%3D%3D",
+      "jamendoAlbum": "JazzMoves"
     }
   },
   {
     "track_id": "tier2:jamendo:768",
     "tier": "tier2",
-    "title": "Jamendo 768",
-    "artist": "artist_000103",
+    "title": "School",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/768",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/768",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=768",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "768"
+      "jamendoTrackId": "768",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=768&format=mp31&from=hTERbhzbnt%2FFW0%2FS3O%2F%2FeA%3D%3D%7CSC%2F8KxBpd0OhVLqisVmOWA%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1107",
     "tier": "tier2",
-    "title": "Jamendo 1107",
-    "artist": "artist_000005",
+    "title": "Quand on a pas ce que l'on aime",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1107",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1107",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1107",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1107"
+      "jamendoTrackId": "1107",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1107&format=mp31&from=GMUEZzaDU8OCnwmWzNOFXA%3D%3D%7C20iuZGEZsZrNUajd2al5gQ%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:393",
     "tier": "tier2",
-    "title": "Jamendo 393",
-    "artist": "artist_000020",
+    "title": "O bone Jesu (C.G. Reissiger)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/393",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/393",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=393",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "393"
+      "jamendoTrackId": "393",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=393&format=mp31&from=VKq6QDpa7euXsIq6tJIdxw%3D%3D%7C5eAGsDG%2F67M1qtOj6ghmUw%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1099",
     "tier": "tier2",
-    "title": "Jamendo 1099",
-    "artist": "artist_000159",
+    "title": "Leave Me, Let Me Die",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1099",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1099",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=173&width=300&trackid=1099",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1099"
+      "jamendoTrackId": "1099",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1099&format=mp31&from=kvJqfjnveT13BzNd57qUew%3D%3D%7C%2BhdNyTXxNJaP6lxKVpnUVw%3D%3D",
+      "jamendoAlbum": "Religionnaire I"
     }
   },
   {
     "track_id": "tier2:jamendo:13400",
     "tier": "tier2",
-    "title": "Jamendo 13400",
-    "artist": "artist_001968",
+    "title": "Sereno(Ac\u00fastico)",
+    "artist": "clbustos",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/13400",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/13400",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1938&width=300&trackid=13400",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "13400"
+      "jamendoTrackId": "13400",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=13400&format=mp31&from=t1J%2FqkPpKJoOPHQ5khEYnA%3D%3D%7C57fL2V%2Bp4Iomp5Fy%2BG24bw%3D%3D",
+      "jamendoAlbum": "Bocetos I"
     }
   },
   {
     "track_id": "tier2:jamendo:66676",
     "tier": "tier2",
-    "title": "Jamendo 66676",
-    "artist": "artist_004365",
+    "title": "090207",
+    "artist": "Organic Despair",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/66676",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/66676",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=6336&width=300&trackid=66676",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "66676"
+      "jamendoTrackId": "66676",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=66676&format=mp31&from=KFjw9zFOp3mT3iUg68WGpA%3D%3D%7CTVdKGIp%2FI9t3Jjg1gtd1dw%3D%3D",
+      "jamendoAlbum": "Transition (05.07.2007)"
     }
   },
   {
     "track_id": "tier2:jamendo:20492",
     "tier": "tier2",
-    "title": "Jamendo 20492",
-    "artist": "artist_003027",
+    "title": "LOUI's_SONG",
+    "artist": "ZERO_1",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/20492",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/20492",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=2873&width=300&trackid=20492",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "20492"
+      "jamendoTrackId": "20492",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=20492&format=mp31&from=%2F2Axcw0Ehja1zhmIuLQmHQ%3D%3D%7CSsF6dzIjm4jbiZoBCYD2%2Bg%3D%3D",
+      "jamendoAlbum": "I do msic"
     }
   },
   {
     "track_id": "tier2:jamendo:769",
     "tier": "tier2",
-    "title": "Jamendo 769",
-    "artist": "artist_000103",
+    "title": "You are",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/769",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/769",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=769",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "769"
+      "jamendoTrackId": "769",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=769&format=mp31&from=gLVunO738GoYWHItFtiEiQ%3D%3D%7C2S%2BXu7JNUCGEoSRT9qkFMw%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1108",
     "tier": "tier2",
-    "title": "Jamendo 1108",
-    "artist": "artist_000005",
+    "title": "In vino veritas",
+    "artist": "Both",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1108",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1108",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=174&width=300&trackid=1108",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1108"
+      "jamendoTrackId": "1108",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1108&format=mp31&from=ZTMrs3wIBq3pQJN8wn8gxw%3D%3D%7Cmlds%2FCrQpozF7zyF%2Bnc1DA%3D%3D",
+      "jamendoAlbum": "En attendant d'aller sur Mars..."
     }
   },
   {
     "track_id": "tier2:jamendo:394",
     "tier": "tier2",
-    "title": "Jamendo 394",
-    "artist": "artist_000020",
+    "title": "Alma Redemptoris Mater (G.P. da Palestrina)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/394",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/394",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=394",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "394"
+      "jamendoTrackId": "394",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=394&format=mp31&from=Ai%2F8%2BIZJq6f2reXtXgR4gA%3D%3D%7CBF%2BFjDKFGLy29RUynsOtlA%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1161",
     "tier": "tier2",
-    "title": "Jamendo 1161",
-    "artist": "artist_000159",
+    "title": "Marion",
+    "artist": "Religionnaire",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1161",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1161",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=180&width=300&trackid=1161",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1161"
+      "jamendoTrackId": "1161",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1161&format=mp31&from=8GRM8TmHe4Y%2FRRO21N3sMA%3D%3D%7CJ4SjlV8lV6KFGgBHtsbD6w%3D%3D",
+      "jamendoAlbum": "Religionnaire II"
     }
   },
   {
     "track_id": "tier2:jamendo:25270",
     "tier": "tier2",
-    "title": "Jamendo 25270",
-    "artist": "artist_001885",
+    "title": "Chim\u00e8res",
+    "artist": "Badger",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/25270",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/25270",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3483&width=300&trackid=25270",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "25270"
+      "jamendoTrackId": "25270",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=25270&format=mp31&from=SED2YiSlRtYfJvZsdkRPNw%3D%3D%7Cb3oqaIWBxVls%2BgBXB9aR%2Fg%3D%3D",
+      "jamendoAlbum": "Quendi"
     }
   },
   {
     "track_id": "tier2:jamendo:66677",
     "tier": "tier2",
-    "title": "Jamendo 66677",
-    "artist": "artist_004365",
+    "title": "080207",
+    "artist": "Organic Despair",
     "primary_genre": "Hip-Hop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/66677",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/66677",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=6336&width=300&trackid=66677",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "66677"
+      "jamendoTrackId": "66677",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=66677&format=mp31&from=juxh1lI%2BXo2upBrfU0RgKg%3D%3D%7CEpBIR%2FFoWP0Wyom3Z9TU%2Fw%3D%3D",
+      "jamendoAlbum": "Transition (05.07.2007)"
     }
   },
   {
     "track_id": "tier2:jamendo:20763",
     "tier": "tier2",
-    "title": "Jamendo 20763",
-    "artist": "artist_002952",
+    "title": "AS THE SUN RISES",
+    "artist": "conFusion",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/20763",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/20763",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=2913&width=300&trackid=20763",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "20763"
+      "jamendoTrackId": "20763",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=20763&format=mp31&from=MBgdjYUMTxoUGtJ7kInBeg%3D%3D%7CjXZOGrSoMvTMnIMwqPRddQ%3D%3D",
+      "jamendoAlbum": "Jazzpassaj"
     }
   },
   {
     "track_id": "tier2:jamendo:770",
     "tier": "tier2",
-    "title": "Jamendo 770",
-    "artist": "artist_000103",
+    "title": "People to the Power",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/770",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/770",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=770",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "770"
+      "jamendoTrackId": "770",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=770&format=mp31&from=fyAoZltyTDbn0nRWq7taMQ%3D%3D%7CRU3fFuaM9rGX3aIpQ5rH9g%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1289",
     "tier": "tier2",
-    "title": "Jamendo 1289",
-    "artist": "artist_000193",
+    "title": "of grace and favour #2",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1289",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1289",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1289",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1289"
+      "jamendoTrackId": "1289",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1289&format=mp31&from=YssjADL5Q6CSAukKgt9F7w%3D%3D%7ClrCmXZNJc988WhrQBFp8Pw%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:395",
     "tier": "tier2",
-    "title": "Jamendo 395",
-    "artist": "artist_000020",
+    "title": "L'immensit\u00e9 du firmament (Benedetto Marcello)",
+    "artist": "Les Petits Chanteurs de Montigny",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/395",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/395",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=46&width=300&trackid=395",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "395"
+      "jamendoTrackId": "395",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=395&format=mp31&from=KdqvD9dC25BQ631mu55ElQ%3D%3D%7C968r8wL%2FpzpRTi7cJ%2FZajg%3D%3D",
+      "jamendoAlbum": "Compilation classique"
     }
   },
   {
     "track_id": "tier2:jamendo:1269",
     "tier": "tier2",
-    "title": "Jamendo 1269",
-    "artist": "artist_000209",
+    "title": "Hausarbeit",
+    "artist": "Talking Cure",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1269",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1269",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=196&width=300&trackid=1269",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1269"
+      "jamendoTrackId": "1269",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1269&format=mp31&from=vb%2BF%2Fgj10exr0ZaUXPyiHw%3D%3D%7CFtyD5l6Zc8b7Ty1O4oaYdA%3D%3D",
+      "jamendoAlbum": "Hausarbeit"
     }
   },
   {
     "track_id": "tier2:jamendo:30219",
     "tier": "tier2",
-    "title": "Jamendo 30219",
-    "artist": "artist_004194",
+    "title": "Der Fremde",
+    "artist": "Le Zaarth",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/30219",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/30219",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3812&width=300&trackid=30219",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "30219"
+      "jamendoTrackId": "30219",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=30219&format=mp31&from=j1TWbK1k2efe1FWGrkrAjA%3D%3D%7CIY9AATlFW36sDGE4Ps0I8Q%3D%3D",
+      "jamendoAlbum": "Evolution"
     }
   },
   {
@@ -1837,103 +2023,115 @@
   {
     "track_id": "tier2:jamendo:20769",
     "tier": "tier2",
-    "title": "Jamendo 20769",
-    "artist": "artist_002952",
+    "title": "MARIE",
+    "artist": "conFusion",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/20769",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/20769",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=2913&width=300&trackid=20769",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "20769"
+      "jamendoTrackId": "20769",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=20769&format=mp31&from=6R505TcHo9nRYjnaONnwoQ%3D%3D%7CuBrycViKtTRZ%2FQ%2Bk1s8AjA%3D%3D",
+      "jamendoAlbum": "Jazzpassaj"
     }
   },
   {
     "track_id": "tier2:jamendo:771",
     "tier": "tier2",
-    "title": "Jamendo 771",
-    "artist": "artist_000103",
+    "title": "Golden Leaves",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/771",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/771",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=771",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "771"
+      "jamendoTrackId": "771",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=771&format=mp31&from=nfqvz61GlfbSI0LWPTuGOg%3D%3D%7C0Ppkl%2FSNdz7oeeOI67KN2A%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:1294",
     "tier": "tier2",
-    "title": "Jamendo 1294",
-    "artist": "artist_000193",
+    "title": "of grace and favour #1",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1294",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1294",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1294",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1294"
+      "jamendoTrackId": "1294",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1294&format=mp31&from=WSS%2BvYcRF4gHTpbnzR873w%3D%3D%7Czhnir8J0uUxkOES%2Bgcg3eQ%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:1268",
     "tier": "tier2",
-    "title": "Jamendo 1268",
-    "artist": "artist_000209",
+    "title": "Interlude",
+    "artist": "Talking Cure",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1268",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1268",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=196&width=300&trackid=1268",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1268"
+      "jamendoTrackId": "1268",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1268&format=mp31&from=0dhs9KJLtbbM5YjClOIbPg%3D%3D%7CchuCHyXMpkHMUJYBquFz%2FQ%3D%3D",
+      "jamendoAlbum": "Hausarbeit"
     }
   },
   {
     "track_id": "tier2:jamendo:1286",
     "tier": "tier2",
-    "title": "Jamendo 1286",
-    "artist": "artist_000193",
+    "title": "fuori senso",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1286",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1286",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1286",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1286"
+      "jamendoTrackId": "1286",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1286&format=mp31&from=0hFYot2VosAcEJUY1TOwAQ%3D%3D%7CPQgnho%2BzBP7N9sBGZkUURw%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:32210",
     "tier": "tier2",
-    "title": "Jamendo 32210",
-    "artist": "artist_004497",
+    "title": "Good night",
+    "artist": "Los Muflos",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/32210",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/32210",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=4011&width=300&trackid=32210",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "32210"
+      "jamendoTrackId": "32210",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=32210&format=mp31&from=L4%2BmhxqMOdajXlplieqTbg%3D%3D%7CT979tBnbIPT3UQzGQnCfbQ%3D%3D",
+      "jamendoAlbum": "Flowers for my mum"
     }
   },
   {
@@ -1956,103 +2154,115 @@
   {
     "track_id": "tier2:jamendo:22549",
     "tier": "tier2",
-    "title": "Jamendo 22549",
-    "artist": "artist_001968",
+    "title": "A la Roberto, tema I",
+    "artist": "clbustos",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/22549",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/22549",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3125&width=300&trackid=22549",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "22549"
+      "jamendoTrackId": "22549",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=22549&format=mp31&from=F0MwKFLahDJEOx3uBIWFqw%3D%3D%7CieS3MsJYvHYDYfeAHkqqxw%3D%3D",
+      "jamendoAlbum": "Chuquicamata"
     }
   },
   {
     "track_id": "tier2:jamendo:772",
     "tier": "tier2",
-    "title": "Jamendo 772",
-    "artist": "artist_000103",
+    "title": "Journey's End",
+    "artist": "Vavrek",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/772",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/772",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=125&width=300&trackid=772",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "772"
+      "jamendoTrackId": "772",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=772&format=mp31&from=oL6M3NWXWurmMN3I%2FwUKVw%3D%3D%7CC0%2F8UN37WkB2CCPialN6Mg%3D%3D",
+      "jamendoAlbum": "01"
     }
   },
   {
     "track_id": "tier2:jamendo:7788",
     "tier": "tier2",
-    "title": "Jamendo 7788",
-    "artist": "artist_001005",
+    "title": "Scarnation",
+    "artist": "vincent j",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/7788",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/7788",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1186&width=300&trackid=7788",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "7788"
+      "jamendoTrackId": "7788",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=7788&format=mp31&from=2gEo9Z9MgusOVZ1SgyQhpQ%3D%3D%7C2yj6Tz6whqTe7prP4xj9lg%3D%3D",
+      "jamendoAlbum": "Different vision"
     }
   },
   {
     "track_id": "tier2:jamendo:2172",
     "tier": "tier2",
-    "title": "Jamendo 2172",
-    "artist": "artist_000326",
+    "title": "Les chevaliers de l'Aar",
+    "artist": "Greg Baumont",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/2172",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/2172",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=347&width=300&trackid=2172",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "2172"
+      "jamendoTrackId": "2172",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=2172&format=mp31&from=FrAegQBnCRIaKZLIB8Apow%3D%3D%7C96HyMPFkKDwUQ%2B%2FjtxE2Nw%3D%3D",
+      "jamendoAlbum": "Wood"
     }
   },
   {
     "track_id": "tier2:jamendo:1287",
     "tier": "tier2",
-    "title": "Jamendo 1287",
-    "artist": "artist_000193",
+    "title": "tagliamento",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1287",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1287",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1287",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1287"
+      "jamendoTrackId": "1287",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1287&format=mp31&from=36QlJ%2Bg4u5IwfptFCvutoQ%3D%3D%7CI5%2FnbYu2Tr4VEXKo931G2A%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:34578",
     "tier": "tier2",
-    "title": "Jamendo 34578",
-    "artist": "artist_004819",
+    "title": "V\u00e9los",
+    "artist": "Boom Boom Beckett",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/34578",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/34578",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=4234&width=300&trackid=34578",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "34578"
+      "jamendoTrackId": "34578",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=34578&format=mp31&from=IiK3NysGV9OHrN20jP1eBg%3D%3D%7CA4yiO4a0LzcF9gQ%2Fff%2BdPQ%3D%3D",
+      "jamendoAlbum": "V\u00e9los"
     }
   },
   {
@@ -2075,86 +2285,96 @@
   {
     "track_id": "tier2:jamendo:22550",
     "tier": "tier2",
-    "title": "Jamendo 22550",
-    "artist": "artist_001968",
+    "title": "A la Roberto, tema II (Quien fuera)",
+    "artist": "clbustos",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/22550",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/22550",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3125&width=300&trackid=22550",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "22550"
+      "jamendoTrackId": "22550",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=22550&format=mp31&from=WB%2FzENVxACdvF3lWi7PqYQ%3D%3D%7CQ8Qg5LX4ie9eFyhULijJKw%3D%3D",
+      "jamendoAlbum": "Chuquicamata"
     }
   },
   {
     "track_id": "tier2:jamendo:808",
     "tier": "tier2",
-    "title": "Jamendo 808",
-    "artist": "artist_000114",
+    "title": "Seven Months",
+    "artist": "AMPM",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/808",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/808",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=131&width=300&trackid=808",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "808"
+      "jamendoTrackId": "808",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=808&format=mp31&from=uGKINEOvrGPTcmI9ezsXPQ%3D%3D%7C6PfN%2F%2FMMg1ikqwA%2F2D28ZA%3D%3D",
+      "jamendoAlbum": "Silver Spoon"
     }
   },
   {
     "track_id": "tier2:jamendo:8453",
     "tier": "tier2",
-    "title": "Jamendo 8453",
-    "artist": "artist_001278",
+    "title": "Shining",
+    "artist": "Narcis",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/8453",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/8453",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1274&width=300&trackid=8453",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "8453"
+      "jamendoTrackId": "8453",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=8453&format=mp31&from=B9BzUBZQb5Z0oqGwX3LZng%3D%3D%7CVlCtQd09RiDNdYTHsKRpGg%3D%3D",
+      "jamendoAlbum": "Shining"
     }
   },
   {
     "track_id": "tier2:jamendo:4888",
     "tier": "tier2",
-    "title": "Jamendo 4888",
-    "artist": "artist_000696",
+    "title": "Souvenir",
+    "artist": "Tom La Meche",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/4888",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/4888",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=751&width=300&trackid=4888",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "4888"
+      "jamendoTrackId": "4888",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=4888&format=mp31&from=U8Uc5jWskX8kZSZMieVzmQ%3D%3D%7C3YgbGA8GA0PyQ905%2BlwijQ%3D%3D",
+      "jamendoAlbum": "Voyageur"
     }
   },
   {
     "track_id": "tier2:jamendo:1288",
     "tier": "tier2",
-    "title": "Jamendo 1288",
-    "artist": "artist_000193",
+    "title": "norman mailer (two things among an infinity of others)",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1288",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1288",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1288",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1288"
+      "jamendoTrackId": "1288",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1288&format=mp31&from=sPR7ILSu3OOSfasGhe5AEQ%3D%3D%7C2dPLKlRC%2BJ9zHckwlrRvPA%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
@@ -2194,103 +2414,115 @@
   {
     "track_id": "tier2:jamendo:24321",
     "tier": "tier2",
-    "title": "Jamendo 24321",
-    "artist": "artist_002534",
+    "title": "Le jour o\u00f9 l'ascenseur est tomb\u00e9 dans le puits",
+    "artist": "Real Rice",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/24321",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/24321",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3352&width=300&trackid=24321",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "24321"
+      "jamendoTrackId": "24321",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=24321&format=mp31&from=PuqOcqf8prOAAyfbOLwtkw%3D%3D%7CZVisR6FZb0TuPJMQfzFL2A%3D%3D",
+      "jamendoAlbum": "Le jour o\u00f9 l'ascenseur est tomb\u00e9 dans le puits"
     }
   },
   {
     "track_id": "tier2:jamendo:809",
     "tier": "tier2",
-    "title": "Jamendo 809",
-    "artist": "artist_000114",
+    "title": "Silver Spoon",
+    "artist": "AMPM",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/809",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/809",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=131&width=300&trackid=809",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "809"
+      "jamendoTrackId": "809",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=809&format=mp31&from=U96dwqZ34cGDV4AN0tMvng%3D%3D%7CSiWI2vvzKxJboP9IGOsj7g%3D%3D",
+      "jamendoAlbum": "Silver Spoon"
     }
   },
   {
     "track_id": "tier2:jamendo:8455",
     "tier": "tier2",
-    "title": "Jamendo 8455",
-    "artist": "artist_001278",
+    "title": "Home",
+    "artist": "Narcis",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/8455",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/8455",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1274&width=300&trackid=8455",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "8455"
+      "jamendoTrackId": "8455",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=8455&format=mp31&from=wlh086Ci3YyHQBXBDkkheg%3D%3D%7C9HC4D%2Bb93BzPKmWSoAyXSQ%3D%3D",
+      "jamendoAlbum": "Shining"
     }
   },
   {
     "track_id": "tier2:jamendo:5089",
     "tier": "tier2",
-    "title": "Jamendo 5089",
-    "artist": "artist_000696",
+    "title": "Gros Papa no\u00ebl",
+    "artist": "Tom La Meche",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/5089",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/5089",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=786&width=300&trackid=5089",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "5089"
+      "jamendoTrackId": "5089",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=5089&format=mp31&from=ClcTfpcBll5MJ%2Fk%2FBzxrkw%3D%3D%7Cwd7rqklGQI3VkWSwBLKjLQ%3D%3D",
+      "jamendoAlbum": "Personnel"
     }
   },
   {
     "track_id": "tier2:jamendo:1290",
     "tier": "tier2",
-    "title": "Jamendo 1290",
-    "artist": "artist_000193",
+    "title": "yellow cake & velvet crash",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1290",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1290",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1290",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1290"
+      "jamendoTrackId": "1290",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1290&format=mp31&from=G8uOrw0TsXA5DGZuUIEfzA%3D%3D%7CobVS4Iw%2FKSxI3RmLmU8oXA%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:66947",
     "tier": "tier2",
-    "title": "Jamendo 66947",
-    "artist": "artist_007063",
+    "title": "the worst of all",
+    "artist": "Fresh Body Shop",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/66947",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/66947",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=6339&width=300&trackid=66947",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "66947"
+      "jamendoTrackId": "66947",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=66947&format=mp31&from=h31R43JXggk4J6nasQB3gA%3D%3D%7CW15N1ki46dvgD2a9xaEOhg%3D%3D",
+      "jamendoAlbum": "Orgamilk"
     }
   },
   {
@@ -2313,103 +2545,115 @@
   {
     "track_id": "tier2:jamendo:25706",
     "tier": "tier2",
-    "title": "Jamendo 25706",
-    "artist": "artist_002020",
+    "title": "When Waves Trying to Catch a Marvel",
+    "artist": "Antony Raijekov",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/25706",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/25706",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3529&width=300&trackid=25706",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "25706"
+      "jamendoTrackId": "25706",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=25706&format=mp31&from=f70Dls4hATz%2FBJHvcWUp8A%3D%3D%7CzC3kSEVflJW98gt1NEKYPQ%3D%3D",
+      "jamendoAlbum": "See U"
     }
   },
   {
     "track_id": "tier2:jamendo:810",
     "tier": "tier2",
-    "title": "Jamendo 810",
-    "artist": "artist_000114",
+    "title": "Say me Good Bye",
+    "artist": "AMPM",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/810",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/810",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=131&width=300&trackid=810",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "810"
+      "jamendoTrackId": "810",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=810&format=mp31&from=LvOZTtZ0Z8fcnzDDBTSbNw%3D%3D%7CJQjLpFoIXXssXkd0VigjFA%3D%3D",
+      "jamendoAlbum": "Silver Spoon"
     }
   },
   {
     "track_id": "tier2:jamendo:8457",
     "tier": "tier2",
-    "title": "Jamendo 8457",
-    "artist": "artist_001278",
+    "title": "Mirror",
+    "artist": "Narcis",
     "primary_genre": "Rock",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/8457",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/8457",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=1274&width=300&trackid=8457",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "8457"
+      "jamendoTrackId": "8457",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=8457&format=mp31&from=HJdWRGfCCuz0SU%2BwvWTxyg%3D%3D%7CphY3zqIBehB%2BxSiNiQfcMQ%3D%3D",
+      "jamendoAlbum": "Shining"
     }
   },
   {
     "track_id": "tier2:jamendo:6011",
     "tier": "tier2",
-    "title": "Jamendo 6011",
-    "artist": "artist_000795",
+    "title": "Valse",
+    "artist": "ZAMALA",
     "primary_genre": "Classical",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/6011",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/6011",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=925&width=300&trackid=6011",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "6011"
+      "jamendoTrackId": "6011",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=6011&format=mp31&from=jen%2BRWj%2FVtWcylWGAx3YYQ%3D%3D%7C9sDKdhF2NPOqLewGqwZ6uw%3D%3D",
+      "jamendoAlbum": "Requiem pour un split"
     }
   },
   {
     "track_id": "tier2:jamendo:1291",
     "tier": "tier2",
-    "title": "Jamendo 1291",
-    "artist": "artist_000193",
+    "title": "tense : tense",
+    "artist": "Pull My Daisy (Ex Lillian Gish)",
     "primary_genre": "Electronic",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/1291",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/1291",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=198&width=300&trackid=1291",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "1291"
+      "jamendoTrackId": "1291",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=1291&format=mp31&from=9vKFzH66I8Og7KpqLPvA%2Fg%3D%3D%7ClcqW7nM2SgA%2FdY4m%2F2OT2Q%3D%3D",
+      "jamendoAlbum": "Yellow Cake & Velvet Crash"
     }
   },
   {
     "track_id": "tier2:jamendo:66951",
     "tier": "tier2",
-    "title": "Jamendo 66951",
-    "artist": "artist_007063",
+    "title": "all it gives",
+    "artist": "Fresh Body Shop",
     "primary_genre": "Folk",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/66951",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/66951",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=6339&width=300&trackid=66951",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "66951"
+      "jamendoTrackId": "66951",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=66951&format=mp31&from=LLfDG9EmDJ25Roa9zpkhMQ%3D%3D%7Chv52JBHFgoNXHNOfOBqKVw%3D%3D",
+      "jamendoAlbum": "Orgamilk"
     }
   },
   {
@@ -2432,35 +2676,39 @@
   {
     "track_id": "tier2:jamendo:30224",
     "tier": "tier2",
-    "title": "Jamendo 30224",
-    "artist": "artist_004194",
+    "title": "Histoire D'un Homme",
+    "artist": "Le Zaarth",
     "primary_genre": "Jazz",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/30224",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/30224",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=3812&width=300&trackid=30224",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "30224"
+      "jamendoTrackId": "30224",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=30224&format=mp31&from=y6R9Df3qMyo6eDnusvbVBA%3D%3D%7CKc0fgWlH3j1CqcG3fshYIQ%3D%3D",
+      "jamendoAlbum": "Evolution"
     }
   },
   {
     "track_id": "tier2:jamendo:843",
     "tier": "tier2",
-    "title": "Jamendo 843",
-    "artist": "artist_000114",
+    "title": "Perdre le Nord",
+    "artist": "AMPM",
     "primary_genre": "Pop",
     "source": "jamendo",
     "source_url": "https://www.jamendo.com/track/843",
-    "track_view_url": null,
+    "track_view_url": "https://www.jamendo.com/track/843",
     "attribution_required": false,
     "license_short": "MTG-Jamendo (Creative Commons)",
-    "artwork_url": null,
+    "artwork_url": "https://usercontent.jamendo.com?type=album&id=136&width=300&trackid=843",
     "duration_ms": null,
     "external_ids": {
-      "jamendoTrackId": "843"
+      "jamendoTrackId": "843",
+      "jamendoAudioUrl": "https://prod-1.storage.jamendo.com/?trackid=843&format=mp31&from=pLhc3ll%2BRR%2FvG71yRyR27w%3D%3D%7CSuPkbYdIK4VUNKiBE%2BDa6w%3D%3D",
+      "jamendoAlbum": "D\u00e9mo 2005"
     }
   },
   {
