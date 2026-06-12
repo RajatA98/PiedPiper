@@ -1,0 +1,208 @@
+"""Catalog similarity math — mean-pooled + max-segment cosine ranking.
+
+Phase 2 module. Owns the math the `/neighbors` endpoint uses to rank catalog
+tracks against a query. Kept separate from `api.py` for testability and to keep
+the FastAPI handler short.
+
+Contract (LOCKED_DECISIONS + PROJECT_PLAN Phase 2):
+
+- Catalog embeddings are L2-normalized; query embeddings (mean + per-window
+  segments) are L2-normalized.
+- `meanPooledSimilarity` per neighbor = dot(query_mean, catalog_mean). This is
+  the primary ranking signal (matches the headline percentage shown in the UI).
+- `maxSegmentSimilarity` per neighbor = max over (i, j) of
+  dot(query_segment_i, catalog_segment_j). Reveals local resemblance even when
+  the mean-pooled similarity washes out (e.g. a one-bar melodic match).
+- Top-k is sorted by meanPooledSimilarity descending. maxSegmentSimilarity is
+  surfaced alongside as a secondary metric, never as the rank key.
+
+Performance note: at N≈500 tracks × ~3 segments each, the cross-segment matrix
+is ~9 × 1500 × 512 ≈ 7 M dot-product ops. Sub-millisecond on CPU. We bake all
+catalog segments into a single dense matrix at startup so query time is one
+matmul + one max-per-track scatter.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import numpy as np
+
+
+@dataclass
+class FlatCatalog:
+    """Catalog representation optimized for the `/neighbors` hot path.
+
+    Built once at startup by `build_flat_catalog`. Holds:
+      - `track_ids`: ordered list of track_id strings (length N).
+      - `means`: (N, CLAP_EMBED_DIM) float32 L2-normalized mean-pooled vectors.
+      - `segs_flat`: (sum_of_windows, CLAP_EMBED_DIM) float32 L2-normalized
+        per-window vectors, concatenated track-by-track in the order of
+        `track_ids`.
+      - `seg_ranges`: list of (start, end) tuples (length N) indexing into
+        `segs_flat` for each track. `segs_flat[start:end]` are that track's
+        per-window vectors.
+    """
+
+    track_ids: list[str]
+    means: np.ndarray              # shape (N, embed_dim), float32, L2-normalized rows
+    segs_flat: np.ndarray          # shape (total_segments, embed_dim), float32
+    seg_ranges: list[tuple[int, int]]  # length N
+
+
+def build_flat_catalog(
+    catalog_tracks: list[dict],
+    embeddings: np.ndarray,
+    segment_embeddings: dict[str, np.ndarray],
+) -> FlatCatalog:
+    """Build the FlatCatalog from the loaded corpus artifacts.
+
+    Args:
+        catalog_tracks: list of dicts from corpus.json. Each row has a
+            `track_id` field; row order MUST match the row order of `embeddings`.
+        embeddings: array loaded from embeddings.npy, shape (N, embed_dim).
+        segment_embeddings: dict from segment_embeddings.npz, keyed by track_id.
+            Each value is shape (num_windows_for_that_track, embed_dim).
+
+    Returns:
+        A FlatCatalog with `track_ids`, `means`, `segs_flat`, `seg_ranges`
+        populated and aligned. Row 0 of `means` and `segs_flat[seg_ranges[0]]`
+        both belong to `track_ids[0]`.
+
+    Raises:
+        ValueError if any of:
+          - `len(catalog_tracks) != embeddings.shape[0]`
+          - a track_id present in catalog_tracks is missing from segment_embeddings
+          - segment row count for a track is 0
+
+    The startup lifespan calls this once. After that the FlatCatalog is a
+    module-level constant for the request hot path.
+    """
+    means = np.asarray(embeddings, dtype=np.float32)
+    if means.ndim != 2:
+        raise ValueError(f"embeddings must be 2-D, got shape {means.shape}")
+    if len(catalog_tracks) != means.shape[0]:
+        raise ValueError(
+            f"catalog length {len(catalog_tracks)} does not match embeddings rows {means.shape[0]}"
+        )
+
+    track_ids: list[str] = []
+    seg_arrays: list[np.ndarray] = []
+    seg_ranges: list[tuple[int, int]] = []
+    cursor = 0
+    for row in catalog_tracks:
+        track_id = row.get("track_id")
+        if not track_id:
+            raise ValueError("catalog row missing track_id")
+        track_id = str(track_id)
+        if track_id not in segment_embeddings:
+            raise ValueError(f"missing segment embeddings for {track_id}")
+
+        segs = np.asarray(segment_embeddings[track_id], dtype=np.float32)
+        if segs.ndim != 2:
+            raise ValueError(f"{track_id}: segment embeddings must be 2-D, got {segs.shape}")
+        if segs.shape[0] == 0:
+            raise ValueError(f"{track_id}: segment embeddings must have at least one row")
+        if segs.shape[1] != means.shape[1]:
+            raise ValueError(
+                f"{track_id}: segment dim {segs.shape[1]} does not match embedding dim {means.shape[1]}"
+            )
+
+        start = cursor
+        cursor += segs.shape[0]
+        seg_ranges.append((start, cursor))
+        seg_arrays.append(segs)
+        track_ids.append(track_id)
+
+    segs_flat = np.vstack(seg_arrays).astype(np.float32) if seg_arrays else np.empty((0, means.shape[1]), dtype=np.float32)
+    return FlatCatalog(track_ids=track_ids, means=means, segs_flat=segs_flat, seg_ranges=seg_ranges)
+
+
+def top_k_neighbors(
+    query_mean: np.ndarray,
+    query_segs: np.ndarray,
+    catalog: FlatCatalog,
+    k: int = 5,
+) -> list[dict]:
+    """Rank catalog tracks against the query; return top-k with both similarity metrics.
+
+    Args:
+        query_mean: shape (embed_dim,), float32, L2-normalized. Track-level
+            mean-pooled embedding of the query audio.
+        query_segs: shape (Q, embed_dim), float32, rows L2-normalized. Q ≥ 1.
+            Per-window embeddings of the query.
+        catalog: prebuilt FlatCatalog.
+        k: how many neighbors to return. Clamped to len(catalog.track_ids).
+
+    Returns:
+        List of length min(k, N) sorted by `meanPooledSimilarity` descending.
+        Each entry: {
+            "trackId": str,
+            "meanPooledSimilarity": float,   # cosine, [-1, 1]; typically [0, 1] in CLAP music space
+            "maxSegmentSimilarity": float,   # cosine over all (i, j) segment pairs
+        }
+
+    Notes:
+        - Both metrics are returned as raw cosines, not percentages. The
+          frontend converts to "87%" by rounding(sim * 100).
+        - Ranking is on `meanPooledSimilarity` only. `maxSegmentSimilarity` is
+          secondary and only displayed, never used to reorder.
+    """
+    n = len(catalog.track_ids)
+    if n == 0:
+        return []
+
+    query_mean_arr = np.asarray(query_mean, dtype=np.float32)
+    query_segs_arr = np.asarray(query_segs, dtype=np.float32)
+    if query_mean_arr.ndim != 1:
+        raise ValueError(f"query_mean must be 1-D, got shape {query_mean_arr.shape}")
+    if query_segs_arr.ndim != 2 or query_segs_arr.shape[0] == 0:
+        raise ValueError(f"query_segs must be non-empty 2-D, got shape {query_segs_arr.shape}")
+    if query_mean_arr.shape[0] != catalog.means.shape[1]:
+        raise ValueError(
+            f"query dim {query_mean_arr.shape[0]} does not match catalog dim {catalog.means.shape[1]}"
+        )
+    if query_segs_arr.shape[1] != catalog.segs_flat.shape[1]:
+        raise ValueError(
+            f"query segment dim {query_segs_arr.shape[1]} does not match catalog dim {catalog.segs_flat.shape[1]}"
+        )
+
+    mean_sims = catalog.means @ query_mean_arr
+    seg_sims_full = query_segs_arr @ catalog.segs_flat.T
+    max_seg_sims = np.empty(n, dtype=np.float32)
+    for i, (start, end) in enumerate(catalog.seg_ranges):
+        max_seg_sims[i] = float(seg_sims_full[:, start:end].max())
+
+    k = max(1, min(int(k), n))
+    if k >= n:
+        idx = np.argsort(-mean_sims)
+    else:
+        idx = np.argpartition(mean_sims, -k)[-k:]
+        idx = idx[np.argsort(-mean_sims[idx])]
+
+    return [
+        {
+            "trackId": catalog.track_ids[int(i)],
+            "meanPooledSimilarity": float(mean_sims[int(i)]),
+            "maxSegmentSimilarity": float(max_seg_sims[int(i)]),
+        }
+        for i in idx
+    ]
+
+
+def threshold_from_manifest(manifest: dict) -> float:
+    """Read the `threshold_default` field from the parsed manifest.json.
+
+    Returns:
+        The float threshold (LOCKED_DECISIONS provisional default: 0.70).
+
+    Raises:
+        KeyError if the manifest lacks `threshold_default` — this is a hard
+        invariant of the Phase 1 manifest schema and a missing field indicates
+        a stale/broken corpus build.
+
+    Used by /neighbors to include `thresholdDefault` in the response so the
+    frontend and backend agree on the cutoff for the "Completely unique"
+    headline rule.
+    """
+    return float(manifest["threshold_default"])

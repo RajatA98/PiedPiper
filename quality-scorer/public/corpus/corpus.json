@@ -1,0 +1,2772 @@
+[
+  {
+    "track_id": "tier1:itunes:1488408568",
+    "tier": "tier1",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "primary_genre": "R&B/Soul",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/blinding-lights/1488408555?i=1488408568&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/blinding-lights/1488408555?i=1488408568&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/100x100bb.jpg",
+    "duration_ms": 201570,
+    "external_ids": {
+      "itunesTrackId": 1488408568,
+      "itunesArtistId": 479756766,
+      "itunesCollectionId": 1488408555,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/17/b4/8f/17b48f9a-0b93-6bb8-fe1d-3a16623c2cfb/mzaf_9560252727299052414.plus.aac.p.m4a",
+      "releaseDate": "2019-11-29T12:00:00Z",
+      "collectionName": "Blinding Lights - Single"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1450695739",
+    "tier": "tier1",
+    "title": "bad guy",
+    "artist": "Billie Eilish",
+    "primary_genre": "Alternative",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/bad-guy/1450695723?i=1450695739&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/bad-guy/1450695723?i=1450695739&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/100x100bb.jpg",
+    "duration_ms": 194088,
+    "external_ids": {
+      "itunesTrackId": 1450695739,
+      "itunesArtistId": 1065981054,
+      "itunesCollectionId": 1450695723,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c3/87/1f/c3871f7e-3260-d615-1c66-5fdca2c3a48f/mzaf_10721331211699880949.plus.aac.p.m4a",
+      "releaseDate": "2019-03-29T12:00:00Z",
+      "collectionName": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1468166468",
+    "tier": "tier1",
+    "title": "Old Town Road",
+    "artist": "Lil Nas X",
+    "primary_genre": "Pop",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/old-town-road/1468166325?i=1468166468&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/old-town-road/1468166325?i=1468166468&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/100x100bb.jpg",
+    "duration_ms": 113000,
+    "external_ids": {
+      "itunesTrackId": 1468166468,
+      "itunesArtistId": 1400730578,
+      "itunesCollectionId": 1468166325,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9b/1f/b9/9b1fb99c-9111-91da-9296-5ab8d82028ee/mzaf_11237315064991720435.plus.aac.p.m4a",
+      "releaseDate": "2018-12-03T08:00:00Z",
+      "collectionName": "7"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1193701392",
+    "tier": "tier1",
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "primary_genre": "Pop",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/shape-of-you/1193701079?i=1193701392&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/shape-of-you/1193701079?i=1193701392&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/100x100bb.jpg",
+    "duration_ms": 233713,
+    "external_ids": {
+      "itunesTrackId": 1193701392,
+      "itunesArtistId": 183313439,
+      "itunesCollectionId": 1193701079,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/c7/4f/44c74f0d-72dc-6143-d4d0-ba14d661ca0d/mzaf_9566898362556366703.plus.aac.p.m4a",
+      "releaseDate": "2017-01-06T08:00:00Z",
+      "collectionName": "\u00f7 (Deluxe)"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:380907765",
+    "tier": "tier1",
+    "title": "Take On Me",
+    "artist": "a-ha",
+    "primary_genre": "Pop",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/take-on-me/380907762?i=380907765&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/take-on-me/380907762?i=380907765&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music/c6/e1/c8/mzi.ixgzfcmc.jpg/100x100bb.jpg",
+    "duration_ms": 228520,
+    "external_ids": {
+      "itunesTrackId": 380907765,
+      "itunesArtistId": 166566,
+      "itunesCollectionId": 380907762,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/03/4f/f2034f41-707f-7111-bc63-e5d3cf7f2240/mzaf_17215043934336702540.plus.aac.p.m4a",
+      "releaseDate": "1985-06-01T07:00:00Z",
+      "collectionName": "Hunting High and Low (Deluxe Edition)"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1440650711",
+    "tier": "tier1",
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "primary_genre": "Rock",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/bohemian-rhapsody/1440650428?i=1440650711&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/bohemian-rhapsody/1440650428?i=1440650711&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/100x100bb.jpg",
+    "duration_ms": 355145,
+    "external_ids": {
+      "itunesTrackId": 1440650711,
+      "itunesArtistId": 3296287,
+      "itunesCollectionId": 1440650428,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8f/11/52/8f1152a9-fd5f-0021-f546-b97579c22ec3/mzaf_3962258993076347789.plus.aac.p.m4a",
+      "releaseDate": "1975-10-31T12:00:00Z",
+      "collectionName": "Greatest Hits I, II & III: The Platinum Collection"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:617154366",
+    "tier": "tier1",
+    "title": "Get Lucky",
+    "artist": "Daft Punk, Pharrell Williams & Nile Rodgers",
+    "primary_genre": "Pop",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/get-lucky/617154241?i=617154366&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/get-lucky/617154241?i=617154366&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/100x100bb.jpg",
+    "duration_ms": 369629,
+    "external_ids": {
+      "itunesTrackId": 617154366,
+      "itunesArtistId": 5468295,
+      "itunesCollectionId": 617154241,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/d4/d3/1e/d4d31eb4-7405-b806-8346-3c52ad5b4cf4/mzaf_8095545455942962509.plus.aac.p.m4a",
+      "releaseDate": "2013-04-19T07:00:00Z",
+      "collectionName": "Random Access Memories"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1440903439",
+    "tier": "tier1",
+    "title": "Lose Yourself",
+    "artist": "Eminem",
+    "primary_genre": "Soundtrack",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/lose-yourself/1440903339?i=1440903439&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/lose-yourself/1440903339?i=1440903439&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/100x100bb.jpg",
+    "duration_ms": 321960,
+    "external_ids": {
+      "itunesTrackId": 1440903439,
+      "itunesArtistId": 111051,
+      "itunesCollectionId": 1440903339,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/62/0a/a5/620aa56f-189e-708a-80f0-cebdada3872e/mzaf_7131619873177773332.plus.aac.p.m4a",
+      "releaseDate": "2002-10-29T08:00:00Z",
+      "collectionName": "8 Mile (Music from and Inspired By the Motion Picture)"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:635770202",
+    "tier": "tier1",
+    "title": "Hotel California",
+    "artist": "Eagles",
+    "primary_genre": "Rock",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/hotel-california/635770200?i=635770202&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/hotel-california/635770200?i=635770202&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/88/16/2c/88162c3d-46db-8321-61f3-3a47404cfe76/075596050920.jpg/100x100bb.jpg",
+    "duration_ms": 391357,
+    "external_ids": {
+      "itunesTrackId": 635770202,
+      "itunesArtistId": 1053549,
+      "itunesCollectionId": 635770200,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a7/1b/f0/a71bf07d-f498-05c9-2c8a-d12af7d019d8/mzaf_11402952498213508559.plus.aac.p.m4a",
+      "releaseDate": "1976-12-08T08:00:00Z",
+      "collectionName": "Hotel California"
+    }
+  },
+  {
+    "track_id": "tier1:itunes:1440783625",
+    "tier": "tier1",
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "primary_genre": "Rock",
+    "source": "itunes",
+    "source_url": "https://music.apple.com/us/album/smells-like-teen-spirit/1440783617?i=1440783625&uo=4",
+    "track_view_url": "https://music.apple.com/us/album/smells-like-teen-spirit/1440783617?i=1440783625&uo=4",
+    "attribution_required": true,
+    "license_short": "Apple iTunes preview (promotional, attribution required)",
+    "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/100x100bb.jpg",
+    "duration_ms": 301096,
+    "external_ids": {
+      "itunesTrackId": 1440783625,
+      "itunesArtistId": 112018,
+      "itunesCollectionId": 1440783617,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a6/53/1e/a6531efa-397c-eb73-ecab-9b2790c1471e/mzaf_16440344883389407474.plus.aac.p.m4a",
+      "releaseDate": "1991-09-10T12:00:00Z",
+      "collectionName": "Nevermind"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:382",
+    "tier": "tier2",
+    "title": "Jamendo 382",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/382",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "382"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:773",
+    "tier": "tier2",
+    "title": "Jamendo 773",
+    "artist": "artist_000104",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/773",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "773"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2634",
+    "tier": "tier2",
+    "title": "Jamendo 2634",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2634",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2634"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43411",
+    "tier": "tier2",
+    "title": "Jamendo 43411",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43411",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43411"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2249",
+    "tier": "tier2",
+    "title": "Jamendo 2249",
+    "artist": "artist_000332",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2249",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2249"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:247",
+    "tier": "tier2",
+    "title": "Jamendo 247",
+    "artist": "artist_000005",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/247",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "247"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:241",
+    "tier": "tier2",
+    "title": "Jamendo 241",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/241",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "241"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:383",
+    "tier": "tier2",
+    "title": "Jamendo 383",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/383",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "383"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:774",
+    "tier": "tier2",
+    "title": "Jamendo 774",
+    "artist": "artist_000104",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/774",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "774"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2635",
+    "tier": "tier2",
+    "title": "Jamendo 2635",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2635",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2635"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43412",
+    "tier": "tier2",
+    "title": "Jamendo 43412",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43412",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43412"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:3933",
+    "tier": "tier2",
+    "title": "Jamendo 3933",
+    "artist": "artist_000573",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/3933",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "3933"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:759",
+    "tier": "tier2",
+    "title": "Jamendo 759",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/759",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "759"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:242",
+    "tier": "tier2",
+    "title": "Jamendo 242",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/242",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "242"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:384",
+    "tier": "tier2",
+    "title": "Jamendo 384",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/384",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "384"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:776",
+    "tier": "tier2",
+    "title": "Jamendo 776",
+    "artist": "artist_000104",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/776",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "776"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2636",
+    "tier": "tier2",
+    "title": "Jamendo 2636",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2636",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2636"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43413",
+    "tier": "tier2",
+    "title": "Jamendo 43413",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43413",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43413"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:3935",
+    "tier": "tier2",
+    "title": "Jamendo 3935",
+    "artist": "artist_000573",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/3935",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "3935"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:760",
+    "tier": "tier2",
+    "title": "Jamendo 760",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/760",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "760"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:243",
+    "tier": "tier2",
+    "title": "Jamendo 243",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/243",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "243"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:385",
+    "tier": "tier2",
+    "title": "Jamendo 385",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/385",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "385"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1091",
+    "tier": "tier2",
+    "title": "Jamendo 1091",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1091",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1091"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2637",
+    "tier": "tier2",
+    "title": "Jamendo 2637",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2637",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2637"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43415",
+    "tier": "tier2",
+    "title": "Jamendo 43415",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43415",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43415"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:3936",
+    "tier": "tier2",
+    "title": "Jamendo 3936",
+    "artist": "artist_000573",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/3936",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "3936"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:761",
+    "tier": "tier2",
+    "title": "Jamendo 761",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/761",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "761"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:244",
+    "tier": "tier2",
+    "title": "Jamendo 244",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/244",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "244"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:386",
+    "tier": "tier2",
+    "title": "Jamendo 386",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/386",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "386"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1092",
+    "tier": "tier2",
+    "title": "Jamendo 1092",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1092",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1092"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2639",
+    "tier": "tier2",
+    "title": "Jamendo 2639",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2639",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2639"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43416",
+    "tier": "tier2",
+    "title": "Jamendo 43416",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43416",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43416"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:3939",
+    "tier": "tier2",
+    "title": "Jamendo 3939",
+    "artist": "artist_000573",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/3939",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "3939"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:762",
+    "tier": "tier2",
+    "title": "Jamendo 762",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/762",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "762"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:245",
+    "tier": "tier2",
+    "title": "Jamendo 245",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/245",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "245"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:387",
+    "tier": "tier2",
+    "title": "Jamendo 387",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/387",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "387"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1093",
+    "tier": "tier2",
+    "title": "Jamendo 1093",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1093",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1093"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2641",
+    "tier": "tier2",
+    "title": "Jamendo 2641",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2641",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2641"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43418",
+    "tier": "tier2",
+    "title": "Jamendo 43418",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43418",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43418"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:4889",
+    "tier": "tier2",
+    "title": "Jamendo 4889",
+    "artist": "artist_000696",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/4889",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "4889"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:763",
+    "tier": "tier2",
+    "title": "Jamendo 763",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/763",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "763"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:246",
+    "tier": "tier2",
+    "title": "Jamendo 246",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/246",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "246"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:388",
+    "tier": "tier2",
+    "title": "Jamendo 388",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/388",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "388"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1094",
+    "tier": "tier2",
+    "title": "Jamendo 1094",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1094",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1094"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2644",
+    "tier": "tier2",
+    "title": "Jamendo 2644",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2644",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2644"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43419",
+    "tier": "tier2",
+    "title": "Jamendo 43419",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43419",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43419"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:6729",
+    "tier": "tier2",
+    "title": "Jamendo 6729",
+    "artist": "artist_000937",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/6729",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "6729"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:764",
+    "tier": "tier2",
+    "title": "Jamendo 764",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/764",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "764"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1100",
+    "tier": "tier2",
+    "title": "Jamendo 1100",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1100",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1100"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:389",
+    "tier": "tier2",
+    "title": "Jamendo 389",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/389",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "389"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1095",
+    "tier": "tier2",
+    "title": "Jamendo 1095",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1095",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1095"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2645",
+    "tier": "tier2",
+    "title": "Jamendo 2645",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2645",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2645"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43420",
+    "tier": "tier2",
+    "title": "Jamendo 43420",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43420",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43420"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8560",
+    "tier": "tier2",
+    "title": "Jamendo 8560",
+    "artist": "artist_001301",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8560",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8560"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:765",
+    "tier": "tier2",
+    "title": "Jamendo 765",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/765",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "765"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1102",
+    "tier": "tier2",
+    "title": "Jamendo 1102",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1102",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1102"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:390",
+    "tier": "tier2",
+    "title": "Jamendo 390",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/390",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "390"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1096",
+    "tier": "tier2",
+    "title": "Jamendo 1096",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1096",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1096"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2652",
+    "tier": "tier2",
+    "title": "Jamendo 2652",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2652",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2652"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43421",
+    "tier": "tier2",
+    "title": "Jamendo 43421",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43421",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43421"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8563",
+    "tier": "tier2",
+    "title": "Jamendo 8563",
+    "artist": "artist_001301",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8563",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8563"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:766",
+    "tier": "tier2",
+    "title": "Jamendo 766",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/766",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "766"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1104",
+    "tier": "tier2",
+    "title": "Jamendo 1104",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1104",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1104"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:391",
+    "tier": "tier2",
+    "title": "Jamendo 391",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/391",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "391"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1097",
+    "tier": "tier2",
+    "title": "Jamendo 1097",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1097",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1097"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2653",
+    "tier": "tier2",
+    "title": "Jamendo 2653",
+    "artist": "artist_000379",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2653",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2653"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43423",
+    "tier": "tier2",
+    "title": "Jamendo 43423",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43423",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43423"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:17490",
+    "tier": "tier2",
+    "title": "Jamendo 17490",
+    "artist": "artist_002449",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/17490",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "17490"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:767",
+    "tier": "tier2",
+    "title": "Jamendo 767",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/767",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "767"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1105",
+    "tier": "tier2",
+    "title": "Jamendo 1105",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1105",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1105"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:392",
+    "tier": "tier2",
+    "title": "Jamendo 392",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/392",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "392"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1098",
+    "tier": "tier2",
+    "title": "Jamendo 1098",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1098",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1098"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:6725",
+    "tier": "tier2",
+    "title": "Jamendo 6725",
+    "artist": "artist_000937",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/6725",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "6725"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:43424",
+    "tier": "tier2",
+    "title": "Jamendo 43424",
+    "artist": "artist_005716",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/43424",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "43424"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:17492",
+    "tier": "tier2",
+    "title": "Jamendo 17492",
+    "artist": "artist_002449",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/17492",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "17492"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:768",
+    "tier": "tier2",
+    "title": "Jamendo 768",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/768",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "768"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1107",
+    "tier": "tier2",
+    "title": "Jamendo 1107",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1107",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1107"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:393",
+    "tier": "tier2",
+    "title": "Jamendo 393",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/393",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "393"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1099",
+    "tier": "tier2",
+    "title": "Jamendo 1099",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1099",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1099"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:13400",
+    "tier": "tier2",
+    "title": "Jamendo 13400",
+    "artist": "artist_001968",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/13400",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "13400"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:66676",
+    "tier": "tier2",
+    "title": "Jamendo 66676",
+    "artist": "artist_004365",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/66676",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "66676"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:20492",
+    "tier": "tier2",
+    "title": "Jamendo 20492",
+    "artist": "artist_003027",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/20492",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "20492"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:769",
+    "tier": "tier2",
+    "title": "Jamendo 769",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/769",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "769"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1108",
+    "tier": "tier2",
+    "title": "Jamendo 1108",
+    "artist": "artist_000005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1108",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1108"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:394",
+    "tier": "tier2",
+    "title": "Jamendo 394",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/394",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "394"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1161",
+    "tier": "tier2",
+    "title": "Jamendo 1161",
+    "artist": "artist_000159",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1161",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1161"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:25270",
+    "tier": "tier2",
+    "title": "Jamendo 25270",
+    "artist": "artist_001885",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/25270",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "25270"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:66677",
+    "tier": "tier2",
+    "title": "Jamendo 66677",
+    "artist": "artist_004365",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/66677",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "66677"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:20763",
+    "tier": "tier2",
+    "title": "Jamendo 20763",
+    "artist": "artist_002952",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/20763",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "20763"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:770",
+    "tier": "tier2",
+    "title": "Jamendo 770",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/770",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "770"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1289",
+    "tier": "tier2",
+    "title": "Jamendo 1289",
+    "artist": "artist_000193",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1289",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1289"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:395",
+    "tier": "tier2",
+    "title": "Jamendo 395",
+    "artist": "artist_000020",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/395",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "395"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1269",
+    "tier": "tier2",
+    "title": "Jamendo 1269",
+    "artist": "artist_000209",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1269",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1269"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:30219",
+    "tier": "tier2",
+    "title": "Jamendo 30219",
+    "artist": "artist_004194",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/30219",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "30219"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73058",
+    "tier": "tier2",
+    "title": "Jamendo 73058",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73058",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73058"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:20769",
+    "tier": "tier2",
+    "title": "Jamendo 20769",
+    "artist": "artist_002952",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/20769",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "20769"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:771",
+    "tier": "tier2",
+    "title": "Jamendo 771",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/771",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "771"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1294",
+    "tier": "tier2",
+    "title": "Jamendo 1294",
+    "artist": "artist_000193",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1294",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1294"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1268",
+    "tier": "tier2",
+    "title": "Jamendo 1268",
+    "artist": "artist_000209",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1268",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1268"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1286",
+    "tier": "tier2",
+    "title": "Jamendo 1286",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1286",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1286"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:32210",
+    "tier": "tier2",
+    "title": "Jamendo 32210",
+    "artist": "artist_004497",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/32210",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "32210"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73059",
+    "tier": "tier2",
+    "title": "Jamendo 73059",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73059",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73059"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:22549",
+    "tier": "tier2",
+    "title": "Jamendo 22549",
+    "artist": "artist_001968",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/22549",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "22549"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:772",
+    "tier": "tier2",
+    "title": "Jamendo 772",
+    "artist": "artist_000103",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/772",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "772"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:7788",
+    "tier": "tier2",
+    "title": "Jamendo 7788",
+    "artist": "artist_001005",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/7788",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "7788"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:2172",
+    "tier": "tier2",
+    "title": "Jamendo 2172",
+    "artist": "artist_000326",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/2172",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "2172"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1287",
+    "tier": "tier2",
+    "title": "Jamendo 1287",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1287",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1287"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:34578",
+    "tier": "tier2",
+    "title": "Jamendo 34578",
+    "artist": "artist_004819",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/34578",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "34578"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73060",
+    "tier": "tier2",
+    "title": "Jamendo 73060",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73060",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73060"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:22550",
+    "tier": "tier2",
+    "title": "Jamendo 22550",
+    "artist": "artist_001968",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/22550",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "22550"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:808",
+    "tier": "tier2",
+    "title": "Jamendo 808",
+    "artist": "artist_000114",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/808",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "808"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8453",
+    "tier": "tier2",
+    "title": "Jamendo 8453",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8453",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8453"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:4888",
+    "tier": "tier2",
+    "title": "Jamendo 4888",
+    "artist": "artist_000696",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/4888",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "4888"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1288",
+    "tier": "tier2",
+    "title": "Jamendo 1288",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1288",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1288"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:38639",
+    "tier": "tier2",
+    "title": "Jamendo 38639",
+    "artist": "artist_005400",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/38639",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "38639"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73061",
+    "tier": "tier2",
+    "title": "Jamendo 73061",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73061",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73061"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:24321",
+    "tier": "tier2",
+    "title": "Jamendo 24321",
+    "artist": "artist_002534",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/24321",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "24321"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:809",
+    "tier": "tier2",
+    "title": "Jamendo 809",
+    "artist": "artist_000114",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/809",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "809"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8455",
+    "tier": "tier2",
+    "title": "Jamendo 8455",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8455",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8455"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:5089",
+    "tier": "tier2",
+    "title": "Jamendo 5089",
+    "artist": "artist_000696",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/5089",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "5089"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1290",
+    "tier": "tier2",
+    "title": "Jamendo 1290",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1290",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1290"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:66947",
+    "tier": "tier2",
+    "title": "Jamendo 66947",
+    "artist": "artist_007063",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/66947",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "66947"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73062",
+    "tier": "tier2",
+    "title": "Jamendo 73062",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73062",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73062"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:25706",
+    "tier": "tier2",
+    "title": "Jamendo 25706",
+    "artist": "artist_002020",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/25706",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "25706"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:810",
+    "tier": "tier2",
+    "title": "Jamendo 810",
+    "artist": "artist_000114",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/810",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "810"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8457",
+    "tier": "tier2",
+    "title": "Jamendo 8457",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8457",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8457"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:6011",
+    "tier": "tier2",
+    "title": "Jamendo 6011",
+    "artist": "artist_000795",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/6011",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "6011"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1291",
+    "tier": "tier2",
+    "title": "Jamendo 1291",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1291",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1291"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:66951",
+    "tier": "tier2",
+    "title": "Jamendo 66951",
+    "artist": "artist_007063",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/66951",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "66951"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73063",
+    "tier": "tier2",
+    "title": "Jamendo 73063",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73063",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73063"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:30224",
+    "tier": "tier2",
+    "title": "Jamendo 30224",
+    "artist": "artist_004194",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/30224",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "30224"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:843",
+    "tier": "tier2",
+    "title": "Jamendo 843",
+    "artist": "artist_000114",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/843",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "843"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8458",
+    "tier": "tier2",
+    "title": "Jamendo 8458",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8458",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8458"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:6248",
+    "tier": "tier2",
+    "title": "Jamendo 6248",
+    "artist": "artist_000811",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/6248",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "6248"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1292",
+    "tier": "tier2",
+    "title": "Jamendo 1292",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1292",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1292"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:74269",
+    "tier": "tier2",
+    "title": "Jamendo 74269",
+    "artist": "artist_002443",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/74269",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "74269"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73064",
+    "tier": "tier2",
+    "title": "Jamendo 73064",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73064",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73064"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:34517",
+    "tier": "tier2",
+    "title": "Jamendo 34517",
+    "artist": "artist_002449",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/34517",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "34517"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:844",
+    "tier": "tier2",
+    "title": "Jamendo 844",
+    "artist": "artist_000114",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/844",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "844"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8459",
+    "tier": "tier2",
+    "title": "Jamendo 8459",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8459",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8459"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:6727",
+    "tier": "tier2",
+    "title": "Jamendo 6727",
+    "artist": "artist_000937",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/6727",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "6727"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1293",
+    "tier": "tier2",
+    "title": "Jamendo 1293",
+    "artist": "artist_000193",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1293",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1293"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:74270",
+    "tier": "tier2",
+    "title": "Jamendo 74270",
+    "artist": "artist_002443",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/74270",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "74270"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:73065",
+    "tier": "tier2",
+    "title": "Jamendo 73065",
+    "artist": "artist_007349",
+    "primary_genre": "Hip-Hop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/73065",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "73065"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:34518",
+    "tier": "tier2",
+    "title": "Jamendo 34518",
+    "artist": "artist_002449",
+    "primary_genre": "Jazz",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/34518",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "34518"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1101",
+    "tier": "tier2",
+    "title": "Jamendo 1101",
+    "artist": "artist_000005",
+    "primary_genre": "Pop",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1101",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1101"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:8682",
+    "tier": "tier2",
+    "title": "Jamendo 8682",
+    "artist": "artist_001278",
+    "primary_genre": "Rock",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/8682",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "8682"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:7258",
+    "tier": "tier2",
+    "title": "Jamendo 7258",
+    "artist": "artist_001058",
+    "primary_genre": "Classical",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/7258",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "7258"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:1332",
+    "tier": "tier2",
+    "title": "Jamendo 1332",
+    "artist": "artist_000224",
+    "primary_genre": "Electronic",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/1332",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "1332"
+    }
+  },
+  {
+    "track_id": "tier2:jamendo:74271",
+    "tier": "tier2",
+    "title": "Jamendo 74271",
+    "artist": "artist_002443",
+    "primary_genre": "Folk",
+    "source": "jamendo",
+    "source_url": "https://www.jamendo.com/track/74271",
+    "track_view_url": null,
+    "attribution_required": false,
+    "license_short": "MTG-Jamendo (Creative Commons)",
+    "artwork_url": null,
+    "duration_ms": null,
+    "external_ids": {
+      "jamendoTrackId": "74271"
+    }
+  }
+]

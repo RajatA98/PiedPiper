@@ -1,0 +1,224 @@
+# PiedPiper
+
+> *Find out if your AI-generated track resembles anything that's come before.*
+
+PiedPiper is a deployed web app that takes an AI-generated music track (typically a Suno or Udio output) and returns the **top 3 closest real songs from a hand-curated catalog, each with a similarity percentage**, ranked highest first. If nothing crosses the similarity threshold, the headline reads **"Completely unique — this track doesn't sound like anything in our reference catalog."**
+
+Two independent secondary signals from ACRCloud sit on the same report: a **Cover Song ID** check (does this resemble a known composition?) and an **AI Music Detector** result (is this AI-generated, and likely from which engine?). An inline track-quality status badge surfaces broken-output detection inherited from the prior Soundcheck signal pipeline.
+
+A separate `/evaluation` page reports measured detector quality: `Recall@1`, `Recall@3`, `MRR`, a top-1 cosine score distribution on unrelated negatives, and named false-positive / false-negative examples with audio playback.
+
+## A small note on the name
+
+In the *Silicon Valley* pilot ("Minimum Viable Product"), Richard Hendricks first pitches Pied Piper as a music app — a tool for songwriters and composers to search whether their melody resembles anything that's come before. The investors laugh him out of the room and the show pivots Pied Piper to a compression algorithm. **PiedPiper-the-project is Richard's original pitch, ten years later, applied to AI-generated music.** The engineering is straight; the framing is a wink.
+
+## Architecture
+
+```mermaid
+flowchart TB
+    USER([User uploads<br/>AI-generated audio]):::userNode
+    USER --> FE
+    FE["Frontend on Vercel<br/>React + Vite"]:::feNode
+    FE -->|"POST /neighbors"| BE
+
+    subgraph BE ["Backend · FastAPI on HF Space CPU Basic"]
+        direction TB
+        DEC["Decode audio<br/>(one librosa pass)"]
+        DEC --> QUAL["7-signal quality check<br/>silence · clip · noise · truncation"]
+        DEC --> CLAP["CLAP audio encoder<br/>→ 10s windowed embeddings<br/>→ L2-normalized mean pool"]
+        CLAP --> COS["Cosine sweep<br/>vs corpus + segments"]
+    end
+
+    CAT[("Reference catalog<br/>~160 tracks<br/>corpus.json + embeddings.npy<br/>+ segment_embeddings.npz<br/>loaded once at startup")]:::catNode
+    CAT -.->|"L2-normalized<br/>dot product"| COS
+
+    ACR["ACRCloud<br/>Cover Song ID + AI Music Detector<br/>commercial second opinions · P1"]:::extNode
+    CLAP -.->|"parallel calls"| ACR
+
+    COS --> RPT
+    ACR --> RPT
+    QUAL --> RPT
+    RPT[["ReportCard returned to user"]]:::reportNode
+
+    classDef userNode fill:#fef3c7,stroke:#92400e,color:#1c1917,font-weight:bold
+    classDef feNode fill:#dbeafe,stroke:#1e40af,color:#0c1738
+    classDef catNode fill:#fde68a,stroke:#92400e,color:#1c1917
+    classDef extNode fill:#d1fae5,stroke:#065f46,color:#022c22
+    classDef reportNode fill:#ede9fe,stroke:#5b21b6,color:#1e1b4b,font-weight:bold
+```
+
+One decode pass feeds three jobs in parallel: a 7-signal quality check (the inherited broken-output detector), the CLAP windowed encoder, and the optional ACRCloud calls. All three results merge into a single ReportCard.
+
+The catalog is built offline by `python -m backend.scripts.rebuild_corpus`, which reads `backend/catalog.yaml`, hits the iTunes Search API (Tier 1) and Jamendo CDN (Tier 2), runs windowed CLAP encoding on every track, and writes five files to `quality-scorer/public/corpus/`. The live backend reads those files at startup and serves them via `/neighbors`.
+
+## Why these technical choices
+
+**Audio embedding model: LAION-CLAP music-tuned 512-d** (`laion/larger_clap_music`). Apache-2.0, ~190 MB, CPU-friendly at ~1.5 s per encode, music-tuned. MERT would be marginally better on instrument-level discrimination but adds CPU latency for a gain that doesn't translate to this task. MuQ-MuLan is less production-tested. Classical baselines (chroma + MFCC, OpenL3, VGGish) are too coarse to discriminate AI soundalikes from genre-mates.
+
+**Vector search: in-memory NumPy cosine sweep.** At ~160 tracks × 512 floats, a sweep is sub-millisecond. FAISS Flat becomes interesting at ~10k tracks; HNSW at ~100k. A vector DB would be misplaced complexity at this scale and would mask any L2-normalization bug upstream.
+
+**Backend hosting: Hugging Face Space CPU Basic (free).** The audience knows what an HF Space is — that *itself* is the cultural signal. The 48-hour sleep is mitigated by a daily UptimeRobot ping to `/health`. Modal would be the migration target if cold starts ever degrade the reviewer experience; a paragraph at the bottom of the eval page names the cutoff.
+
+**Track-length normalization: 10-second windows, L2-normalized mean pooling.** Catalog previews are 30 s (3 windows); uploaded queries are capped at 90 s (up to 9 windows). The response surfaces both `meanPooledSimilarity` (the headline rank) and `maxSegmentSimilarity` (local resemblance the mean would wash out). Comparing one arbitrary full-track truncation to a 30-second preview embedding would be wrong; the windowed-mean-pool protocol keeps both sides comparable.
+
+**Single threshold (provisional `0.70`), recalibrated from negatives.** The multi-band verdict chip (`unique` / `related` / `similar` / `near-duplicate`) is gone — the percentage is the honest answer; the chip was a derived interpretation that invited "what does 'similar' mean?" debate. The only threshold that remains is the "Completely unique" cutoff, recalibrated from the observed top-1 cosine distribution on the unrelated negatives in the golden set.
+
+**ACRCloud as two independent signals, not a composite verdict.** Cover Song ID asks "does this resemble a known composition?" — paired against our self-built CLAP retrieval. AI Music Detector asks "is this AI-generated, likely Suno?" — directly on-thesis for the audience. They answer different questions; collapsing them into one verdict misrepresents both. Both are P1, budget-gated behind ACRCloud's 14-day trial, with pre-cached responses for the eval set so the demo never breaks after trial expiration.
+
+## Rights and catalog
+
+The reference catalog is **a sampled demo set, not a production catalog**, split into two tiers:
+
+**Tier 1 — recognizable hits via the iTunes Search API previews.** Audio is fetched once at ingest, embedded via CLAP, and discarded immediately. The deployed app never re-hosts Apple preview bytes. Apple Search API terms require: (a) preview audio is streamed not stored; (b) attribution and link-out to the iTunes Store on every Tier-1 match. Both are enforced in the UI via the `attribution_required` field in `corpus.json`.
+
+**Tier 2 — breadth via MTG-Jamendo.** All Creative Commons licensed. Dataset metadata (track ID, genre tags) comes from the official MTG-Jamendo repo; audio streams from Jamendo's public CDN at ingest time, gets embedded, and is discarded the same way as Tier 1. Each Tier-2 match links out to the Jamendo track page.
+
+**Productionizing this would mean indexing a licensed catalog** (the kind a vendor like Suno would have internally; the demo can't have it). That trade-off — and the resulting catalog incompleteness — is the dominant failure mode of the system, and is named explicitly on the `/evaluation` page.
+
+## What I deliberately left out
+
+- **No music generation.** That's Suno's job, not the scanner's.
+- **No exact-recording fingerprinting** (Shazam-style). Different problem entirely; AI soundalikes rarely re-use bit patterns, so fingerprinting gives a near-zero hit rate against this workload.
+- **No multi-band verdict chip.** The cosine percentage is the honest answer; the chip was a derived interpretation that invited "what does 'similar' actually mean?" debate without adding information.
+- **No "copyright detector" framing.** Acoustic-similarity language only, never legal language. This is a risk scanner, not a copyright determination.
+- **No user accounts or persistence.** Stateless demo. Uploaded audio is held in memory only for the duration of the encode.
+- **No automation against Suno's web service.** ToS-violating, and the wrong signal for a Suno-adjacent demo.
+- **No claim of full-catalog coverage.** ~160 tracks is a demo. The README and UI say so plainly.
+- **No "powered by AI" badges** in the UI. The whole project is AI-adjacent — calling it out reads as overcompensating.
+- **Always-on commercial APIs (paid plan).** ACRCloud runs trial-gated with cached responses for the eval set so the demo never fully breaks. Production would lock a paid plan.
+
+## Evaluation
+
+The `/evaluation` page reports the substance:
+
+- **`Recall@1`, `Recall@3`, `MRR`** on a hand-built golden set of ~60 Suno generations targeting catalog seeds, plus 20–30 unrelated negatives (~80 tracks total).
+- **A top-1 cosine histogram on the negatives set.** The dashed vertical line at the `0.70` threshold is where the distribution's tail thins; it's the noise floor justifying the "Completely unique" cutoff.
+- **5 named false-positive + 5 named false-negative examples** with audio playback (query + retrieved track) and a one-sentence "why I think this happened" note per example. These move credibility more than any additional metric.
+- **A short methodology paragraph** documenting the golden set construction.
+- **A short limitations paragraph** naming the catalog size, single-generator (Suno only), no inter-rater agreement, and US-pop bias.
+
+## Run it
+
+### Prerequisites
+
+- Python 3.11+
+- Node 18+
+- A clone of this repo
+
+### Backend (FastAPI on local 8000)
+
+```bash
+pip install -e "backend/[runtime,ingest,dev]"
+uvicorn backend.api:app --reload --port 8000
+```
+
+`/health` should return `ok: true` once CLAP finishes loading (~30 s cold start).
+
+### Frontend (Vite on local 5173)
+
+```bash
+cd quality-scorer
+npm install
+npm run dev
+```
+
+### Rebuild the catalog
+
+```bash
+python -m backend.scripts.rebuild_corpus
+# Writes corpus.json + embeddings.npy + segment_embeddings.npz + manifest.json + examples.json
+# to quality-scorer/public/corpus/.
+```
+
+### Run the eval (Phase 6)
+
+```bash
+python -m backend.scripts.run_eval
+# Writes eval.json + golden_set.json. The /evaluation page reads these at runtime.
+```
+
+## Deploy
+
+The production deploy is **Hugging Face Space** (backend) + **Vercel** (frontend) +
+**UptimeRobot** (keepalive ping). Both hosts have a $0 free tier that sustains
+the demo workload.
+
+### 1. Backend — Hugging Face Space
+
+```bash
+# One-time: sync the repo into the flat layout the Space Dockerfile expects.
+bash deploy/sync_to_hf.sh
+# Default staging dir is ../piedpiper-hf-space — pass an arg to override.
+
+cd ../piedpiper-hf-space
+git init && git lfs install
+git remote add origin https://huggingface.co/spaces/<your-user>/piedpiper
+git add . && git commit -m "Initial PiedPiper Space build"
+git push -u origin main
+```
+
+Then in the Space's **Settings → Variables and secrets**:
+
+- `CORS_ORIGIN` (variable) — your Vercel production URL once it exists.
+- `ENABLE_ACRCLOUD` (variable) — `true` during the ACRCloud trial window.
+- `ACRCLOUD_ACCESS_KEY`, `ACRCLOUD_ACCESS_SECRET`, `ACRCLOUD_AI_DETECTOR_URL`,
+  `ACRCLOUD_AI_DETECTOR_BEARER` (secrets).
+
+First build takes ~8 min (pulls torch + CLAP weights). After it boots, hit
+`https://<your-user>-piedpiper.hf.space/health` — should return `{"ok": true, "corpus": 160, ...}`.
+
+### 2. Frontend — Vercel
+
+1. Push this repo to GitHub.
+2. In Vercel, **New Project → Import Git Repository** → pick the PiedPiper repo.
+3. Root directory: `quality-scorer/`. Framework preset auto-detects Vite.
+4. Environment variable: `VITE_API_URL` = `https://<your-user>-piedpiper.hf.space`.
+5. Deploy. The first build runs `npm ci && npm run build`; the prod URL appears on the dashboard.
+6. Back in the Space, update `CORS_ORIGIN` to the Vercel URL and restart the Space.
+
+`vercel.json` already configures cache headers — 1 year immutable for `/assets/*`,
+5 min must-revalidate for `/corpus/*` (so a corpus rebuild propagates quickly),
+24 hours immutable for `/eval_audio/*`.
+
+### 3. Keepalive — UptimeRobot
+
+Free CPU Basic Spaces sleep after ~48 hours idle and cold-start at ~30 s. During
+the demo window:
+
+1. Sign up at [uptimerobot.com](https://uptimerobot.com) (free tier covers 50 monitors).
+2. **Add New Monitor** → Type: HTTP(s) → URL: `https://<your-user>-piedpiper.hf.space/health` → Interval: 5 min.
+3. Optional: enable an alert email for status changes so a deploy regression pages you.
+
+The frontend's "warming up the analyzer" UI absorbs the cold start gracefully if
+the ping fails for any reason — UptimeRobot is a comfort layer, not a hard
+dependency.
+
+### Modal fallback (documented, not wired)
+
+If HF Spaces becomes unreliable (Space build queue stalls, image-size limit changes,
+ToS shift on ACRCloud HMAC traffic), the backend ports to [Modal](https://modal.com)
+with ~30 minutes of work: wrap the FastAPI app in `@modal.asgi_app()` inside a
+`modal.App`, mount the corpus as a `modal.Volume`, and switch `VITE_API_URL` to
+the Modal endpoint. Modal's free tier comparable to HF for this workload; the
+trade-off is paying for cold-start latency a different way (Modal scales-to-zero
+faster but warm-starts in ~2 s vs HF's ~30 s).
+
+## CI
+
+Three GitHub Actions workflows run on every push:
+
+- `.github/workflows/test.yml` — backend pytest (fast tests only; `-m "not slow"`).
+- `.github/workflows/frontend.yml` — Vitest + `npm run build` + a grep guarding
+  against legacy "Soundcheck" / dark-phosphor strings leaking into the bundle.
+- `.github/workflows/eval-check.yml` — re-runs `python -m backend.scripts.run_eval`
+  on PRs that touch eval inputs or the corpus, and fails the build if the
+  regenerated `eval.json` differs from the committed file (ignoring
+  `manifest.generated_at`). Audit-grade reproducibility loop.
+
+## License
+
+MIT. See `LICENSE`.
+
+---
+
+*Originally pitched to a confused VC in 2014. Probably more useful now.*

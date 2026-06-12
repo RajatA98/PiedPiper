@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>pied piper — acoustic-similarity scanner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --ink: #0E1620;
+    --dim: #5B6471;
+    --faint: #8C95A1;
+    --line: #E2E1DA;
+    --accent: #0FAA60;
+    --accent-soft: rgba(15, 170, 96, 0.10);
+
+    --display: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --wordmark: 'Outfit', 'Inter', sans-serif;
+
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 40px;
+    --sp-5: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--bg); }
+
+  body {
+    font-family: var(--display);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--accent-soft); }
+
+  /* ---------- shared atoms ---------- */
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 500;
+  }
+
+  .mono { font-family: var(--mono); }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--sp-4);
+  }
+
+  .divider { height: 1px; background: var(--line); border: 0; }
+
+  /* ---------- nav ---------- */
+  nav.topbar {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .brand .feather { display: block; }
+  .wordmark {
+    font-family: var(--wordmark);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .navlinks {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+  .navlinks a {
+    font-size: 14px;
+    color: var(--dim);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .navlinks a:hover { color: var(--ink); }
+  .navlinks a.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: var(--sp-5) 0 var(--sp-4);
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .kicker { display: block; margin-bottom: var(--sp-3); }
+  h1.tagline {
+    font-size: 48px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    max-width: 16ch;
+    margin: 0 auto var(--sp-2);
+    text-wrap: balance;
+  }
+  .subhead {
+    font-size: 18px;
+    color: var(--dim);
+    max-width: 60ch;
+    margin: 0 auto;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* ---------- upload row ---------- */
+  .upload-row {
+    display: grid;
+    grid-template-columns: 58fr 42fr;
+    gap: var(--sp-4);
+    padding: var(--sp-4) 0;
+  }
+
+  .dropzone {
+    border: 1px dashed #C9CABF;
+    background: transparent;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-1);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    border-radius: 4px;
+    padding: var(--sp-4);
+  }
+  .dropzone:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .dropzone .dz-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: var(--sp-1);
+  }
+  .dropzone .dz-primary {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .dropzone .dz-hint {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--faint);
+    letter-spacing: 0.02em;
+  }
+
+  .example-card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: var(--sp-3);
+    display: flex;
+    flex-direction: column;
+  }
+  .example-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .example-card .ec-sub {
+    font-size: 13px;
+    color: var(--dim);
+    margin-bottom: var(--sp-3);
+  }
+  .chips { display: flex; flex-direction: column; gap: 0; }
+  .chip {
+    display: grid;
+    grid-template-columns: 4px auto 1fr;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+    transition: padding-left 0.15s;
+  }
+  .chip:hover { padding-left: 6px; }
+  .chip .statusbar { width: 4px; height: 32px; background: var(--accent); border-radius: 2px; }
+  .chip.unique .statusbar { background: #C9CABF; }
+  .chip .chip-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .chip .chip-title {
+    font-size: 14px;
+    color: var(--dim);
+    text-align: right;
+  }
+
+  /* ---------- result area ---------- */
+  .result-area { padding: var(--sp-2) 0 var(--sp-5); }
+  .result-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--sp-3);
+  }
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .seg button {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    background: transparent;
+    border: 0;
+    color: var(--dim);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.active { background: var(--ink); color: #fff; }
+
+  /* ---------- report card ---------- */
+  .report {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: var(--sp-4);
+    background: var(--bg);
+  }
+  .report .rc-kicker { display: block; margin-bottom: var(--sp-2); }
+
+  .rc-headline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-1);
+  }
+  .rc-pct-line {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .rc-pct {
+    font-size: 64px;
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .rc-pct.unique { color: var(--ink); }
+  .rc-similarto { font-size: 16px; color: var(--dim); }
+  .rc-match-title {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+  }
+  .rc-itunes {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-top: 6px;
+  }
+  .rc-itunes:hover { color: var(--accent); }
+  .rc-subhead { font-size: 16px; color: var(--dim); margin-top: 4px; }
+
+  .rc-section { margin-top: var(--sp-4); }
+  .rc-section .rc-kicker { margin-bottom: var(--sp-2); }
+
+  .sim-row {
+    display: grid;
+    grid-template-columns: 18px minmax(180px, 1.4fr) 2fr 52px;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  .sim-row:last-child { border-bottom: 1px solid var(--line); }
+  .sim-rank { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .sim-track { font-size: 15px; }
+  .sim-track .sim-artist { color: var(--dim); }
+  .sim-bar-track { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .sim-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .sim-pct {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  .muted-block { opacity: 0.6; }
+  .muted-block .sim-bar-fill { background: #9AA0A8; }
+  .muted-block .sim-pct { color: var(--dim); }
+
+  .acr-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .acr-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+  .acr-value { font-size: 14px; color: var(--ink); text-align: right; }
+  .acr-value .neg { color: var(--dim); }
+
+  .quality {
+    margin-top: var(--sp-3);
+    padding-top: var(--sp-3);
+    border-top: 1px solid var(--line);
+  }
+  .quality-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .quality-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .quality-dot.warn { background: #D98A2B; }
+  .quality-toggle {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .quality-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .quality-breakdown {
+    display: none;
+    margin-top: var(--sp-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .quality-breakdown.open { display: block; }
+  .qsignal {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    padding: 10px var(--sp-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .qsignal:last-child { border-bottom: 0; }
+  .qsignal .qname { font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: 0.04em; }
+  .qsignal .qval { font-size: 13px; color: var(--ink); }
+  .qsignal .qval.flag { color: #D98A2B; }
+  .qsignal .qval.ok { color: var(--accent); }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: var(--sp-4) 0;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+  .footer-egg { font-size: 13px; color: var(--faint); font-style: italic; }
+  .footer-links { display: flex; gap: var(--sp-3); }
+  .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--dim); text-decoration: none; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ---------- evaluation page ---------- */
+  .eval-header { padding: var(--sp-5) 0 var(--sp-4); border-bottom: 1px solid var(--line); }
+  .eval-header h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--sp-1);
+  }
+  .eval-header .kicker { display: block; }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    margin: var(--sp-4) 0;
+  }
+  .metric-card { padding: var(--sp-3); }
+  .metric-card + .metric-card { border-left: 1px solid var(--line); }
+  .metric-card .m-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--faint); text-transform: uppercase; }
+  .metric-card .m-value {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    margin: 6px 0 10px;
+    line-height: 1;
+  }
+  .metric-card .m-caption { font-size: 13px; color: var(--dim); line-height: 1.5; }
+  .metric-card .m-n { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 6px; }
+
+  .eval-section { padding: var(--sp-4) 0; border-top: 1px solid var(--line); }
+  .eval-section > .kicker { display: block; margin-bottom: var(--sp-1); }
+  .eval-section h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--sp-1); }
+  .eval-section .section-cap { font-size: 14px; color: var(--dim); max-width: 70ch; line-height: 1.55; margin-bottom: var(--sp-3); }
+
+  /* histogram */
+  .histogram {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: var(--sp-4) var(--sp-4) var(--sp-3);
+    position: relative;
+  }
+  .hist-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 240px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .hist-bar {
+    flex: 1;
+    background: #D4D5CB;
+    min-height: 1px;
+    position: relative;
+  }
+  .hist-bar.over { background: #D98A2B; }
+  .hist-threshold {
+    position: absolute;
+    top: -12px;
+    bottom: 0;
+    width: 0;
+    border-left: 2px dashed var(--accent);
+    z-index: 2;
+  }
+  .hist-threshold .thr-label {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .hist-x {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+  .hist-y-label, .hist-x-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+  .hist-axislabels { display: flex; justify-content: space-between; margin-top: 4px; }
+
+  /* named examples grid */
+  .examples-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+  }
+  .examples-col > .kicker { display: block; margin-bottom: var(--sp-2); }
+  .named-card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+  .nc-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    margin-bottom: 4px;
+  }
+  .nc-query { font-size: 15px; font-weight: 600; }
+  .nc-cos { font-family: var(--mono); font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .nc-retrieved { font-size: 13px; color: var(--dim); margin-bottom: var(--sp-2); }
+  .nc-retrieved .arrow { color: var(--faint); }
+  .player {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .player .play {
+    width: 22px; height: 22px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .player .play:hover { border-color: var(--accent); }
+  .player .play svg { display: block; }
+  .player .wave {
+    height: 18px;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0, var(--line) 2px, transparent 2px, transparent 5px);
+    border-radius: 2px;
+  }
+  .player .ptag { font-family: var(--mono); font-size: 10px; color: var(--faint); letter-spacing: 0.08em; }
+  .nc-why { font-size: 13px; color: var(--dim); font-style: italic; line-height: 1.5; margin-top: var(--sp-1); }
+
+  .prose-block { max-width: 72ch; }
+  .prose-block p { font-size: 15px; color: var(--dim); line-height: 1.65; }
+  .prose-block p + p { margin-top: var(--sp-2); }
+  .prose-block strong { color: var(--ink); font-weight: 600; }
+
+  /* view switching */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 var(--sp-3); }
+    .upload-row { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: 1fr; }
+    .metric-card + .metric-card { border-left: 0; border-top: 1px solid var(--line); }
+    .examples-grid { grid-template-columns: 1fr; }
+    h1.tagline { font-size: 34px; }
+    .eval-header h2 { font-size: 34px; }
+    .rc-pct { font-size: 48px; }
+    .rc-match-title { font-size: 24px; }
+    .navlinks { gap: var(--sp-2); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<nav class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand" data-nav="app" aria-label="pied piper home">
+      <!-- original schematic two-tone feather glyph -->
+      <svg class="feather" width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden="true">
+        <line x1="6" y1="22" x2="16.5" y2="3" stroke="#0E1620" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="11" y1="13" x2="6" y2="11.5" stroke="#0FAA60" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="12.5" y1="10.2" x2="7.6" y2="8.5" stroke="#0FAA60" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="7.3" x2="9.3" y2="5.6" stroke="#0FAA60" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="9.5" y1="15.8" x2="14.6" y2="14.3" stroke="#0E1620" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="11" y1="13" x2="16" y2="11.4" stroke="#0E1620" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="wordmark">pied piper</span>
+    </div>
+    <div class="navlinks">
+      <a data-nav="app" data-target="examples" class="active">Examples</a>
+      <a data-nav="eval">Evaluation</a>
+      <a data-nav="app" data-target="about">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================= APP / LANDING VIEW ======================= -->
+<div class="view active" id="view-app">
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="kicker">Acoustic-similarity scanner for AI-generated music</span>
+      <h1 class="tagline">Find out if your AI-generated track resembles anything that&rsquo;s come before.</h1>
+      <p class="subhead">Drop in a Suno or Udio output. We embed the audio, compare it against a hand-curated catalog of real songs, and tell you which three you&rsquo;re closest to.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- upload row -->
+    <section class="upload-row" id="examples">
+      <div class="dropzone" id="dropzone">
+        <div class="dz-icon">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+            <rect x="6.5" y="6.5" width="21" height="21" rx="2" stroke="#8C95A1" stroke-width="1.4"/>
+            <line x1="17" y1="12" x2="17" y2="22" stroke="#0FAA60" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="12" y1="17" x2="22" y2="17" stroke="#0FAA60" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="dz-primary">Drop an audio file</div>
+        <div class="dz-hint">or click to browse &middot; mp3 wav flac m4a</div>
+      </div>
+
+      <aside class="example-card">
+        <h3>Or try an example</h3>
+        <p class="ec-sub">Pre-embedded outputs &mdash; click to load a report.</p>
+        <div class="chips">
+          <div class="chip" data-case="A" data-title="Neon Midnight">
+            <span class="statusbar"></span>
+            <span class="chip-label">SUNO&middot;POP</span>
+            <span class="chip-title">Neon Midnight</span>
+          </div>
+          <div class="chip" data-case="A" data-title="Velvet Hours">
+            <span class="statusbar"></span>
+            <span class="chip-label">SUNO&middot;RNB</span>
+            <span class="chip-title">Velvet Hours</span>
+          </div>
+          <div class="chip unique" data-case="B" data-title="Glass Cathedral">
+            <span class="statusbar"></span>
+            <span class="chip-label">UDIO&middot;EXP</span>
+            <span class="chip-title">Glass Cathedral</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- result area -->
+    <section class="result-area">
+      <div class="result-head">
+        <span class="kicker">Report &middot; preview</span>
+        <div class="seg" role="tablist" aria-label="ReportCard state">
+          <button class="active" data-case="A">Case A &middot; match</button>
+          <button data-case="B">Case B &middot; unique</button>
+        </div>
+      </div>
+
+      <!-- ===== Report: Case A ===== -->
+      <article class="report" id="report-A">
+        <div class="rc-headline">
+          <div>
+            <span class="kicker rc-kicker">Top Match</span>
+            <div class="rc-pct-line">
+              <span class="rc-pct">87%</span>
+              <span class="rc-similarto">similar to</span>
+            </div>
+            <div class="rc-match-title">Blinding Lights &mdash; The Weeknd</div>
+          </div>
+          <a class="rc-itunes" href="#">[&#8599; open in iTunes]</a>
+        </div>
+
+        <div class="rc-section">
+          <span class="kicker rc-kicker">Top 3 closest in catalog</span>
+          <div class="sim-row">
+            <span class="sim-rank">1</span>
+            <span class="sim-track">Blinding Lights <span class="sim-artist">&mdash; The Weeknd</span></span>
+            <span class="sim-bar-track"><span class="sim-bar-fill" style="width:87%"></span></span>
+            <span class="sim-pct">87%</span>
+          </div>
+          <div class="sim-row">
+            <span class="sim-rank">2</span>
+            <span class="sim-track">Take On Me <span class="sim-artist">&mdash; a-ha</span></span>
+            <span class="sim-bar-track"><span class="sim-bar-fill" style="width:79%"></span></span>
+            <span class="sim-pct">79%</span>
+          </div>
+          <div class="sim-row">
+            <span class="sim-rank">3</span>
+            <span class="sim-track">Midnight City <span class="sim-artist">&mdash; M83</span></span>
+            <span class="sim-bar-track"><span class="sim-bar-fill" style="width:74%"></span></span>
+            <span class="sim-pct">74%</span>
+          </div>
+        </div>
+
+        <div class="rc-section">
+          <div class="acr-row">
+            <span class="acr-label">ACRCLOUD &middot; COVER SONG ID</span>
+            <span class="acr-value">Cover match: &ldquo;Blinding Lights&rdquo; by The Weeknd, 88%</span>
+          </div>
+          <div class="acr-row">
+            <span class="acr-label">ACRCLOUD &middot; AI MUSIC DETECTOR</span>
+            <span class="acr-value">AI-generated (87%) &mdash; likely Suno</span>
+          </div>
+        </div>
+
+        <div class="quality">
+          <span class="quality-badge">
+            <span class="quality-dot"></span>
+            Track quality: ok
+            <a class="quality-toggle" data-toggle="qb-A">(see breakdown)</a>
+          </span>
+          <div class="quality-breakdown" id="qb-A">
+            <div class="qsignal"><span class="qname">CLIPPING</span><span class="qval ok">none detected</span></div>
+            <div class="qsignal"><span class="qname">SILENCE (LEAD/TAIL)</span><span class="qval">0.4s trimmed</span></div>
+            <div class="qsignal"><span class="qname">LOUDNESS</span><span class="qval">&minus;9.8 LUFS</span></div>
+            <div class="qsignal"><span class="qname">CHANNELS</span><span class="qval">stereo</span></div>
+            <div class="qsignal"><span class="qname">SAMPLE RATE</span><span class="qval">44.1 kHz</span></div>
+            <div class="qsignal"><span class="qname">DURATION</span><span class="qval">2:58</span></div>
+            <div class="qsignal"><span class="qname">DC OFFSET</span><span class="qval ok">none</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Report: Case B ===== -->
+      <article class="report" id="report-B" style="display:none">
+        <div class="rc-headline">
+          <div style="width:100%;text-align:center">
+            <span class="kicker rc-kicker" style="text-align:center">Result</span>
+            <div class="rc-pct-line" style="justify-content:center">
+              <span class="rc-pct unique">Completely unique</span>
+            </div>
+            <div class="rc-subhead">No close matches in our reference catalog</div>
+          </div>
+        </div>
+
+        <div class="rc-section">
+          <span class="kicker rc-kicker">Closest tracks &middot; for reference, not matches</span>
+          <div class="muted-block">
+            <div class="sim-row">
+              <span class="sim-rank">1</span>
+              <span class="sim-track">Pompeii <span class="sim-artist">&mdash; Bastille</span></span>
+              <span class="sim-bar-track"><span class="sim-bar-fill" style="width:58%"></span></span>
+              <span class="sim-pct">58%</span>
+            </div>
+            <div class="sim-row">
+              <span class="sim-rank">2</span>
+              <span class="sim-track">Sun Models <span class="sim-artist">&mdash; ODESZA</span></span>
+              <span class="sim-bar-track"><span class="sim-bar-fill" style="width:54%"></span></span>
+              <span class="sim-pct">54%</span>
+            </div>
+            <div class="sim-row">
+              <span class="sim-rank">3</span>
+              <span class="sim-track">Tongues <span class="sim-artist">&mdash; Joywave</span></span>
+              <span class="sim-bar-track"><span class="sim-bar-fill" style="width:51%"></span></span>
+              <span class="sim-pct">51%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rc-section">
+          <div class="acr-row">
+            <span class="acr-label">ACRCLOUD &middot; COVER SONG ID</span>
+            <span class="acr-value neg">No cover match</span>
+          </div>
+          <div class="acr-row">
+            <span class="acr-label">ACRCLOUD &middot; AI MUSIC DETECTOR</span>
+            <span class="acr-value">AI-generated (91%) &mdash; likely Suno</span>
+          </div>
+        </div>
+
+        <div class="quality">
+          <span class="quality-badge">
+            <span class="quality-dot warn"></span>
+            Track quality: issues detected
+            <a class="quality-toggle" data-toggle="qb-B">(click to expand)</a>
+          </span>
+          <div class="quality-breakdown" id="qb-B">
+            <div class="qsignal"><span class="qname">CLIPPING</span><span class="qval flag">1.2% of samples clipped</span></div>
+            <div class="qsignal"><span class="qname">SILENCE (LEAD/TAIL)</span><span class="qval">1.8s trimmed</span></div>
+            <div class="qsignal"><span class="qname">LOUDNESS</span><span class="qval flag">&minus;6.1 LUFS (too hot)</span></div>
+            <div class="qsignal"><span class="qname">CHANNELS</span><span class="qval">stereo</span></div>
+            <div class="qsignal"><span class="qname">SAMPLE RATE</span><span class="qval">44.1 kHz</span></div>
+            <div class="qsignal"><span class="qname">DURATION</span><span class="qval">1:46</span></div>
+            <div class="qsignal"><span class="qname">DC OFFSET</span><span class="qval flag">+0.011 (slight)</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- about -->
+    <section id="about" style="padding: var(--sp-2) 0 var(--sp-5);">
+      <hr class="divider" />
+      <div style="padding-top: var(--sp-4); max-width: 70ch;">
+        <span class="kicker" style="display:block;margin-bottom:var(--sp-1)">About</span>
+        <h3 style="font-size:24px;font-weight:600;letter-spacing:-0.01em;margin-bottom:var(--sp-1)">An honest audio-embedding pipeline with a published eval.</h3>
+        <p style="font-size:15px;color:var(--dim);line-height:1.65">We embed each track with an open-source audio model (CLAP), then run nearest-neighbour search against a hand-curated reference catalog of roughly 100 recognizable tracks from iTunes previews and 200 Creative Commons songs. Two independent ACRCloud signals &mdash; cover-song ID and AI-music detection &mdash; run alongside. No black boxes: the detector quality is measured, not claimed, on the <a data-nav="eval" style="color:var(--accent);text-decoration:none;cursor:pointer">evaluation page</a>.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-egg">Originally pitched to a confused VC in 2014. Probably more useful now.</span>
+      <div class="footer-links">
+        <a href="#">github &#8599;</a>
+        <a data-nav="eval" style="cursor:pointer">evaluation</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================= EVALUATION VIEW ======================= -->
+<div class="view" id="view-eval">
+  <header class="eval-header">
+    <div class="wrap">
+      <h2>Evaluation</h2>
+      <span class="kicker">measured, not claimed</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- metric cards -->
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="m-label">Recall@1</div>
+        <div class="m-value">0.83</div>
+        <div class="m-caption">Share of derivative queries whose true source ranks #1.</div>
+        <div class="m-n">n = 60</div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label">Recall@3</div>
+        <div class="m-value">0.91</div>
+        <div class="m-caption">Share whose true source lands in the returned top 3.</div>
+        <div class="m-n">n = 60</div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label">MRR</div>
+        <div class="m-value">0.79</div>
+        <div class="m-caption">Mean reciprocal rank of the true source across queries.</div>
+        <div class="m-n">n = 60</div>
+      </div>
+    </div>
+
+    <!-- histogram -->
+    <section class="eval-section">
+      <span class="kicker">Score distribution &middot; negatives</span>
+      <h3>Where the noise floor sits</h3>
+      <p class="section-cap">Top-1 cosine similarity for unrelated tracks that <em>should not</em> match anything. The mass clusters well below the cutoff; the threshold is drawn where the distribution&rsquo;s tail thins out, so a genuinely novel track reads as &ldquo;completely unique&rdquo; rather than forcing a spurious match.</p>
+      <div class="histogram">
+        <div class="hist-bars" id="histBars"></div>
+        <div class="hist-x">
+          <span>0.0</span><span>0.2</span><span>0.4</span><span>0.6</span><span>0.8</span><span>1.0</span>
+        </div>
+        <div class="hist-axislabels">
+          <span class="hist-y-label">y: count of tracks</span>
+          <span class="hist-x-label">x: top-1 cosine similarity</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- named examples -->
+    <section class="eval-section">
+      <span class="kicker">Error analysis &middot; named cases with audio</span>
+      <h3>Where it&rsquo;s wrong, and why</h3>
+      <p class="section-cap">Every failure is a real query/retrieval pair you can listen to. False positives crossed the threshold but aren&rsquo;t genuine derivatives; false negatives are audible resemblances the embedder scored below the line.</p>
+      <div class="examples-grid" id="examplesGrid"></div>
+    </section>
+
+    <!-- methodology + limitations -->
+    <section class="eval-section">
+      <span class="kicker">Methodology</span>
+      <h3>How the eval set was built</h3>
+      <div class="prose-block">
+        <p><strong>30 seed songs &times; 2 Suno generations each</strong> gives 60 derivative queries with a known ground-truth source, plus <strong>20&ndash;30 unrelated negatives</strong> drawn from outside the catalog &mdash; roughly <strong>80 tracks</strong> total. Recall and MRR are computed on the 60 derivative queries; the score-distribution histogram is computed on the negatives.</p>
+      </div>
+    </section>
+
+    <section class="eval-section">
+      <span class="kicker">Limitations</span>
+      <h3>What this number does not cover</h3>
+      <div class="prose-block">
+        <p>The reference catalog is small (~300 tracks), so coverage is the dominant failure mode &mdash; a real source outside the catalog can&rsquo;t be retrieved. Queries are <strong>single-generator</strong> (Suno only); Udio and others may shift the score distribution. There is <strong>no inter-rater agreement</strong> on what counts as &ldquo;derivative,&rdquo; and the seed set carries a <strong>US-pop bias</strong> that likely inflates recall relative to other genres.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-egg">Originally pitched to a confused VC in 2014. Probably more useful now.</span>
+      <div class="footer-links">
+        <a href="#">github &#8599;</a>
+        <a data-nav="app" style="cursor:pointer">back to scanner</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // ----- view switching -----
+  var views = { app: document.getElementById('view-app'), eval: document.getElementById('view-eval') };
+  var navlinks = document.querySelectorAll('.navlinks a');
+
+  function setView(name, target) {
+    Object.keys(views).forEach(function (k) { views[k].classList.toggle('active', k === name); });
+    navlinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-nav') === name && (!a.getAttribute('data-target') || a.getAttribute('data-target') === target)); });
+    window.scrollTo(0, 0);
+    if (target) {
+      var el = document.getElementById(target);
+      if (el) setTimeout(function () { window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 90)); }, 30);
+    }
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      setView(el.getAttribute('data-nav'), el.getAttribute('data-target'));
+    });
+  });
+
+  // ----- case A/B toggle -----
+  var segButtons = document.querySelectorAll('.seg button');
+  function setCase(c) {
+    segButtons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-case') === c); });
+    document.getElementById('report-A').style.display = (c === 'A') ? '' : 'none';
+    document.getElementById('report-B').style.display = (c === 'B') ? '' : 'none';
+  }
+  segButtons.forEach(function (b) { b.addEventListener('click', function () { setCase(b.getAttribute('data-case')); }); });
+
+  // example chips load corresponding case
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      setCase(chip.getAttribute('data-case'));
+      var ra = document.querySelector('.result-area');
+      window.scrollTo(0, Math.max(0, ra.getBoundingClientRect().top + window.pageYOffset - 90));
+    });
+  });
+
+  // ----- quality breakdown toggles -----
+  document.querySelectorAll('.quality-toggle').forEach(function (t) {
+    t.addEventListener('click', function (e) {
+      e.preventDefault();
+      var el = document.getElementById(t.getAttribute('data-toggle'));
+      el.classList.toggle('open');
+    });
+  });
+
+  // ----- histogram render -----
+  // bins from 0.0 to 1.0 (step 0.05); counts model a noise floor for negatives
+  var counts = [0,1,2,4,7,9,11,9,6,4,3,2,1,1,1,0,0,0,0,0];
+  var max = Math.max.apply(null, counts);
+  var bars = document.getElementById('histBars');
+  counts.forEach(function (c, i) {
+    var bin = i * 0.05;
+    var bar = document.createElement('div');
+    bar.className = 'hist-bar' + (bin >= 0.70 ? ' over' : '');
+    bar.style.height = (c / max * 100) + '%';
+    bar.title = bin.toFixed(2) + '–' + (bin + 0.05).toFixed(2) + ': ' + c;
+    bars.appendChild(bar);
+  });
+  // threshold line at 0.70 (=> 70% across 0..1 axis)
+  var thr = document.createElement('div');
+  thr.className = 'hist-threshold';
+  thr.style.left = '70%';
+  thr.innerHTML = '<span class="thr-label">0.70 &middot; completely-unique cutoff</span>';
+  bars.appendChild(thr);
+
+  // ----- named example cards -----
+  var play = '<span class="play"><svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M0 0L8 4.5L0 9V0Z" fill="#0E1620"/></svg></span>';
+  function card(q, r, cos, why) {
+    return '<div class="named-card">' +
+      '<div class="nc-head"><span class="nc-query">' + q + '</span><span class="nc-cos">cos ' + cos + '</span></div>' +
+      '<div class="nc-retrieved"><span class="arrow">retrieved &rarr;</span> ' + r + '</div>' +
+      '<div class="player">' + play + '<span class="wave"></span><span class="ptag">QUERY</span></div>' +
+      '<div class="player">' + play + '<span class="wave"></span><span class="ptag">RETRIEVED</span></div>' +
+      '<div class="nc-why">' + why + '</div></div>';
+  }
+  var fp = [
+    card('Neon Midnight (Suno)', 'Blinding Lights — The Weeknd', '0.72', 'Shared 80s synth-pop palette and tempo fooled the embedder; the melodies are unrelated.'),
+    card('Paper Crowns (Suno)', 'Pompeii — Bastille', '0.71', 'Anthemic chant-vocal texture dominated the embedding over actual pitch content.'),
+    card('Gravel Road (Suno)', 'The Night We Met — Lord Huron', '0.74', 'Reverb-heavy slow folk; the production space outweighed melodic difference.'),
+    card('Velvet Static (Suno)', 'Electric Feel — MGMT', '0.70', 'Analog-synth timbre coincidence landing right on the threshold edge.'),
+    card('Hollow Sun (Suno)', 'Riptide — Vance Joy', '0.73', 'Ukulele-forward strum pattern; the embedder keyed on instrumentation, not the tune.')
+  ];
+  var fn = [
+    card('Skyline Echo (Suno)', 'Levitating — Dua Lipa', '0.62', 'Disco-pop groove is clearly there, but a key and tempo shift pushed cosine under the cutoff.'),
+    card('Coastal Lines (Suno)', 'Watermelon Sugar — Harry Styles', '0.66', 'Same four-chord loop, but a brighter mix decorrelated the embedding.'),
+    card('Ghost Lantern (Suno)', 'Heat Waves — Glass Animals', '0.64', 'Hazy, washed-out production matched to the human ear but not to the model.'),
+    card('Iron Bloom (Suno)', 'bad guy — Billie Eilish', '0.59', 'Sparse bass-driven minimalism under-embeds; too little spectral content to anchor on.'),
+    card('Paper Tigers (Suno)', 'Somebody That I Used To Know — Gotye', '0.61', 'Distinct xylophone motif is obvious to listeners, missed by CLAP.')
+  ];
+  document.getElementById('examplesGrid').innerHTML =
+    '<div class="examples-col"><span class="kicker">5 false positives</span>' + fp.join('') + '</div>' +
+    '<div class="examples-col"><span class="kicker">5 false negatives</span>' + fn.join('') + '</div>';
+})();
+</script>
+</body>
+</html>
