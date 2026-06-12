@@ -1,12 +1,20 @@
 # PiedPiper
 
-> *Find out if your AI-generated track resembles anything that's come before.*
+> *A creator-feedback layer for AI-generated music. Every generation passes through an originality check before it ships.*
 
-PiedPiper is a deployed web app that takes an AI-generated music track (typically a Suno or Udio output) and returns the **top 3 closest real songs from a hand-curated catalog, each with a similarity percentage**, ranked highest first. If nothing crosses the similarity threshold, the headline reads **"Completely unique — this track doesn't sound like anything in our reference catalog."**
+**[Live demo →](https://piedpiper-xi.vercel.app)** &nbsp;·&nbsp; **[Backend →](https://rajata98-piedpiper.hf.space/health)** &nbsp;·&nbsp; **[Decision record →](docs/decisions/0001-similarity-calibration.md)**
 
-Two independent secondary signals from ACRCloud sit on the same report: a **Cover Song ID** check (does this resemble a known composition?) and an **AI Music Detector** result (is this AI-generated, and likely from which engine?). An inline track-quality status badge surfaces broken-output detection inherited from the prior Soundcheck signal pipeline.
+PiedPiper is a deployed web app that gives creators real-time feedback on how their AI-generated music compares to existing reference tracks. Upload a Suno or Udio generation; PiedPiper encodes it with a music-tuned audio embedder, retrieves the top-3 closest neighbors from a hand-curated catalog, calibrates the similarity scores against the catalog's own pairwise-cosine distribution, and surfaces:
 
-A separate `/evaluation` page reports measured detector quality: `Recall@1`, `Recall@3`, `MRR`, a top-1 cosine score distribution on unrelated negatives, and named false-positive / false-negative examples with audio playback.
+- A **calibrated match score** as a percentile rank with a coarse label (`very close` / `close` / `moderate` / `weak`) — not a raw cosine percentage, because raw cosine misleads on contrastive-trained encoders (see [ADR-0001](docs/decisions/0001-similarity-calibration.md)).
+- **Audio previews + album art** for every match so the creator can hear the comparison, not just read it.
+- A **specificity score** that flags when a generation is broadly similar to many catalog tracks vs. distinctively close to a specific one.
+- Two independent **ACRCloud signals** as adjacent rows on the same report: a **Cover Song ID** check (does this resemble a known composition?) and an **AI Music Detector** verdict (is this AI-generated, and probabilistically from which engine?).
+- An inline **track-quality status badge** from the inherited 7-signal librosa pipeline.
+
+The intended product surface inside an AI music platform: this same pipeline runs on every generation before it reaches the creator. If the top match is too close, the creator gets actionable feedback — *"this generation scored close to track X. Try these prompt tweaks to push it toward more originality."* PiedPiper-the-portfolio-piece prototypes that loop end-to-end.
+
+A separate [`/evaluation`](https://piedpiper-xi.vercel.app/evaluation) page reports measured retrieval quality on the catalog: `Recall@1=0.394`, `Recall@3=0.494`, `MRR=0.458`, latency `p50=0.28 ms`, and a top-1 cosine distribution. Leave-one-out methodology — honest about what it tests and what it doesn't.
 
 ## A small note on the name
 
