@@ -160,7 +160,10 @@ The LOO retrieval eval (R@1, R@3, MRR) is unaffected because retrieval ranking i
 - [x] Frontend: update `SimilarityReport` headline to show label + percentile.
 - [x] Frontend: update `SimilarityRow` to show percentile and label.
 - [x] Tests: update `api.test.js` for the new derived fields.
-- [ ] Deploy: HF Space restart, Vercel auto-deploy.
-- [ ] Verify: re-upload Blacktop Halo-2; confirm headline reads "very close · 99th-percentile" instead of "99.8% similar".
+- [x] Deploy: HF Space restart, Vercel auto-deploy.
+- [x] Verify: re-upload Blacktop Halo-2; confirm headline reads "very close · 99th-percentile" instead of "99.8% similar".
 
-(Checkboxes get marked as items land in the commit referenced below.)
+(Implemented in commit `ad9c6e4`. Verification: live backend returned the
+calibrated wire shape with rawCosine=0.9982 / percentileRank=0.9979 /
+similarityLabel="very close" / querySpecificity=0.125 — triggering the
+generic-query note.)
