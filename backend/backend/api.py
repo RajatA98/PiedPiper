@@ -57,6 +57,7 @@ _corpus_tracks: list[dict] = []
 _corpus_embeddings: np.ndarray | None = None
 _corpus_by_id: dict[str, dict] = {}
 _flat_catalog: similarity.FlatCatalog | None = None
+_catalog_cosine_distribution: np.ndarray | None = None  # sorted upper-tri off-diag pairwise cosines
 _model_sha: str = ""
 _threshold_default: float = config.SIMILARITY_THRESHOLD_DEFAULT
 
@@ -71,6 +72,7 @@ def _default_corpus_dir() -> Path:
 def _load_corpus() -> None:
     """Populate corpus globals from disk if all corpus artifacts are present."""
     global _corpus_tracks, _corpus_embeddings, _corpus_by_id, _flat_catalog
+    global _catalog_cosine_distribution
     global _model_sha, _threshold_default
     corpus_dir = Path(os.getenv("CORPUS_DIR", str(_default_corpus_dir())))
     cpath = corpus_dir / "corpus.json"
@@ -103,6 +105,7 @@ def _load_corpus() -> None:
             print("[api] WARNING manifest missing model_sha; using 'unpinned'")
         _threshold_default = similarity.threshold_from_manifest(manifest)
         _flat_catalog = similarity.build_flat_catalog(_corpus_tracks, _corpus_embeddings, segment_embeddings)
+        _catalog_cosine_distribution = similarity.compute_catalog_distribution(_flat_catalog)
         _corpus_by_id = {str(row["track_id"]): row for row in _corpus_tracks if row.get("track_id")}
         if _corpus_embeddings.shape[0] != len(_corpus_tracks):
             print(
@@ -119,6 +122,7 @@ def _load_corpus() -> None:
         _corpus_embeddings = None
         _corpus_by_id = {}
         _flat_catalog = None
+        _catalog_cosine_distribution = None
         _model_sha = ""
         _threshold_default = config.SIMILARITY_THRESHOLD_DEFAULT
 
@@ -269,8 +273,23 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
         _flat_catalog,
         k=k,
     )
+
+    # ADR-0001: calibrate raw cosines against the catalog distribution so the
+    # UI can render meaningful labels instead of "99.8% / 99.7% / 99.7%".
+    distribution = _catalog_cosine_distribution if _catalog_cosine_distribution is not None else np.empty((0,), dtype=np.float32)
     for nb in neighbors:
         nb["track"] = _corpus_by_id.get(nb["trackId"], {})
+        raw = float(nb["meanPooledSimilarity"])
+        seg = float(nb["maxSegmentSimilarity"])
+        pct = similarity.cosine_to_percentile(raw, distribution)
+        nb["rawCosine"] = raw
+        nb["percentileRank"] = float(pct)
+        nb["similarityLabel"] = similarity.similarity_label(pct)
+        nb["segmentSupport"] = seg
+        # Calibrated 0-1 score for the UI bar width — uses percentile rank.
+        nb["calibratedScore"] = float(pct)
+
+    specificity = float(similarity.query_specificity(pipeline["emb"].astype(np.float32), _flat_catalog))
     acr = acrcloud_engine.call_for_query(pipeline["acrcloud_audio"])
 
     return {
@@ -278,6 +297,9 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
         "neighbors": neighbors,
         "topMeanPooledSimilarity": float(neighbors[0]["meanPooledSimilarity"]) if neighbors else 0.0,
         "topMaxSegmentSimilarity": float(neighbors[0]["maxSegmentSimilarity"]) if neighbors else 0.0,
+        "topPercentileRank": float(neighbors[0]["percentileRank"]) if neighbors else 0.0,
+        "topSimilarityLabel": neighbors[0]["similarityLabel"] if neighbors else "weak",
+        "querySpecificity": specificity,
         "modelSha": _model_sha,
         "thresholdDefault": _threshold_default,
         "acrcloud": acrcloud_engine.to_response_dict(acr),

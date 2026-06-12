@@ -37,20 +37,36 @@
  */
 import SimilarityRow from './SimilarityRow.jsx'
 import AudioPlayer from './AudioPlayer.jsx'
-import { audioUrlFor, artworkUrlFor } from '../lib/api.js'
+import { audioUrlFor, artworkUrlFor, fmtPercentile } from '../lib/api.js'
 
 const EMPTY_HEADLINE = "Completely unique"
 const EMPTY_SUBHEAD =
   "this track doesn't sound like anything in our reference catalog"
 
-export default function SimilarityReport({ caseA, neighbors, topPct }) {
+export default function SimilarityReport({
+  caseA,
+  neighbors,
+  topPct,
+  topLabel,
+  topPercentile,
+  topRawCosine,
+  topSegment,
+  querySpecificity,
+}) {
   const top = neighbors?.[0]
   const top3 = (neighbors ?? []).slice(0, 3)
+  const percentileText = fmtPercentile(topPercentile)
+  const labelText = topLabel ? capitalizeLabel(topLabel) : null
+  const showGenericNote = querySpecificity != null && querySpecificity < 0.50
 
   // ---- Case A — match above threshold -------------------------------------
   if (caseA && top) {
     const topAudio = audioUrlFor(top.track)
     const topArt = artworkUrlFor(top.track, 300)
+    // Headline rule per ADR-0001: prefer calibrated label + percentile.
+    // Fall back to legacy raw-cosine percent only when the backend hasn't
+    // shipped the new fields (older HF Space build).
+    const useCalibrated = labelText != null && percentileText != null
     return (
       <section>
         <Kicker>TOP MATCH</Kicker>
@@ -58,36 +74,83 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
           <div className="flex items-start gap-4">
             <AudioPlayer src={topAudio} compact artwork={topArt} size={96} />
             <div>
-              <div className="flex flex-wrap items-baseline gap-3">
-                <span
-                  className="font-display tabular-nums"
-                  style={{
-                    fontSize: '64px',
-                    lineHeight: 0.9,
-                    fontWeight: 700,
-                    letterSpacing: '-0.04em',
-                    color: 'var(--color-accent)',
-                  }}
-                >
-                  {topPct}%
-                </span>
-                <span className="text-base" style={{ color: 'var(--color-dim)' }}>
-                  similar to
-                </span>
-              </div>
-              <div
-                className="mt-1.5 font-display"
-                style={{
-                  fontSize: '32px',
-                  fontWeight: 600,
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                {top.track?.title ?? top.trackId} —{' '}
-                <span style={{ color: 'var(--color-dim)' }}>
-                  {top.track?.artist ?? 'Unknown artist'}
-                </span>
-              </div>
+              {useCalibrated ? (
+                <>
+                  <div className="flex flex-wrap items-baseline gap-3">
+                    <span
+                      className="font-display"
+                      style={{
+                        fontSize: '48px',
+                        lineHeight: 0.95,
+                        fontWeight: 700,
+                        letterSpacing: '-0.03em',
+                        color: 'var(--color-accent)',
+                      }}
+                    >
+                      {labelText}
+                    </span>
+                    <span
+                      className="font-mono text-[14px]"
+                      style={{ color: 'var(--color-dim)' }}
+                    >
+                      · {percentileText} match
+                    </span>
+                  </div>
+                  <div
+                    className="mt-1.5 font-display"
+                    style={{
+                      fontSize: '28px',
+                      fontWeight: 600,
+                      letterSpacing: '-0.02em',
+                    }}
+                  >
+                    {top.track?.title ?? top.trackId} —{' '}
+                    <span style={{ color: 'var(--color-dim)' }}>
+                      {top.track?.artist ?? 'Unknown artist'}
+                    </span>
+                  </div>
+                  <div
+                    className="mt-2 font-mono text-[11px]"
+                    style={{ color: 'var(--color-faint)' }}
+                  >
+                    cosine {(topRawCosine ?? 0).toFixed(3)}
+                    {topSegment != null && <> · segment {topSegment.toFixed(3)}</>}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-wrap items-baseline gap-3">
+                    <span
+                      className="font-display tabular-nums"
+                      style={{
+                        fontSize: '64px',
+                        lineHeight: 0.9,
+                        fontWeight: 700,
+                        letterSpacing: '-0.04em',
+                        color: 'var(--color-accent)',
+                      }}
+                    >
+                      {topPct}%
+                    </span>
+                    <span className="text-base" style={{ color: 'var(--color-dim)' }}>
+                      similar to
+                    </span>
+                  </div>
+                  <div
+                    className="mt-1.5 font-display"
+                    style={{
+                      fontSize: '32px',
+                      fontWeight: 600,
+                      letterSpacing: '-0.02em',
+                    }}
+                  >
+                    {top.track?.title ?? top.trackId} —{' '}
+                    <span style={{ color: 'var(--color-dim)' }}>
+                      {top.track?.artist ?? 'Unknown artist'}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -104,6 +167,20 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
           )}
         </div>
 
+        {showGenericNote && (
+          <div
+            className="mt-4 rounded-sm px-3 py-2 font-mono text-[11px]"
+            style={{
+              background: 'var(--color-elev)',
+              border: '1px solid var(--color-line)',
+              color: 'var(--color-dim)',
+            }}
+          >
+            Note: this generation pattern is broadly similar to many catalog
+            tracks. The specific match is one of several close candidates.
+          </div>
+        )}
+
         <div className="mt-8">
           <Kicker>TOP 3 CLOSEST IN CATALOG</Kicker>
           <div className="mt-2">
@@ -114,6 +191,9 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
                 title={n.track?.title ?? n.trackId}
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
+                percentileRank={n.percentileRank}
+                similarityLabel={n.similarityLabel}
+                rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
               />
@@ -157,6 +237,9 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
                 title={n.track?.title ?? n.trackId}
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
+                percentileRank={n.percentileRank}
+                similarityLabel={n.similarityLabel}
+                rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
                 isReference
@@ -167,6 +250,11 @@ export default function SimilarityReport({ caseA, neighbors, topPct }) {
       )}
     </section>
   )
+}
+
+function capitalizeLabel(label) {
+  if (!label) return null
+  return label.charAt(0).toUpperCase() + label.slice(1)
 }
 
 function Kicker({ children, className = '' }) {

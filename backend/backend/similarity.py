@@ -190,6 +190,84 @@ def top_k_neighbors(
     ]
 
 
+def compute_catalog_distribution(catalog: FlatCatalog) -> np.ndarray:
+    """Sort the pairwise catalog-cosine distribution (excluding self-pairs).
+
+    Used to calibrate the user-facing similarity score per ADR-0001. CLAP music
+    embeddings cluster tightly (anisotropy), so raw cosine doesn't map cleanly
+    to a percentage — instead we map each query-vs-track cosine to its percentile
+    rank in this distribution. Computed once at startup.
+
+    Returns:
+        1-D float32 array of length N*(N-1)/2 with all off-diagonal upper-triangle
+        pairwise cosines, sorted ascending. Empty array if N < 2.
+    """
+    n = len(catalog.track_ids)
+    if n < 2:
+        return np.empty((0,), dtype=np.float32)
+    sim = catalog.means @ catalog.means.T
+    iu = np.triu_indices(n, k=1)
+    off_diag = sim[iu].astype(np.float32)
+    off_diag.sort()
+    return off_diag
+
+
+def cosine_to_percentile(cosine: float, sorted_distribution: np.ndarray) -> float:
+    """Map a raw cosine to a percentile rank in the catalog distribution.
+
+    Returns:
+        Float in [0.0, 1.0] — fraction of catalog-vs-catalog pairs that score
+        BELOW the given cosine. 1.0 means this match is more similar than every
+        observed catalog-pair similarity; 0.0 means it's below the floor.
+
+    Edge cases:
+        - Empty distribution → returns 0.5 (no information; render as moderate).
+        - Cosine above max in distribution → returns 1.0.
+        - Cosine below min in distribution → returns 0.0.
+    """
+    if sorted_distribution.size == 0:
+        return 0.5
+    idx = int(np.searchsorted(sorted_distribution, float(cosine), side="left"))
+    return idx / float(sorted_distribution.size)
+
+
+def similarity_label(percentile_rank: float) -> str:
+    """Return a coarse human-readable label for a percentile rank.
+
+    Thresholds per ADR-0001. Reviewable as the catalog grows.
+    """
+    p = float(percentile_rank)
+    if p >= 0.95:
+        return "very close"
+    if p >= 0.80:
+        return "close"
+    if p >= 0.50:
+        return "moderate"
+    return "weak"
+
+
+def query_specificity(query_mean: np.ndarray, catalog: FlatCatalog, threshold: float = 0.95) -> float:
+    """Score how specific (vs generic) a query is against the catalog.
+
+    A query that scores above `threshold` against most of the catalog is broadly
+    similar to many tracks — generic. A query that exceeds the threshold against
+    only a handful is specific.
+
+    Returns:
+        Float in [0.0, 1.0]. 0.0 = maximally generic (matches everything);
+        1.0 = maximally specific (matches almost nothing above threshold).
+
+    Used in the UI to render a "this generation pattern is broadly similar to
+    many tracks" note when the query is generic.
+    """
+    n = len(catalog.track_ids)
+    if n == 0:
+        return 1.0
+    sims = catalog.means @ np.asarray(query_mean, dtype=np.float32)
+    above = int((sims >= float(threshold)).sum())
+    return 1.0 - (above / float(n))
+
+
 def threshold_from_manifest(manifest: dict) -> float:
     """Read the `threshold_default` field from the parsed manifest.json.
 

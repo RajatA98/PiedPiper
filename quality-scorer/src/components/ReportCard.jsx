@@ -23,7 +23,15 @@ import QualityBadge from './QualityBadge.jsx'
 export default function ReportCard({ neighbors, analyze, animate = true }) {
   if (!neighbors) return null
 
-  const { caseA, topPct } = deriveHeadline(neighbors)
+  const {
+    caseA,
+    topPct,
+    topLabel,
+    topPercentile,
+    topRawCosine,
+    topSegment,
+    querySpecificity,
+  } = deriveHeadline(neighbors)
   const acrcloud = neighbors.acrcloud || {}
   const coverSongId = acrcloud.coverSongId || { status: 'disabled' }
   const aiMusicDetector = acrcloud.aiMusicDetector || { status: 'disabled' }
@@ -44,6 +52,11 @@ export default function ReportCard({ neighbors, analyze, animate = true }) {
         caseA={caseA}
         neighbors={neighbors.neighbors}
         topPct={topPct}
+        topLabel={topLabel}
+        topPercentile={topPercentile}
+        topRawCosine={topRawCosine}
+        topSegment={topSegment}
+        querySpecificity={querySpecificity}
       />
 
       {/* ACRCloud signals — two independent rows, never composed into a verdict. */}

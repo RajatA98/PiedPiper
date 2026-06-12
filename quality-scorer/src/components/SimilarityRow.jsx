@@ -1,5 +1,5 @@
 import AudioPlayer from './AudioPlayer.jsx'
-import { audioUrlFor, artworkUrlFor } from '../lib/api.js'
+import { audioUrlFor, artworkUrlFor, fmtPercentile } from '../lib/api.js'
 
 /**
  * SimilarityRow — one row in the top-3 closest tracks list.
@@ -16,14 +16,26 @@ export default function SimilarityRow({
   title,
   artist,
   similarity,
+  percentileRank,
+  similarityLabel,
+  rawCosine,
   linkOut,
   track,
   isReference = false,
 }) {
   const audioUrl = audioUrlFor(track)
   const artworkUrl = artworkUrlFor(track, 100)
-  const pct = Math.round((Number(similarity) || 0) * 1000) / 10
-  const widthStyle = { width: `${pct}%` }
+  // Per ADR-0001: bar width is driven by calibrated percentile (0-100) when
+  // available, falling back to raw cosine * 100 only for old backends without
+  // the calibrated fields.
+  const useCalibrated = percentileRank != null
+  const barPct = useCalibrated
+    ? Math.round(percentileRank * 100)
+    : Math.round((Number(similarity) || 0) * 1000) / 10
+  const widthStyle = { width: `${barPct}%` }
+  const percentileText = fmtPercentile(percentileRank)
+  const labelShort = (similarityLabel || '').split(' ')[0]
+  const cosineForTooltip = (Number(rawCosine ?? similarity) || 0).toFixed(3)
 
   return (
     <div
@@ -74,10 +86,23 @@ export default function SimilarityRow({
       </span>
 
       <span
-        className="text-right font-mono text-[13px] tabular-nums"
+        className="text-right font-mono text-[12px] tabular-nums"
         style={{ color: isReference ? 'var(--color-dim)' : 'var(--color-ink)' }}
+        title={`raw cosine ${cosineForTooltip}`}
       >
-        {pct}%
+        {useCalibrated ? (
+          <>
+            <span className="block">{percentileText}</span>
+            <span
+              className="block text-[10px]"
+              style={{ color: 'var(--color-faint)' }}
+            >
+              cos {cosineForTooltip}
+            </span>
+          </>
+        ) : (
+          `${barPct}%`
+        )}
       </span>
     </div>
   )

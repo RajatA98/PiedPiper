@@ -126,21 +126,64 @@ export function audioUrlFor(track) {
 
 /**
  * Apply the locked threshold rule to a /neighbors response.
- * Returns { caseA: bool, topPct: number|null, topMatch: object|null }.
+ * Returns the calibrated display headline per ADR-0001.
+ *
+ * Returns { caseA, topPercentile, topLabel, topRawCosine, topSegment, topMatch, querySpecificity }.
+ * `topPct` is preserved as an alias for `topPercentile * 100` for any caller
+ * that still wants a 0-100 number (e.g., bar widths).
  *
  * Pure function — components consume it for headline rendering without
  * re-encoding the threshold logic per-component.
  */
 export function deriveHeadline(response) {
   if (!response || response.verdict === 'no_corpus' || !response.neighbors?.length) {
-    return { caseA: false, topPct: null, topMatch: null }
+    return {
+      caseA: false,
+      topPct: null,
+      topPercentile: null,
+      topLabel: null,
+      topRawCosine: null,
+      topSegment: null,
+      topMatch: null,
+      querySpecificity: null,
+    }
   }
   const top = response.neighbors[0]
-  const sim = response.topMeanPooledSimilarity ?? top.meanPooledSimilarity ?? 0
+  const rawCosine = top.rawCosine ?? response.topMeanPooledSimilarity ?? top.meanPooledSimilarity ?? 0
+  const percentile = top.percentileRank ?? response.topPercentileRank ?? null
+  const label = top.similarityLabel ?? response.topSimilarityLabel ?? null
+  const segment = top.segmentSupport ?? top.maxSegmentSimilarity ?? null
   const threshold = response.thresholdDefault ?? 0.70
   return {
-    caseA: sim >= threshold,
-    topPct: Math.round(sim * 1000) / 10,
+    caseA: rawCosine >= threshold,
+    topPercentile: percentile,
+    topLabel: label,
+    topRawCosine: rawCosine,
+    topSegment: segment,
+    topPct: Math.round(rawCosine * 1000) / 10,  // legacy alias
     topMatch: top,
+    querySpecificity: response.querySpecificity ?? null,
   }
+}
+
+/**
+ * Format a percentile rank [0, 1] as the visible UI string.
+ * 0.992 -> "99th percentile"; 0.503 -> "50th percentile"; 0.04 -> "4th percentile".
+ *
+ * Returns null when the percentile is null (no calibration available yet).
+ */
+export function fmtPercentile(p) {
+  if (p == null || Number.isNaN(p)) return null
+  const n = Math.max(0, Math.min(100, Math.round(p * 100)))
+  if (n === 0) return '<1st percentile'
+  const suffix = (() => {
+    const lastTwo = n % 100
+    if (lastTwo >= 11 && lastTwo <= 13) return 'th'
+    const last = n % 10
+    if (last === 1) return 'st'
+    if (last === 2) return 'nd'
+    if (last === 3) return 'rd'
+    return 'th'
+  })()
+  return `${n}${suffix} percentile`
 }
