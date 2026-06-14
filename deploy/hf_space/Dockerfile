@@ -31,7 +31,7 @@ WORKDIR /app
 # "OSError: libcudart.so.13: cannot open shared object file". Pinning the
 # CPU torchaudio wheel here before `pip install -r requirements.txt` resolves it
 # because pip sees torchaudio is already installed and won't re-fetch the GPU build.
-RUN pip install --no-cache-dir torch>=2.4 torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir torch>=2.4 torchaudio torchvision --index-url https://download.pytorch.org/whl/cpu
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
