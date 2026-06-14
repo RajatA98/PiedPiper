@@ -16,6 +16,10 @@ The intended product surface inside an AI music platform: this same pipeline run
 
 A separate [`/evaluation`](https://piedpiper-xi.vercel.app/evaluation) page reports measured retrieval quality on the catalog: **`Recall@1=0.639`, `Recall@3=0.735`, `MRR=0.692`**, latency `p50=0.27 ms`, and a top-1 cosine distribution. These are the post-ADR-0002 numbers after swapping LAION-CLAP for MuQ-MuLan; the LAION-CLAP baseline numbers (R@1=0.394 / R@3=0.494 / MRR=0.458) are preserved in [ADR-0002](docs/decisions/0002-swap-clap-for-muq-mulan.md) so the swap's empirical justification stays auditable. Leave-one-out methodology — honest about what it tests and what it doesn't.
 
+## Key engineering decision: the CLAP → MuQ-MuLan swap
+
+The deployed system originally ran LAION-CLAP. The live demo surfaced a real failure: every match displayed at "100% / 100% / 100%" similarity, regardless of how close the underlying audio actually was. **Root cause was contrastive-encoder anisotropy** — the pairwise cosine distribution across the 160-track catalog clustered tightly (mean 0.967, std 0.030, top-vs-random discrimination ratio only 0.036), so the UI was forced to round all distinct matches to the same headline number. After researching the 2024-2026 audio embedding literature, the fix was to swap the encoder: LAION-CLAP → MuQ-MuLan (Tencent AI Lab, Jan 2025 SOTA on MagnaTagATune zero-shot). **The measured result on the full catalog: Recall@1 +62% (0.394 → 0.639), discrimination ratio 12× wider (0.036 → 0.451), mean random-pair cosine dropped from 0.967 to 0.456.** Both encoders' numbers are preserved in [ADR-0002](docs/decisions/0002-swap-clap-for-muq-mulan.md) so the decision stays auditable. The shipping calibration (ADR-0001) was kept as a presentation-layer safety net on top of the deeper math fix.
+
 ## A small note on the name
 
 In the *Silicon Valley* pilot ("Minimum Viable Product"), Richard Hendricks first pitches Pied Piper as a music app — a tool for songwriters and composers to search whether their melody resembles anything that's come before. The investors laugh him out of the room and the show pivots Pied Piper to a compression algorithm. **PiedPiper-the-project is Richard's original pitch, ten years later, applied to AI-generated music.** The engineering is straight; the framing is a wink.
@@ -77,11 +81,18 @@ The catalog is built offline by `python -m backend.scripts.rebuild_corpus`, whic
 
 The reference catalog is **a sampled demo set, not a production catalog**, split into two tiers:
 
-**Tier 1 — recognizable hits via the iTunes Search API previews.** Audio is fetched once at ingest, embedded via MuQ, and discarded immediately. The deployed app never re-hosts Apple preview bytes. Apple Search API terms require: (a) preview audio is streamed not stored; (b) attribution and link-out to the iTunes Store on every Tier-1 match. Both are enforced in the UI via the `attribution_required` field in `corpus.json`.
+**Tier 1 — recognizable hits via the iTunes Search API previews.** Apple's stated preview terms split usefully against what we do with the preview at two distinct points in the pipeline:
+
+- *Display side* (the deployed app, on a match). The 30-second preview is streamed at request time, with Apple attribution and a `[↗ open in iTunes]` link-out rendered on every Tier-1 match — both enforced in the UI from the `attribution_required` field in `corpus.json`. Audio is not cached, downloaded, saved, or synchronized. This sits **within** Apple's stated preview terms — specifically clause (iv) ("streamed only, and not downloaded, saved, cached, or synchronized") and clause (v) ("not used for independent entertainment value apart from its promotional purpose").
+- *Ingest side* (the catalog build, before deploy). `rebuild_corpus.py` fetches the preview bytes server-side once, runs MuQ over them to produce the embedding, then discards the audio. Discarding does not cure the framing problem: the fetch-and-process step is arguably a "download" under (iv), and indexing the resulting embedding for similarity search is plainly outside the "promotional purpose" carve-out in (v). This sits **outside** Apple's stated preview terms.
+
+This is a **deliberate, named demo tradeoff** — recognizable mainstream tracks make the demo legible to a senior reviewer who recognizes "Blinding Lights" and not "Jamendo 43419." For a production deployment the right input is a properly licensed catalog of the kind a music platform already has internally, exactly as documented below.
 
 **Tier 2 — breadth via MTG-Jamendo.** All Creative Commons licensed. Dataset metadata (track ID, genre tags) comes from the official MTG-Jamendo repo; audio streams from Jamendo's public CDN at ingest time, gets embedded, and is discarded the same way as Tier 1. Each Tier-2 match links out to the Jamendo track page.
 
 **Productionizing this would mean indexing a licensed catalog** (the kind a vendor like Suno would have internally; the demo can't have it). That trade-off — and the resulting catalog incompleteness — is the dominant failure mode of the system, and is named explicitly on the `/evaluation` page.
+
+The companion question — *will the system's verdict survive when the catalog is 10⁷ tracks instead of 160?* — is answered in [ADR-0003: density-relative calibration](docs/decisions/0003-catalog-scale-calibration.md). Short version: yes, because the verdict is driven by percentile rank in the catalog's own similarity distribution + a specificity score that down-weights "broadly similar to everything" queries, not by an absolute cosine threshold. The mechanism is argued, not proven at scale; the ADR is honest about that.
 
 ## What I deliberately left out
 
