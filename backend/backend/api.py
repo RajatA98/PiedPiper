@@ -168,10 +168,17 @@ def _validate_upload(file: UploadFile, raw: bytes) -> JSONResponse | None:
     return None
 
 
-def _decode_and_pipeline(raw: bytes) -> dict | JSONResponse:
+def _decode_and_pipeline(raw: bytes, ext: str = "") -> dict | JSONResponse:
     """Decode bytes; run librosa + CLAP; return all artifacts (analysis, embedding, genres, report).
 
     Returns a dict or a JSONResponse on error.
+
+    `ext` is the upload's file extension (e.g. ".m4a"). It's used only as the
+    suffix on the temp-file fallback path: when librosa.load on a BytesIO
+    fails for an AAC-LC `.m4a` upload (libsndfile can't decode AAC, and
+    audioread's ffmpeg fallback requires a path not a BytesIO), we write the
+    bytes to a temp file with the right suffix and retry. The suffix matters
+    because ffmpeg's format dispatch is partially extension-driven.
     """
     try:
         duration_full = float(sf.info(io.BytesIO(raw)).duration)
@@ -180,7 +187,18 @@ def _decode_and_pipeline(raw: bytes) -> dict | JSONResponse:
     try:
         y, sr = librosa.load(io.BytesIO(raw), sr=config.ANALYSIS_SR, mono=False)
     except Exception:
-        return _err(422, "decode_failed")
+        # AAC-LC `.m4a` / other libsndfile-unsupported formats hit this path.
+        # Write to a temp file (with the upload's extension as the suffix) and
+        # retry — audioread will then dispatch to ffmpeg with a real path.
+        import tempfile
+        suffix = ext if ext and ext.startswith(".") else ""
+        try:
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=True) as tmp:
+                tmp.write(raw)
+                tmp.flush()
+                y, sr = librosa.load(tmp.name, sr=config.ANALYSIS_SR, mono=False)
+        except Exception:
+            return _err(422, "decode_failed")
     if (y if y.ndim == 1 else y).shape[-1] == 0:
         return _err(422, "empty_audio")
 
@@ -242,7 +260,8 @@ async def analyze_endpoint(file: UploadFile = File(...)):
     raw = await file.read()
     if (err := _validate_upload(file, raw)) is not None:
         return err
-    pipeline = _decode_and_pipeline(raw)
+    ext = Path(file.filename or "").suffix.lower()
+    pipeline = _decode_and_pipeline(raw, ext=ext)
     if isinstance(pipeline, JSONResponse):
         return pipeline
     return _build_track(file, pipeline, source="upload", id_="upload")
@@ -254,7 +273,8 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
     raw = await file.read()
     if (err := _validate_upload(file, raw)) is not None:
         return err
-    pipeline = _decode_and_pipeline(raw)
+    ext = Path(file.filename or "").suffix.lower()
+    pipeline = _decode_and_pipeline(raw, ext=ext)
     if isinstance(pipeline, JSONResponse):
         return pipeline
     query_track = _build_track(file, pipeline, source="upload", id_="upload")

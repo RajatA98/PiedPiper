@@ -195,6 +195,35 @@ Cheapest option: do nothing. UX would still feel broken without ADR-0001's calib
 
 Catalog recovery note: the rebuild ended with 155 of 160 tracks (10 iTunes + 145 of 150 Jamendo). 5 Jamendo tracks dropped during re-encode due to Jamendo CDN connection resets; they are recoverable via a follow-up rerun and don't affect the headline conclusions.
 
+### Verification (added 2026-06-14)
+
+Eval numbers above measure the catalog's internal consistency, not whether the matching pipeline is doing what it claims at the audio-decode → encode → retrieve level. The companion verification script `backend/backend/scripts/verify_matching.py` answers that more directly: for each iTunes Tier-1 track, it downloads the Apple preview audio fresh, POSTs it back to `/neighbors`, and checks (a) whether the same track is returned at rank 1, (b) what the self-match cosine is, and (c) whether the returned `matchTimestamp` points the strongest segment back at itself.
+
+Measured run on 2026-06-14 against the live HF Space (model SHA `2e01c796b71dca71b45251384c04cd7b237c9020`):
+
+| Pass criterion | Result | Threshold |
+|---|---|---|
+| Self at rank 1 | **10 / 10  (100%)** | ≥ 9 / 10 |
+| Self-match cosine mean | **0.9988** | ≥ 0.92 |
+| Self-match cosine min | 0.9925 | — |
+| Timestamp aligns to self | **10 / 10  (100%)** | ≥ 8 / 10 |
+| Round-trips that completed | 10 / 10 | — |
+
+What this proves:
+
+- The encoder is **deterministic up to numerical noise across encodes**: re-encoding the same audio at request time (fresh download → librosa decode → 24 kHz resample → MuQ-MuLan forward pass) reproduces the precomputed catalog embedding closely enough that cosine collapses to 1.0 within ~0.008. If the call signature were wrong (e.g., wrong sample rate, wrong dtype, wrong windowing convention), this number would not stick near 1.0.
+- The **retrieval pipeline does what it claims**: a query's correct nearest neighbor in the catalog is the one mathematically identical to it, not some genre-cluster random.
+- The **timestamp pipeline is wired correctly**: when a query is identical to a catalog track, the argmax over the per-window cosine matrix returns the same window of the same track on both sides. A bug like "off-by-one window index" or "argmax confused query/catalog axis" would have shown up here.
+
+What this does NOT prove:
+
+- It does not prove cross-track matches are semantically right. A track returning "very close — Blinding Lights" for a Suno generation is not validated by self-retrieval; that's a different claim and needs a different eval (Da-TACOS or SHS100K cover-song pairs, queued in ADR-0003).
+- It does not prove the model is well-calibrated for distinguishing copies vs inspirations. The harness intentionally feeds identical audio; novel inputs are out of scope.
+
+To rerun: `python -m backend.scripts.verify_matching --base-url https://rajata98-piedpiper.hf.space`. Single-target dry-run: `python -m backend.scripts.verify_matching --target tier1:itunes:1488408568`.
+
+Side finding: implementing the harness uncovered a `.m4a` / AAC-LC decode bug — the backend's `librosa.load(io.BytesIO(...))` couldn't decode iTunes preview format because libsndfile lacks AAC support and audioread's ffmpeg fallback needs a file path. Fixed by adding a temp-file fallback in `_decode_and_pipeline` (`backend/backend/api.py`) and regression-tested in `backend/tests/test_api.py::test_decode_uses_temp_file_fallback_for_aac_lc`. The bug never affected the user's Suno mp3 uploads — only iTunes preview uploads and other AAC-formatted audio. Worth documenting because the verification work surfaced it.
+
 ### Documentation impact
 
 - README's "Embedding protocol" + "Architecture" + "Evaluation" sections need updates.
