@@ -141,7 +141,7 @@ function ProtocolSection() {
       <SectionHeader kicker="protocol" title="Retrieval check — leave-one-out over the catalog" />
       <p className="mt-4 text-[14px] leading-relaxed" style={{ color: 'var(--color-dim)' }}>
         For each track in the 160-track reference catalog, the track is held out of the index.
-        The remaining 159 are searched using the held-out track&rsquo;s CLAP embedding as the query.
+        The remaining 159 are searched using the held-out track&rsquo;s MuQ-MuLan embedding as the query.
         The held-out track&rsquo;s rank in the returned top-K is recorded along with the top-1 cosine
         similarity.
       </p>
@@ -282,7 +282,7 @@ function LatencySection({ data, ready }) {
       />
       <p className="mt-3 text-[14px] leading-relaxed" style={{ color: 'var(--color-dim)' }}>
         Wall-clock per <code style={{ color: 'var(--color-ink)' }}>/neighbors</code> ranking call
-        against the in-memory catalog. Audio decode and CLAP encoding aren&rsquo;t included — those
+        against the in-memory catalog. Audio decode and MuQ-MuLan encoding aren&rsquo;t included — those
         are bounded by file size, not by index size. The rag-eval-harness methodology names latency
         as a first-class metric alongside precision and recall; slow systems get ignored.
       </p>
@@ -585,6 +585,6 @@ function fmtMs(v) {
   return `${Math.round(v)} ms`
 }
 
-const DEFAULT_METHODOLOGY = `Leave-one-out retrieval check over the 160-track reference catalog. For each track, the track is held out of the index; the remaining 159 are queried using the held-out track's CLAP embedding; the held-out track's rank in the returned top-K is recorded. This measures whether the embedding pipeline correctly finds the seed track when given a hold-out query — a catalog retrieval test, not an end-to-end AI-soundalike test. Because each query has at most one ground-truth target, Precision@1 equals Recall@1; we report Recall@k by convention. Groundedness (entity extraction from generated text) is not applicable — this system retrieves, it does not generate.`
+const DEFAULT_METHODOLOGY = `Leave-one-out retrieval check over the 160-track reference catalog. For each track, the track is held out of the index; the remaining 159 are queried using the held-out track's MuQ-MuLan embedding; the held-out track's rank in the returned top-K is recorded. This measures whether the embedding pipeline correctly finds the seed track when given a hold-out query — a catalog retrieval test, not an end-to-end AI-soundalike test. Because each query has at most one ground-truth target, Precision@1 equals Recall@1; we report Recall@k by convention. Groundedness (entity extraction from generated text) is not applicable — this system retrieves, it does not generate.`
 
 const DEFAULT_LIMITATIONS = `Catalog is ~160 tracks, with Tier-1 from iTunes previews and Tier-2 from MTG-Jamendo. Tier-2 is anonymized in metadata, so per-artist or per-album similarity confounds may inflate Recall@K relative to a real-world deployment. The eval does NOT measure how the system handles AI-generated soundalikes; that requires Suno-targeted generations, queued as a follow-up curation pass.`

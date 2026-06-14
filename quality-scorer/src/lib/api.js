@@ -49,7 +49,7 @@ export async function analyzeUpload(file) {
  *   ],
  *   topMeanPooledSimilarity: number,         // == neighbors[0].meanPooledSimilarity for convenience
  *   topMaxSegmentSimilarity: number,         // == neighbors[0].maxSegmentSimilarity
- *   modelSha: string,                        // pinned CLAP revision SHA from manifest.json
+ *   modelSha: string,                        // pinned MuQ-MuLan revision SHA from manifest.json (ADR-0002)
  *   thresholdDefault: number,                // "Completely unique" cutoff (provisional 0.70)
  *   // OR, when the catalog isn't loaded:
  *   verdict: "no_corpus",
@@ -57,7 +57,9 @@ export async function analyzeUpload(file) {
  * }
  *
  * Frontend applies the threshold rule: if topMeanPooledSimilarity >= thresholdDefault
- * → render Case A headline (`{pct}% similar to {title} — {artist}`).
+ * → render Case A headline as `{similarityLabel} · {percentileRank}th percentile match`
+ * (per ADR-0001 — raw cosine is shown small in technical detail, not converted to a
+ * percent and not phrased as a copyright/infringement number).
  * Otherwise → render Case B (`"Completely unique — this track doesn't sound like
  * anything in our reference catalog"`).
  *

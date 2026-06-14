@@ -33,9 +33,10 @@ export default function AboutPage() {
         style={{ color: 'var(--color-dim)' }}
       >
         <p>
-          PiedPiper embeds each track with an open-source audio model (LAION-CLAP,
-          music-tuned 512-d), then runs nearest-neighbour search against a hand-curated
-          reference catalog of roughly{' '}
+          PiedPiper embeds each track with an open-source audio model
+          (MuQ-MuLan, 512-d music-text joint embedding at 24 kHz), then runs
+          nearest-neighbour search against a hand-curated reference catalog of
+          roughly{' '}
           <strong style={{ color: 'var(--color-ink)' }}>100 recognizable tracks</strong>{' '}
           from iTunes previews and{' '}
           <strong style={{ color: 'var(--color-ink)' }}>150+ Creative Commons</strong>{' '}

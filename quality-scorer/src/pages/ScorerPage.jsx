@@ -16,7 +16,7 @@ import { neighborsUpload, analyzeUpload } from '../lib/api.js'
  * Sequence of states: idle → analyzing → result / error.
  *
  * HF Space cold-start mitigation: the "warming up" copy swaps in at 6 s
- * elapsed (CLAP loads on first request after sleep — ~30 s).
+ * elapsed (MuQ-MuLan loads on first request after sleep — ~45 s).
  */
 export default function ScorerPage() {
   const [status, setStatus] = useState('idle')
@@ -150,8 +150,8 @@ function Analyzing() {
           style={{ background: 'var(--color-accent)', borderRadius: '2px', animation: 'pp-blink 1.2s infinite' }}
         />
         {warming
-          ? 'warming up the analyzer (first request after idle takes ~30 s)…'
-          : 'analyzing · embedding via CLAP + cosine sweep against the catalog…'}
+          ? 'warming up the analyzer (first request after idle takes ~45 s)…'
+          : 'analyzing · windowed MuQ-MuLan embeddings + cosine sweep over the reference catalog…'}
       </div>
       <style>{`@keyframes pp-blink { 0%, 100% { opacity: 1 } 50% { opacity: 0.3 } }`}</style>
     </motion.div>
