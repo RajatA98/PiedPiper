@@ -18,12 +18,28 @@ MAX_UPLOAD_BYTES = 50 * 1024 * 1024
 ALLOWED_EXTENSIONS = {".mp3", ".wav", ".flac", ".ogg", ".m4a"}
 ALLOWED_MIME_PREFIX = "audio/"
 
-# --- CLAP ---------------------------------------------------------------------
+# --- audio encoder (ADR-0002: swap LAION-CLAP → MuQ-MuLan) -------------------
+#
+# MuQ-MuLan is a CLIP-style music-text joint embedder (~700M params) from
+# Tencent AI Lab, January 2025 SOTA on MagnaTagATune zero-shot tagging.
+# We use it for both similarity (audio path) and zero-shot genre tagging
+# (text path), so a single model load powers both jobs.
+#
+# Sample rate: 24 kHz (LAION-CLAP was 48 kHz). The encoder resamples inputs
+# internally so callers can pass any sr — but the runtime cost favors sending
+# audio at the target rate when possible.
 
-CLAP_MODEL_ID = "laion/larger_clap_music"
-# CLAP projects both modalities into a 512-d shared space (verified against the
-# loaded model in transformers 5.9.x; the original plan said 1024 by mistake).
-CLAP_EMBED_DIM = 512
+AUDIO_ENCODER_MODEL_ID = "OpenMuQ/MuQ-MuLan-large"
+AUDIO_ENCODER_SAMPLE_RATE = 24000
+# Joint embedding dim. MuQ-MuLan paper §3.3 specifies 512-d shared space —
+# same as LAION-CLAP, so the catalog matrix shape is unchanged across the swap.
+AUDIO_ENCODER_EMBED_DIM = 512
+
+# Backward-compat aliases — older code references CLAP_*; keep them mapped to
+# the new constants until a follow-up rename PR migrates references.
+CLAP_MODEL_ID = AUDIO_ENCODER_MODEL_ID
+CLAP_EMBED_DIM = AUDIO_ENCODER_EMBED_DIM
+CLAP_SR = AUDIO_ENCODER_SAMPLE_RATE
 CLAP_GENRE_TOP_K = 3
 CLAP_GENRE_TEMPERATURE = 10.0
 

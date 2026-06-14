@@ -34,7 +34,11 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from . import __version__, acrcloud_engine, clap_engine, clap_windowed, config, similarity
+# ADR-0002: clap_engine is no longer the primary encoder; muq_engine took its
+# place via clap_windowed's swap. We still import clap_engine here only because
+# legacy code paths may reference it; the encoder load + genre tagging both go
+# through muq_engine.
+from . import __version__, acrcloud_engine, muq_engine, clap_windowed, config, similarity
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
@@ -129,7 +133,7 @@ def _load_corpus() -> None:
 
 @asynccontextmanager
 async def lifespan(_app):
-    clap_engine.load()
+    muq_engine.load()
     _load_corpus()
     yield
 
@@ -191,7 +195,7 @@ def _decode_and_pipeline(raw: bytes) -> dict | JSONResponse:
     sf.write(acrcloud_buf, acrcloud_slice, sr, format="WAV", subtype="PCM_16")
     with _clap_lock:
         emb, segment_embeddings = clap_windowed.encode_windowed(mono, sr, max_seconds=None)
-    genres = clap_engine.top_genres(emb)
+    genres = muq_engine.top_genres(emb)
     report = compute_report(analysis["raw"])
 
     return {
@@ -224,7 +228,7 @@ def _build_track(file: UploadFile, pipeline: dict, *, source: str, id_: str) -> 
 def health() -> dict:
     return {
         "ok": True,
-        "model": clap_engine.model_id(),
+        "model": muq_engine.model_id(),
         "modelSha": _model_sha,
         "version": __version__,
         "corpus": len(_corpus_tracks),

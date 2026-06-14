@@ -40,10 +40,10 @@ COPY app.py /app/app.py
 COPY corpus /app/quality-scorer/public/corpus
 COPY eval_audio /app/quality-scorer/public/eval_audio
 
-# Pre-pull CLAP weights so the first /neighbors after a cold wake is fast.
-RUN python -c "from transformers import ClapModel, ClapProcessor; \
-    ClapModel.from_pretrained('laion/larger_clap_music'); \
-    ClapProcessor.from_pretrained('laion/larger_clap_music')"
+# ADR-0002: pre-pull MuQ-MuLan weights at build time so the first /neighbors
+# after a cold wake doesn't have to download ~2.8 GB. The pre-pull also caches
+# the XLM-RoBERTa text encoder MuQ-MuLan depends on.
+RUN python -c "from muq import MuQMuLan; MuQMuLan.from_pretrained('OpenMuQ/MuQ-MuLan-large')"
 
 ENV PORT=7860 HF_HOME=/app/.hf_cache
 # The corpus copy target above is /app/quality-scorer/public/corpus. The

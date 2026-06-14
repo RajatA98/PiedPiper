@@ -23,7 +23,11 @@ from __future__ import annotations
 
 import numpy as np
 
-from . import clap_engine, config
+# ADR-0002: encoder swapped from clap_engine → muq_engine. Module name kept
+# (renaming this file widens the diff for no functional gain) but the inner
+# encoder is now MuQ-MuLan.
+from . import muq_engine as audio_encoder
+from . import config
 
 
 def chunk_audio(
@@ -119,7 +123,7 @@ def encode_windowed(
     """
     chunks = chunk_audio(wav_mono, sr, window_seconds, max_seconds)
     rows = [
-        l2_normalize(clap_engine.encode_audio(chunk, sr).astype(np.float32))
+        l2_normalize(audio_encoder.encode_audio(chunk, sr).astype(np.float32))
         for chunk in chunks
     ]
     segment_embeddings = np.stack(rows, axis=0).astype(np.float32)

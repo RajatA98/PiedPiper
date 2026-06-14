@@ -6,3 +6,4 @@ dist-ssr
 .vite
 public/corpus/audio/
 public/corpus/embeddings.npy
+.vercel

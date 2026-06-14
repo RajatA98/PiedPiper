@@ -1,6 +1,6 @@
 {
-  "model_id": "laion/larger_clap_music",
-  "model_sha": "a0b4534a14f58e20944452dff00a22a06ce629d1",
+  "model_id": "OpenMuQ/MuQ-MuLan-large",
+  "model_sha": "2e01c796b71dca71b45251384c04cd7b237c9020",
   "embedding_dim": 512,
   "window_seconds": 10,
   "query_max_seconds": 90,
@@ -8,16 +8,16 @@
   "threshold_default": 0.7,
   "tier_counts": {
     "tier1": 10,
-    "tier2": 150
+    "tier2": 145
   },
-  "generated_at": "2026-06-12T02:48:56.647799+00:00",
+  "generated_at": "2026-06-13T18:11:59.861169+00:00",
   "sha256": {
     "files": {
-      "corpus.json": "5ca535460906ff778376681ee8c2e556e2ea2cf14865f9e32b9c6fed6115d2ff",
-      "embeddings.npy": "81dab4a97dceccc09460e18e4c9f207e0bcbccca774b8f86045dd5d2f3639ec8",
+      "corpus.json": "3ee7870ea0dde2a2bde53004ccb33c3b4122815555d40bd5cc987da992c9c4d5",
+      "embeddings.npy": "1dc17f84d87e3b92613549d688824a02da9cd9cdd170c4a2ff3256a25ab0256a",
       "examples.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-      "segment_embeddings.npz": "2c8e9b150bc380192281bc0564e5439010a5189007f26eb2db9d4ce10eacdc15"
+      "segment_embeddings.npz": "e4385247045697970fe35717235656871cf4b2b940a63f0f03eacd7d0b20a6ee"
     },
-    "combined": "3de52cd87f2d4c6837c7576df4e5b9ca93f19323a188e377bcbd27ac88703a5a"
+    "combined": "1eb424e6c2def846424875738d9c1812ad758e7ac01aea97852e6e9dce547747"
   }
 }

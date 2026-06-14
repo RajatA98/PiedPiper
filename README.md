@@ -14,7 +14,7 @@ PiedPiper is a deployed web app that gives creators real-time feedback on how th
 
 The intended product surface inside an AI music platform: this same pipeline runs on every generation before it reaches the creator. If the top match is too close, the creator gets actionable feedback — *"this generation scored close to track X. Try these prompt tweaks to push it toward more originality."* PiedPiper-the-portfolio-piece prototypes that loop end-to-end.
 
-A separate [`/evaluation`](https://piedpiper-xi.vercel.app/evaluation) page reports measured retrieval quality on the catalog: `Recall@1=0.394`, `Recall@3=0.494`, `MRR=0.458`, latency `p50=0.28 ms`, and a top-1 cosine distribution. Leave-one-out methodology — honest about what it tests and what it doesn't.
+A separate [`/evaluation`](https://piedpiper-xi.vercel.app/evaluation) page reports measured retrieval quality on the catalog: **`Recall@1=0.639`, `Recall@3=0.735`, `MRR=0.692`**, latency `p50=0.27 ms`, and a top-1 cosine distribution. These are the post-ADR-0002 numbers after swapping LAION-CLAP for MuQ-MuLan; the LAION-CLAP baseline numbers (R@1=0.394 / R@3=0.494 / MRR=0.458) are preserved in [ADR-0002](docs/decisions/0002-swap-clap-for-muq-mulan.md) so the swap's empirical justification stays auditable. Leave-one-out methodology — honest about what it tests and what it doesn't.
 
 ## A small note on the name
 
@@ -33,15 +33,15 @@ flowchart TB
         direction TB
         DEC["Decode audio<br/>(one librosa pass)"]
         DEC --> QUAL["7-signal quality check<br/>silence · clip · noise · truncation"]
-        DEC --> CLAP["CLAP audio encoder<br/>→ 10s windowed embeddings<br/>→ L2-normalized mean pool"]
-        CLAP --> COS["Cosine sweep<br/>vs corpus + segments"]
+        DEC --> MuQ["MuQ audio encoder<br/>→ 10s windowed embeddings<br/>→ L2-normalized mean pool"]
+        MuQ --> COS["Cosine sweep<br/>vs corpus + segments"]
     end
 
     CAT[("Reference catalog<br/>~160 tracks<br/>corpus.json + embeddings.npy<br/>+ segment_embeddings.npz<br/>loaded once at startup")]:::catNode
     CAT -.->|"L2-normalized<br/>dot product"| COS
 
     ACR["ACRCloud<br/>Cover Song ID + AI Music Detector<br/>commercial second opinions · P1"]:::extNode
-    CLAP -.->|"parallel calls"| ACR
+    MuQ -.->|"parallel calls"| ACR
 
     COS --> RPT
     ACR --> RPT
@@ -55,13 +55,13 @@ flowchart TB
     classDef reportNode fill:#ede9fe,stroke:#5b21b6,color:#1e1b4b,font-weight:bold
 ```
 
-One decode pass feeds three jobs in parallel: a 7-signal quality check (the inherited broken-output detector), the CLAP windowed encoder, and the optional ACRCloud calls. All three results merge into a single ReportCard.
+One decode pass feeds three jobs in parallel: a 7-signal quality check (the inherited broken-output detector), the MuQ windowed encoder, and the optional ACRCloud calls. All three results merge into a single ReportCard.
 
-The catalog is built offline by `python -m backend.scripts.rebuild_corpus`, which reads `backend/catalog.yaml`, hits the iTunes Search API (Tier 1) and Jamendo CDN (Tier 2), runs windowed CLAP encoding on every track, and writes five files to `quality-scorer/public/corpus/`. The live backend reads those files at startup and serves them via `/neighbors`.
+The catalog is built offline by `python -m backend.scripts.rebuild_corpus`, which reads `backend/catalog.yaml`, hits the iTunes Search API (Tier 1) and Jamendo CDN (Tier 2), runs windowed MuQ encoding on every track, and writes five files to `quality-scorer/public/corpus/`. The live backend reads those files at startup and serves them via `/neighbors`.
 
 ## Why these technical choices
 
-**Audio embedding model: LAION-CLAP music-tuned 512-d** (`laion/larger_clap_music`). Apache-2.0, ~190 MB, CPU-friendly at ~1.5 s per encode, music-tuned. MERT would be marginally better on instrument-level discrimination but adds CPU latency for a gain that doesn't translate to this task. MuQ-MuLan is less production-tested. Classical baselines (chroma + MFCC, OpenL3, VGGish) are too coarse to discriminate AI soundalikes from genre-mates.
+**Audio embedding model: MuQ-MuLan 512-d** (`OpenMuQ/MuQ-MuLan-large`, Tencent AI Lab, January 2025 SOTA on MagnaTagATune zero-shot). CC-BY-NC 4.0 (non-commercial portfolio use), ~700M parameters, ~0.8 s per 10-second window on CPU. Replaced the original LAION-CLAP backbone in [ADR-0002](docs/decisions/0002-swap-clap-for-muq-mulan.md) after the deployed CLAP-based system exhibited textbook embedding anisotropy (pairwise cosines clustered at 0.967 mean, std=0.030 — i.e., the model could only distinguish a real match from a random catalog track by ~0.036 cosine, which is why the UI was forced to show "100%" across the top three matches). The MuQ-MuLan swap dropped mean random-pair cosine to 0.456 (std=0.186), improved Recall@1 from 0.394 to 0.639 (+62%), and widened the discrimination ratio 12×. The deeper story is in the ADR.
 
 **Vector search: in-memory NumPy cosine sweep.** At ~160 tracks × 512 floats, a sweep is sub-millisecond. FAISS Flat becomes interesting at ~10k tracks; HNSW at ~100k. A vector DB would be misplaced complexity at this scale and would mask any L2-normalization bug upstream.
 
@@ -71,13 +71,13 @@ The catalog is built offline by `python -m backend.scripts.rebuild_corpus`, whic
 
 **Single threshold (provisional `0.70`), recalibrated from negatives.** The multi-band verdict chip (`unique` / `related` / `similar` / `near-duplicate`) is gone — the percentage is the honest answer; the chip was a derived interpretation that invited "what does 'similar' mean?" debate. The only threshold that remains is the "Completely unique" cutoff, recalibrated from the observed top-1 cosine distribution on the unrelated negatives in the golden set.
 
-**ACRCloud as two independent signals, not a composite verdict.** Cover Song ID asks "does this resemble a known composition?" — paired against our self-built CLAP retrieval. AI Music Detector asks "is this AI-generated, likely Suno?" — directly on-thesis for the audience. They answer different questions; collapsing them into one verdict misrepresents both. Both are P1, budget-gated behind ACRCloud's 14-day trial, with pre-cached responses for the eval set so the demo never breaks after trial expiration.
+**ACRCloud as two independent signals, not a composite verdict.** Cover Song ID asks "does this resemble a known composition?" — paired against our self-built MuQ retrieval. AI Music Detector asks "is this AI-generated, likely Suno?" — directly on-thesis for the audience. They answer different questions; collapsing them into one verdict misrepresents both. Both are P1, budget-gated behind ACRCloud's 14-day trial, with pre-cached responses for the eval set so the demo never breaks after trial expiration.
 
 ## Rights and catalog
 
 The reference catalog is **a sampled demo set, not a production catalog**, split into two tiers:
 
-**Tier 1 — recognizable hits via the iTunes Search API previews.** Audio is fetched once at ingest, embedded via CLAP, and discarded immediately. The deployed app never re-hosts Apple preview bytes. Apple Search API terms require: (a) preview audio is streamed not stored; (b) attribution and link-out to the iTunes Store on every Tier-1 match. Both are enforced in the UI via the `attribution_required` field in `corpus.json`.
+**Tier 1 — recognizable hits via the iTunes Search API previews.** Audio is fetched once at ingest, embedded via MuQ, and discarded immediately. The deployed app never re-hosts Apple preview bytes. Apple Search API terms require: (a) preview audio is streamed not stored; (b) attribution and link-out to the iTunes Store on every Tier-1 match. Both are enforced in the UI via the `attribution_required` field in `corpus.json`.
 
 **Tier 2 — breadth via MTG-Jamendo.** All Creative Commons licensed. Dataset metadata (track ID, genre tags) comes from the official MTG-Jamendo repo; audio streams from Jamendo's public CDN at ingest time, gets embedded, and is discarded the same way as Tier 1. Each Tier-2 match links out to the Jamendo track page.
 
@@ -120,7 +120,7 @@ pip install -e "backend/[runtime,ingest,dev]"
 uvicorn backend.api:app --reload --port 8000
 ```
 
-`/health` should return `ok: true` once CLAP finishes loading (~30 s cold start).
+`/health` should return `ok: true` once MuQ finishes loading (~30 s cold start).
 
 ### Frontend (Vite on local 5173)
 
@@ -172,7 +172,7 @@ Then in the Space's **Settings → Variables and secrets**:
 - `ACRCLOUD_ACCESS_KEY`, `ACRCLOUD_ACCESS_SECRET`, `ACRCLOUD_AI_DETECTOR_URL`,
   `ACRCLOUD_AI_DETECTOR_BEARER` (secrets).
 
-First build takes ~8 min (pulls torch + CLAP weights). After it boots, hit
+First build takes ~8 min (pulls torch + MuQ weights). After it boots, hit
 `https://<your-user>-piedpiper.hf.space/health` — should return `{"ok": true, "corpus": 160, ...}`.
 
 ### 2. Frontend — Vercel

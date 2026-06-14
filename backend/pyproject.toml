@@ -24,6 +24,10 @@ runtime = [
   "torch>=2.4",
   "tqdm>=4.66",
   "datasets>=3.0",
+  # ADR-0002: MuQ-MuLan audio encoder (Tencent AI Lab, 2025 SOTA on
+  # MagnaTagATune zero-shot). Replaces LAION-CLAP as the primary similarity
+  # backbone. CC-BY-NC 4.0 license — non-commercial use only.
+  "muq>=0.1",
 ]
 ingest = [
   "httpx>=0.27",
