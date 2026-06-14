@@ -25,8 +25,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# CPU torch from the official wheel index — avoids pulling CUDA wheels.
-RUN pip install --no-cache-dir torch>=2.4 --index-url https://download.pytorch.org/whl/cpu
+# CPU torch + torchaudio from the official wheel index — avoids pulling CUDA wheels.
+# ADR-0002 footnote: `muq` transitively pulls torchaudio, and its default install
+# is the CUDA variant which then crashes at startup on CPU Basic with
+# "OSError: libcudart.so.13: cannot open shared object file". Pinning the
+# CPU torchaudio wheel here before `pip install -r requirements.txt` resolves it
+# because pip sees torchaudio is already installed and won't re-fetch the GPU build.
+RUN pip install --no-cache-dir torch>=2.4 torchaudio --index-url https://download.pytorch.org/whl/cpu
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
