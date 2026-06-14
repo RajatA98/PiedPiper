@@ -40,10 +40,12 @@ COPY app.py /app/app.py
 COPY corpus /app/quality-scorer/public/corpus
 COPY eval_audio /app/quality-scorer/public/eval_audio
 
-# ADR-0002: pre-pull MuQ-MuLan weights at build time so the first /neighbors
-# after a cold wake doesn't have to download ~2.8 GB. The pre-pull also caches
-# the XLM-RoBERTa text encoder MuQ-MuLan depends on.
-RUN python -c "from muq import MuQMuLan; MuQMuLan.from_pretrained('OpenMuQ/MuQ-MuLan-large')"
+# ADR-0002: MuQ-MuLan weights are NOT pre-pulled at build time — the ~2.8 GB
+# download was breaking the HF Space build (timeout + image-size pressure).
+# Instead the model downloads on first /neighbors request and caches to
+# HF_HOME (= /app/.hf_cache) on the persistent volume. Cold-start penalty is
+# a one-time ~45 s the first time after a factory rebuild; warm restarts are
+# instant because the cached weights survive on the Space's disk.
 
 ENV PORT=7860 HF_HOME=/app/.hf_cache
 # The corpus copy target above is /app/quality-scorer/public/corpus. The
