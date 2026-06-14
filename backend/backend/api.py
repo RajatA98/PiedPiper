@@ -292,6 +292,20 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
         nb["segmentSupport"] = seg
         # Calibrated 0-1 score for the UI bar width — uses percentile rank.
         nb["calibratedScore"] = float(pct)
+        # Timestamp of the strongest segment match — what part of the query
+        # lined up with what part of the catalog track. Window indices come
+        # straight out of similarity.top_k_neighbors; we convert to seconds
+        # using the locked 10 s window protocol.
+        q_win = int(nb.pop("matchQueryWindow", 0))
+        c_win = int(nb.pop("matchCatalogWindow", 0))
+        win_s = float(config.CLAP_WINDOW_SECONDS)
+        nb["matchTimestamp"] = {
+            "queryStartSec": q_win * win_s,
+            "queryEndSec": (q_win + 1) * win_s,
+            "catalogStartSec": c_win * win_s,
+            "catalogEndSec": (c_win + 1) * win_s,
+            "windowSeconds": win_s,
+        }
 
     specificity = float(similarity.query_specificity(pipeline["emb"].astype(np.float32), _flat_catalog))
     acr = acrcloud_engine.call_for_query(pipeline["acrcloud_audio"])

@@ -115,6 +115,12 @@ export default function SimilarityReport({
                   >
                     cosine {(topRawCosine ?? 0).toFixed(3)}
                     {topSegment != null && <> · segment {topSegment.toFixed(3)}</>}
+                    {top.matchTimestamp && (
+                      <>
+                        {' '}
+                        · {fmtTopMatchTs(top.matchTimestamp)}
+                      </>
+                    )}
                   </div>
                 </>
               ) : (
@@ -196,6 +202,7 @@ export default function SimilarityReport({
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
+                matchTimestamp={n.matchTimestamp}
               />
             ))}
           </div>
@@ -242,6 +249,7 @@ export default function SimilarityReport({
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
+                matchTimestamp={n.matchTimestamp}
                 isReference
               />
             ))}
@@ -255,6 +263,17 @@ export default function SimilarityReport({
 function capitalizeLabel(label) {
   if (!label) return null
   return label.charAt(0).toUpperCase() + label.slice(1)
+}
+
+function fmtTopMatchTs(ts) {
+  if (!ts) return null
+  const fmt = (s) => {
+    const n = Math.max(0, Math.floor(Number(s) || 0))
+    const m = Math.floor(n / 60)
+    const r = n % 60
+    return `${m}:${r.toString().padStart(2, '0')}`
+  }
+  return `match ${fmt(ts.queryStartSec)}–${fmt(ts.queryEndSec)} ↔ ${fmt(ts.catalogStartSec)}–${fmt(ts.catalogEndSec)}`
 }
 
 function Kicker({ children, className = '' }) {

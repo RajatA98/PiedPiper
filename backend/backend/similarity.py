@@ -170,8 +170,18 @@ def top_k_neighbors(
     mean_sims = catalog.means @ query_mean_arr
     seg_sims_full = query_segs_arr @ catalog.segs_flat.T
     max_seg_sims = np.empty(n, dtype=np.float32)
+    # Track which (query_window, catalog_window) pair produced the maxSegmentSimilarity
+    # so the UI can show "the part of the query that matched is 0:30-0:40,
+    # the part of the catalog track it matched to is 0:50-1:00."
+    match_q_win = np.empty(n, dtype=np.int32)
+    match_c_win = np.empty(n, dtype=np.int32)
     for i, (start, end) in enumerate(catalog.seg_ranges):
-        max_seg_sims[i] = float(seg_sims_full[:, start:end].max())
+        sub = seg_sims_full[:, start:end]
+        flat_idx = int(sub.argmax())
+        qi, cj = np.unravel_index(flat_idx, sub.shape)
+        max_seg_sims[i] = float(sub[qi, cj])
+        match_q_win[i] = int(qi)
+        match_c_win[i] = int(cj)
 
     k = max(1, min(int(k), n))
     if k >= n:
@@ -180,11 +190,16 @@ def top_k_neighbors(
         idx = np.argpartition(mean_sims, -k)[-k:]
         idx = idx[np.argsort(-mean_sims[idx])]
 
+    # WINDOW_SECONDS is the same 10 s contract used at ingest + query time.
+    # Importing the constant here is overkill since the UI mostly needs the
+    # window index; the frontend multiplies by 10 to render MM:SS.
     return [
         {
             "trackId": catalog.track_ids[int(i)],
             "meanPooledSimilarity": float(mean_sims[int(i)]),
             "maxSegmentSimilarity": float(max_seg_sims[int(i)]),
+            "matchQueryWindow": int(match_q_win[int(i)]),
+            "matchCatalogWindow": int(match_c_win[int(i)]),
         }
         for i in idx
     ]
