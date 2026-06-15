@@ -283,6 +283,115 @@ def query_specificity(query_mean: np.ndarray, catalog: FlatCatalog, threshold: f
     return 1.0 - (above / float(n))
 
 
+# --- ADR-0004: per-criterion comparison helpers ------------------------------
+#
+# Each helper takes one query value + one catalog value (the shape matches
+# what MirFeatures stores) and returns a dict with `agreement` (0-1 float for
+# UI bar widths) and `label` (categorical for the user-facing readout).
+#
+# Per-criterion thresholds are locked in ADR-0004 §"The per-criterion
+# thresholds (locked here, not adjustable per deploy)". Changing them
+# requires an ADR amendment, not a quiet config tweak.
+
+
+def compare_tempos(query_bpm: float, match_bpm: float) -> dict:
+    """Pairwise tempo agreement. Symmetric, agreement decays with |Δ BPM|."""
+    q = float(query_bpm or 0.0)
+    m = float(match_bpm or 0.0)
+    delta = abs(q - m)
+    if delta <= 3.0:
+        return {"agreement": 1.0, "label": "same tempo"}
+    if delta <= 10.0:
+        return {"agreement": float(max(0.0, 1.0 - delta / 20.0)), "label": f"{round(delta)} BPM apart"}
+    return {"agreement": float(max(0.0, 1.0 - delta / 40.0)), "label": f"{round(delta)} BPM apart"}
+
+
+# Pitch-class index for fifth + relative key relationships.
+_PITCH_INDEX = {"C": 0, "C#": 1, "D": 2, "D#": 3, "E": 4, "F": 5,
+                "F#": 6, "G": 7, "G#": 8, "A": 9, "A#": 10, "B": 11}
+
+
+def compare_keys(query_key: str, query_mode: str, match_key: str, match_mode: str) -> dict:
+    """Pairwise key + mode agreement using the music-theoretic relationships
+    that are most legible to a non-technical user: same key, relative major/
+    minor, perfect-fifth-apart, otherwise different.
+    """
+    q_idx = _PITCH_INDEX.get(str(query_key), 0)
+    m_idx = _PITCH_INDEX.get(str(match_key), 0)
+    q_mode = str(query_mode).lower()
+    m_mode = str(match_mode).lower()
+
+    if q_idx == m_idx and q_mode == m_mode:
+        return {"agreement": 1.0, "label": "same key"}
+
+    # Relative major <-> minor: e.g. C major <-> A minor share all 7 pitches.
+    # A minor is 3 semitones below C major's tonic; that's a 9-up or 3-down
+    # semitone relationship between the two tonics, mode swap.
+    if q_mode != m_mode:
+        diff = (m_idx - q_idx) % 12
+        if (q_mode == "major" and m_mode == "minor" and diff == 9) or \
+           (q_mode == "minor" and m_mode == "major" and diff == 3):
+            return {"agreement": 0.7, "label": "relative key"}
+
+    # Perfect-fifth relationship: tonics 7 semitones apart (or 5 down), same mode.
+    if q_mode == m_mode:
+        diff = (m_idx - q_idx) % 12
+        if diff in (5, 7):
+            return {"agreement": 0.5, "label": "fifth apart"}
+
+    return {"agreement": 0.0, "label": "different key"}
+
+
+def compare_chroma_vectors(query: list | np.ndarray, match: list | np.ndarray) -> dict:
+    """Pairwise cosine on the 12-d chroma mean vector → categorical label.
+
+    Maps 'how much do these tracks share their chord/pitch palette?' to a
+    user-facing string. Cosine on probability-normalized chroma is bounded
+    by construction; we surface it as agreement directly.
+    """
+    q = np.asarray(query, dtype=np.float32).reshape(-1)
+    m = np.asarray(match, dtype=np.float32).reshape(-1)
+    if q.size == 0 or m.size == 0:
+        return {"agreement": 0.0, "label": "different chord palette"}
+    qn = float(np.linalg.norm(q)) or 1.0
+    mn = float(np.linalg.norm(m)) or 1.0
+    cos = float(np.dot(q, m) / (qn * mn))
+    cos = max(0.0, min(1.0, cos))  # clamp negatives + numerical drift
+    if cos >= 0.85:
+        return {"agreement": cos, "label": "very similar chord palette"}
+    if cos >= 0.65:
+        return {"agreement": cos, "label": "similar chord palette"}
+    if cos >= 0.40:
+        return {"agreement": cos, "label": "moderate chord overlap"}
+    return {"agreement": cos, "label": "different chord palette"}
+
+
+def compare_timbre_vectors(query: list | np.ndarray, match: list | np.ndarray) -> dict:
+    """Pairwise cosine on the 26-d MFCC mean+std vector → 'production feel' label.
+
+    MFCC captures the spectral envelope (instruments, mix, mastering) more
+    than melody or harmony. Two tracks with similar MFCC fingerprints share
+    a sonic aesthetic even if pitched differently.
+    """
+    q = np.asarray(query, dtype=np.float32).reshape(-1)
+    m = np.asarray(match, dtype=np.float32).reshape(-1)
+    if q.size == 0 or m.size == 0:
+        return {"agreement": 0.0, "label": "different production"}
+    qn = float(np.linalg.norm(q)) or 1.0
+    mn = float(np.linalg.norm(m)) or 1.0
+    cos = float(np.dot(q, m) / (qn * mn))
+    # MFCC vectors can be anti-correlated → cosine in [-1, 1]. Clamp to [0, 1]
+    # for the agreement bar — negative cosine reads as "different" not "less."
+    agreement = max(0.0, min(1.0, cos))
+    if agreement >= 0.80:
+        return {"agreement": agreement, "label": "very similar production feel"}
+    if agreement >= 0.55:
+        return {"agreement": agreement, "label": "similar production feel"}
+    if agreement >= 0.25:
+        return {"agreement": agreement, "label": "moderately different production"}
+    return {"agreement": agreement, "label": "different production"}
+
+
 def threshold_from_manifest(manifest: dict) -> float:
     """Read the `threshold_default` field from the parsed manifest.json.
 

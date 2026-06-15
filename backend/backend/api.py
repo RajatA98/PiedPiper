@@ -38,7 +38,7 @@ from fastapi.responses import JSONResponse
 # place via clap_windowed's swap. We still import clap_engine here only because
 # legacy code paths may reference it; the encoder load + genre tagging both go
 # through muq_engine.
-from . import __version__, acrcloud_engine, muq_engine, clap_windowed, config, similarity
+from . import __version__, acrcloud_engine, muq_engine, clap_windowed, config, mir_features, similarity
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
@@ -216,13 +216,72 @@ def _decode_and_pipeline(raw: bytes, ext: str = "") -> dict | JSONResponse:
     genres = muq_engine.top_genres(emb)
     report = compute_report(analysis["raw"])
 
+    # ADR-0004: compute the four locked MIR criteria on the query audio.
+    # The same mono+capped buffer that drives MuQ-MuLan is the right input —
+    # we want the criteria computed against the same time region the embedding
+    # was computed over so the per-criterion comparisons are self-consistent.
+    try:
+        query_mir = mir_features.compute(mono, sr)
+    except Exception as exc:
+        print(f"[api] mir_features.compute failed: {exc!r}")
+        query_mir = None
+
     return {
         "analysis": analysis,
         "report": report,
         "genres": genres,
         "emb": emb,
         "segment_embeddings": segment_embeddings,
+        "mir": query_mir,
         "acrcloud_audio": acrcloud_buf.getvalue(),
+    }
+
+
+def _build_criteria_block(query_mir, match_mir_dict) -> dict | None:
+    """Per ADR-0004: compose the four-criterion comparison block for one neighbor.
+
+    Args:
+        query_mir: MirFeatures dataclass (or None) computed on the upload.
+        match_mir_dict: dict from corpus.json `mir_features` field, or None.
+
+    Returns:
+        Dict with `tempo`/`key`/`harmonic`/`timbre` entries, or None when
+        either side is missing MIR data (which is the case for un-backfilled
+        catalog tracks during the rollout window).
+    """
+    if query_mir is None or not match_mir_dict:
+        return None
+    try:
+        match_mir = mir_features.MirFeatures.from_dict(match_mir_dict)
+    except (KeyError, TypeError, ValueError):
+        return None
+
+    tempo_cmp = similarity.compare_tempos(query_mir.tempo_bpm, match_mir.tempo_bpm)
+    key_cmp = similarity.compare_keys(query_mir.key, query_mir.mode, match_mir.key, match_mir.mode)
+    chroma_cmp = similarity.compare_chroma_vectors(query_mir.chroma_mean, match_mir.chroma_mean)
+    timbre_cmp = similarity.compare_timbre_vectors(query_mir.timbre_mean, match_mir.timbre_mean)
+
+    return {
+        "tempo": {
+            "queryValue": round(float(query_mir.tempo_bpm), 1),
+            "matchValue": round(float(match_mir.tempo_bpm), 1),
+            "agreement": float(tempo_cmp["agreement"]),
+            "label": str(tempo_cmp["label"]),
+        },
+        "key": {
+            "queryValue": f"{query_mir.key} {query_mir.mode}",
+            "matchValue": f"{match_mir.key} {match_mir.mode}",
+            "agreement": float(key_cmp["agreement"]),
+            "label": str(key_cmp["label"]),
+        },
+        "harmonic": {
+            "agreement": float(chroma_cmp["agreement"]),
+            "label": str(chroma_cmp["label"]),
+        },
+        "timbre": {
+            "agreement": float(timbre_cmp["agreement"]),
+            "label": str(timbre_cmp["label"]),
+        },
     }
 
 
@@ -326,6 +385,12 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
             "catalogEndSec": (c_win + 1) * win_s,
             "windowSeconds": win_s,
         }
+
+        # ADR-0004: attach the four-criterion comparison block when both the
+        # query and the catalog track have MIR features available. Missing
+        # MIR data on either side → null criteria; the frontend handles that
+        # gracefully (criteria table just hides).
+        nb["criteria"] = _build_criteria_block(pipeline.get("mir"), nb["track"].get("mir_features"))
 
     specificity = float(similarity.query_specificity(pipeline["emb"].astype(np.float32), _flat_catalog))
     acr = acrcloud_engine.call_for_query(pipeline["acrcloud_audio"])

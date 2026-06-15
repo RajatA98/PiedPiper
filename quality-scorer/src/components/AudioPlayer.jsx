@@ -13,22 +13,44 @@ import { fmtDuration } from '../lib/format.js'
  * <audio> elements on the page are paused. Implemented via a browser-native
  * 'play' event handler — no React context needed.
  */
-export default function AudioPlayer({ src = null, durationSec = 180, compact = false, artwork = null, size = 36 }) {
+export default function AudioPlayer({
+  src = null,
+  durationSec = 180,
+  compact = false,
+  artwork = null,
+  size = 36,
+  // ADR-0004 windowed-playback mode: when both are set, the component
+  // plays only the [startSec, endSec) slice of the underlying audio.
+  startSec = null,
+  endSec = null,
+}) {
   const audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [pos, setPos] = useState(0)
   const [realDuration, setRealDuration] = useState(durationSec)
 
   const disabled = !src
+  const windowed = startSec != null && endSec != null && endSec > startSec
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    const onTime = () => setPos(audio.currentTime)
+    const onTime = () => {
+      setPos(audio.currentTime)
+      // ADR-0004: hard-stop at endSec so the snippet truly plays only the window.
+      if (windowed && audio.currentTime >= endSec) {
+        audio.pause()
+        audio.currentTime = startSec
+      }
+    }
     const onLoad = () => {
       if (Number.isFinite(audio.duration) && audio.duration > 0) {
         setRealDuration(audio.duration)
+      }
+      // Seek to startSec on first load so a single click → play from the right place.
+      if (windowed && Number.isFinite(audio.currentTime) && audio.currentTime < startSec) {
+        audio.currentTime = startSec
       }
     }
     const onPlay = () => {
@@ -41,7 +63,7 @@ export default function AudioPlayer({ src = null, durationSec = 180, compact = f
     const onPause = () => setPlaying(false)
     const onEnded = () => {
       setPlaying(false)
-      setPos(0)
+      setPos(windowed ? startSec : 0)
     }
 
     audio.addEventListener('timeupdate', onTime)
@@ -57,12 +79,19 @@ export default function AudioPlayer({ src = null, durationSec = 180, compact = f
       audio.removeEventListener('pause', onPause)
       audio.removeEventListener('ended', onEnded)
     }
-  }, [src])
+  }, [src, windowed, startSec, endSec])
 
   const toggle = () => {
     const audio = audioRef.current
     if (!audio || disabled) return
     if (audio.paused) {
+      // ADR-0004: when windowed, always seek to startSec before play so
+      // re-clicking after a stop replays the snippet from the right place.
+      if (windowed) {
+        if (audio.currentTime < startSec || audio.currentTime >= endSec) {
+          audio.currentTime = startSec
+        }
+      }
       const p = audio.play()
       if (p && typeof p.catch === 'function') p.catch(() => setPlaying(false))
     } else {

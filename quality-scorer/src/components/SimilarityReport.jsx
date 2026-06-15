@@ -35,9 +35,10 @@
  * @param {Array}   props.neighbors     - response.neighbors (already top-3 sliced)
  * @param {number}  props.topPct        - rounded headline percentage for Case A
  */
+import { useState } from 'react'
 import SimilarityRow from './SimilarityRow.jsx'
 import AudioPlayer from './AudioPlayer.jsx'
-import { audioUrlFor, artworkUrlFor, fmtPercentile } from '../lib/api.js'
+import { audioUrlFor, artworkUrlFor } from '../lib/api.js'
 
 const EMPTY_HEADLINE = "Completely unique"
 const EMPTY_SUBHEAD =
@@ -52,21 +53,27 @@ export default function SimilarityReport({
   topRawCosine,
   topSegment,
   querySpecificity,
+  queryFile,
 }) {
   const top = neighbors?.[0]
   const top3 = (neighbors ?? []).slice(0, 3)
-  const percentileText = fmtPercentile(topPercentile)
+  // ADR-0004: headline no longer renders "Nth percentile match"; the
+  // percentile field is kept in the wire shape for backward compat but
+  // not surfaced to the user. Headline is `${label} · cosine ${cosine}`.
   const labelText = topLabel ? capitalizeLabel(topLabel) : null
   const showGenericNote = querySpecificity != null && querySpecificity < 0.50
+  // One-row-open-at-a-time disclosure state. Click a row's chevron → that row
+  // opens; clicking another closes the first.
+  const [openIndex, setOpenIndex] = useState(null)
 
   // ---- Case A — match above threshold -------------------------------------
   if (caseA && top) {
     const topAudio = audioUrlFor(top.track)
     const topArt = artworkUrlFor(top.track, 300)
-    // Headline rule per ADR-0001: prefer calibrated label + percentile.
+    // Headline rule per ADR-0004: calibrated label + raw cosine, no percentile.
     // Fall back to legacy raw-cosine percent only when the backend hasn't
-    // shipped the new fields (older HF Space build).
-    const useCalibrated = labelText != null && percentileText != null
+    // shipped the calibrated label (older HF Space build).
+    const useCalibrated = labelText != null
     return (
       <section>
         <Kicker>TOP MATCH</Kicker>
@@ -93,7 +100,7 @@ export default function SimilarityReport({
                       className="font-mono text-[14px]"
                       style={{ color: 'var(--color-dim)' }}
                     >
-                      · {percentileText} match
+                      · cosine {(topRawCosine ?? 0).toFixed(3)}
                     </span>
                   </div>
                   <div
@@ -197,12 +204,15 @@ export default function SimilarityReport({
                 title={n.track?.title ?? n.trackId}
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
-                percentileRank={n.percentileRank}
                 similarityLabel={n.similarityLabel}
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
                 matchTimestamp={n.matchTimestamp}
+                criteria={n.criteria}
+                queryFile={queryFile}
+                expanded={openIndex === i}
+                onExpandToggle={() => setOpenIndex(openIndex === i ? null : i)}
               />
             ))}
           </div>
@@ -244,12 +254,15 @@ export default function SimilarityReport({
                 title={n.track?.title ?? n.trackId}
                 artist={n.track?.artist ?? ''}
                 similarity={n.meanPooledSimilarity}
-                percentileRank={n.percentileRank}
                 similarityLabel={n.similarityLabel}
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
                 matchTimestamp={n.matchTimestamp}
+                criteria={n.criteria}
+                queryFile={queryFile}
+                expanded={openIndex === i + 100}
+                onExpandToggle={() => setOpenIndex(openIndex === i + 100 ? null : i + 100)}
                 isReference
               />
             ))}

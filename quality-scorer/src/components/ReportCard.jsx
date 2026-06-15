@@ -20,7 +20,7 @@ import QualityBadge from './QualityBadge.jsx'
  * @param {Object} props.analyze   - the /analyze response (for the quality badge)
  * @param {boolean} [props.animate=true]
  */
-export default function ReportCard({ neighbors, analyze, animate = true }) {
+export default function ReportCard({ neighbors, analyze, animate = true, queryFile = null }) {
   if (!neighbors) return null
 
   const {
@@ -57,6 +57,7 @@ export default function ReportCard({ neighbors, analyze, animate = true }) {
         topRawCosine={topRawCosine}
         topSegment={topSegment}
         querySpecificity={querySpecificity}
+        queryFile={queryFile}
       />
 
       {/* ACRCloud signals — two independent rows, never composed into a verdict. */}

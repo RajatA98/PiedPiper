@@ -21,6 +21,9 @@ import { neighborsUpload, analyzeUpload } from '../lib/api.js'
 export default function ScorerPage() {
   const [status, setStatus] = useState('idle')
   const [neighbors, setNeighbors] = useState(null)
+  // ADR-0004: keep the upload File around so the SectionComparePanel can
+  // play windowed slices of the user's own audio via createObjectURL.
+  const [queryFile, setQueryFile] = useState(null)
   const [analyze, setAnalyze] = useState(null)
   const [error, setError] = useState('')
   const [examples, setExamples] = useState([])
@@ -68,6 +71,7 @@ export default function ScorerPage() {
     setActiveExId(null)
     setNeighbors(null)
     setAnalyze(null)
+    setQueryFile(file)
     setStatus('analyzing')
 
     // Fire both calls in parallel. /neighbors is the headline; /analyze
@@ -112,6 +116,7 @@ export default function ScorerPage() {
               key={neighbors.query?.id || activeExId || 'result'}
               neighbors={neighbors}
               analyze={analyze}
+              queryFile={queryFile}
             />
           )}
           {status === 'idle' && <IdleState key="i" />}
