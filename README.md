@@ -24,6 +24,22 @@ The deployed system originally ran LAION-CLAP. The live demo surfaced a real fai
 
 **Decomposed similarity.** One cosine doesn't defend "similar." [ADR-0004](docs/decisions/0004-multi-criterion-similarity.md) adds four classical MIR criteria — tempo, key+mode, harmonic content (chroma), timbre (MFCC) — surfaced per neighbor with a per-criterion agreement score and label ("same key," "4 BPM apart," "similar production feel"). The expanded row also shows side-by-side snippet players for the matched window of both the upload and the catalog track. Math is librosa-native, no new dependencies. The criteria layer is additive — top-K ordering still comes from MuQ-MuLan cosine.
 
+## RAG-style evidence layer for AI-generated music
+
+PiedPiper is a **RAG-style evidence layer for AI-generated music**: MuQ-MuLan retrieves nearest catalog tracks, MIR metadata (tempo / key / harmonic / timbre, per ADR-0004) grounds the explanation, and an LLM narrates the evidence. The retrieval-and-explanation pipeline maps onto the [Gauntlet-AIDP rag-cookbook](https://github.com/Gauntlet-AIDP/rag-cookbook) ladder honestly: **Rung 1 (Naive RAG)** for retrieval + **metadata-grounded generation at presentation time** for the explanation. The cookbook's central rule is "refuse to climb without measured evidence," and this project respects it — no Hybrid (no text query), no Graph (no measured benefit), no Agentic (premature). See [ADR-0005](docs/decisions/0005-rag-narrative-and-visual-match.md) for the full rung-position argument.
+
+Three tabs land inside the existing row-expansion panel:
+
+- **"Why these are similar"** — `POST /narrative` (GPT-4o-mini). The model receives structured metadata only (it does **not** hear audio, does **not** determine copyright) and emits a grounded paragraph with structured citations. Every cited criterion value is validated against the supplied context — hallucinated tempo, wrong-track citations, or out-of-window timestamps are rejected and surfaced as `unavailable`, never rendered as if they were real.
+- **"Make mine more distinctive"** — same endpoint, mode `creatorAdvice`. Concrete creator-feedback tied to the specific criterion that drove the match.
+- **"Visual match"** — no LLM. WaveSurfer.js spectrograms of both windows with the matched 10-second band highlighted. Built for users who can't trust their ears.
+
+**Engineering specifics worth naming.** The `/neighbors` response carries an HMAC-signed `contextToken` containing the per-neighbor metadata fragments + a 30-minute expiry + the current model + catalog hashes. `/narrative` accepts `{contextToken, trackId, mode}`, verifies the token, and rebuilds context server-side — stateless across HF Space restarts and workers, no in-memory cache to break under load. A context-completeness gate (cookbook-named self-evaluation pattern, borrowed downward from Agentic RAG) short-circuits the LLM call when criteria are missing or evidence is weak, capping spend on uninformative matches. The in-process LLM cache is keyed by SHA-256 over canonical JSON of `{model_id, model_sha, catalog_sha, prompt_template_hash, response_schema_version, criteria_algorithm_version, query_fingerprint, track_id, mode, rounded criteria, raw_cosine}` — prompt edits and catalog regens auto-invalidate the cache; float drift doesn't.
+
+**Observability**: `GET /narrative/stats` returns in-process counters (calls, by mode, by kind, by error code, p50/p95/p99 latency, rough cost estimate in cents). Frontend drops Sentry breadcrumbs on every narrative call outcome. A 12-case RAG eval harness (`python -m backend.scripts.run_rag_eval`) runs offline on every CI build and gates merges on five baseline metrics: happy-path kind agreement, low-context gate correctness, hallucination rejection, malformed rejection, OpenAI error handling — all must be 1.0.
+
+**Honest cost framing**: single-digit cents to low dollars depending on traffic, prompt size, and cache hit rate. No fixed per-request guarantee. Cost guardrails: lazy load (only on tab click), canonical cache, prompt-size cap (8 KB), `max_tokens=400`, no retry loops, no-key disable path (503 narrative-disabled when `OPENAI_API_KEY` is unset).
+
 ## A small note on the name
 
 In the *Silicon Valley* pilot ("Minimum Viable Product"), Richard Hendricks first pitches Pied Piper as a music app — a tool for songwriters and composers to search whether their melody resembles anything that's come before. The investors laugh him out of the room and the show pivots Pied Piper to a compression algorithm. **PiedPiper-the-project is Richard's original pitch, ten years later, applied to AI-generated music.** The engineering is straight; the framing is a wink.
@@ -186,6 +202,14 @@ Then in the Space's **Settings → Variables and secrets**:
 - `ENABLE_ACRCLOUD` (variable) — `true` during the ACRCloud trial window.
 - `ACRCLOUD_ACCESS_KEY`, `ACRCLOUD_ACCESS_SECRET`, `ACRCLOUD_AI_DETECTOR_URL`,
   `ACRCLOUD_AI_DETECTOR_BEARER` (secrets).
+- `OPENAI_API_KEY` (secret) — powers the /narrative RAG explanatory layer
+  (ADR-0005). Without it, `/narrative` returns `503 narrative-disabled`
+  and the frontend tabs show a typed fallback panel; `/neighbors` is
+  unaffected.
+- `CONTEXT_TOKEN_HMAC_KEY` (secret) — signs the opaque `contextToken`
+  `/neighbors` attaches. Generate with `openssl rand -hex 32`. Same
+  graceful-degradation behavior as `OPENAI_API_KEY` when unset.
+- `OPENAI_MODEL_ID` (optional variable) — defaults to `gpt-4o-mini`.
 
 First build takes ~8 min (pulls torch + MuQ weights). After it boots, hit
 `https://<your-user>-piedpiper.hf.space/health` — should return `{"ok": true, "corpus": 160, ...}`.

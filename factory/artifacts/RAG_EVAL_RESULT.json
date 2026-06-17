@@ -1,0 +1,216 @@
+{
+  "summary": {
+    "n_cases": 12,
+    "kind_agreement_rate": 1.0,
+    "reason_agreement_rate": 1.0,
+    "by_category": {
+      "happy_path": {
+        "total": 3,
+        "kind_agreement_rate": 1.0,
+        "reason_agreement_rate": 1.0,
+        "gate_respected_rate": 1.0
+      },
+      "low_context": {
+        "total": 3,
+        "kind_agreement_rate": 1.0,
+        "reason_agreement_rate": 1.0,
+        "gate_respected_rate": 1.0
+      },
+      "hallucinated_citation": {
+        "total": 4,
+        "kind_agreement_rate": 1.0,
+        "reason_agreement_rate": 1.0,
+        "gate_respected_rate": 1.0
+      },
+      "malformed_output": {
+        "total": 1,
+        "kind_agreement_rate": 1.0,
+        "reason_agreement_rate": 1.0,
+        "gate_respected_rate": 1.0
+      },
+      "openai_error": {
+        "total": 1,
+        "kind_agreement_rate": 1.0,
+        "reason_agreement_rate": 1.0,
+        "gate_respected_rate": 1.0
+      }
+    },
+    "baseline_gates": {
+      "happy_path_kind_agreement": 1.0,
+      "low_context_gate_correctness": 1.0,
+      "hallucination_rejection": 1.0,
+      "malformed_rejection": 1.0,
+      "openai_error_handling": 1.0
+    }
+  },
+  "rows": [
+    {
+      "name": "happy_path_whysimilar",
+      "category": "happy_path",
+      "mode": "whySimilar",
+      "expected_kind": "narrative",
+      "actual_kind": "narrative",
+      "expected_reason": null,
+      "actual_reason": null,
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "happy_path_creatoradvice",
+      "category": "happy_path",
+      "mode": "creatorAdvice",
+      "expected_kind": "narrative",
+      "actual_kind": "narrative",
+      "expected_reason": null,
+      "actual_reason": null,
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "happy_path_high_cosine_low_agreement",
+      "category": "happy_path",
+      "mode": "whySimilar",
+      "expected_kind": "narrative",
+      "actual_kind": "narrative",
+      "expected_reason": null,
+      "actual_reason": null,
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "low_context_missing_criteria",
+      "category": "low_context",
+      "mode": "whySimilar",
+      "expected_kind": "low_confidence",
+      "actual_kind": "low_confidence",
+      "expected_reason": "missing-criteria",
+      "actual_reason": "missing-criteria",
+      "llm_was_called": false,
+      "must_not_call_llm": true,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "low_context_missing_title",
+      "category": "low_context",
+      "mode": "whySimilar",
+      "expected_kind": "low_confidence",
+      "actual_kind": "low_confidence",
+      "expected_reason": "missing-metadata",
+      "actual_reason": "missing-metadata",
+      "llm_was_called": false,
+      "must_not_call_llm": true,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "low_context_weak_evidence",
+      "category": "low_context",
+      "mode": "whySimilar",
+      "expected_kind": "low_confidence",
+      "actual_kind": "low_confidence",
+      "expected_reason": "weak-evidence",
+      "actual_reason": "weak-evidence",
+      "llm_was_called": false,
+      "must_not_call_llm": true,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "hallucinated_unknown_criterion",
+      "category": "hallucinated_citation",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "citation-hallucinated",
+      "actual_reason": "citation-hallucinated",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "hallucinated_wrong_trackid",
+      "category": "hallucinated_citation",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "citation-hallucinated",
+      "actual_reason": "citation-hallucinated",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "hallucinated_wrong_tempo_value",
+      "category": "hallucinated_citation",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "citation-hallucinated",
+      "actual_reason": "citation-hallucinated",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "hallucinated_timestamp_outside_window",
+      "category": "hallucinated_citation",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "citation-hallucinated",
+      "actual_reason": "citation-hallucinated",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "malformed_schema",
+      "category": "malformed_output",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "malformed-llm-output",
+      "actual_reason": "malformed-llm-output",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    },
+    {
+      "name": "openai_returns_none",
+      "category": "openai_error",
+      "mode": "whySimilar",
+      "expected_kind": "unavailable",
+      "actual_kind": "unavailable",
+      "expected_reason": "openai-error",
+      "actual_reason": "openai-error",
+      "llm_was_called": true,
+      "must_not_call_llm": false,
+      "kind_match": true,
+      "reason_match": true,
+      "gate_respected": true
+    }
+  ]
+}

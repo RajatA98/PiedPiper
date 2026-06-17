@@ -40,7 +40,7 @@ from pydantic import BaseModel, Field
 # place via clap_windowed's swap. We still import clap_engine here only because
 # legacy code paths may reference it; the encoder load + genre tagging both go
 # through muq_engine.
-from . import __version__, acrcloud_engine, context_token, muq_engine, clap_windowed, config, mir_features, similarity
+from . import __version__, acrcloud_engine, context_token, muq_engine, narrative_telemetry, clap_windowed, config, mir_features, similarity
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
@@ -533,83 +533,129 @@ _TOKEN_ERROR_TO_HTTP = {
 
 @app.post("/narrative")
 async def narrative_endpoint(req: NarrativeRequest):
-    """RAG explanatory layer — see ADR-0005 (Commit C) for the full spec."""
-    # Gate 1: OpenAI key present. Without it we can't call GPT-4o-mini.
-    if not os.getenv("OPENAI_API_KEY", "").strip():
-        return _err(503, "narrative-disabled")
-    # Gate 2: HMAC key present. Without it we can't trust the token.
-    if not context_token.is_configured():
-        return _err(503, "narrative-disabled")
-    # Gate 3: mode is one of the supported values.
-    if req.mode not in ("whySimilar", "creatorAdvice"):
-        return _err(422, "unsupported-mode")
+    """RAG explanatory layer — see ADR-0005 for the full spec."""
+    with narrative_telemetry.measure_call(req.mode) as tel:
+        # Gate 1: OpenAI key present. Without it we can't call GPT-4o-mini.
+        if not os.getenv("OPENAI_API_KEY", "").strip():
+            tel.set(error_code="narrative-disabled")
+            return _err(503, "narrative-disabled")
+        # Gate 2: HMAC key present. Without it we can't trust the token.
+        if not context_token.is_configured():
+            tel.set(error_code="narrative-disabled")
+            return _err(503, "narrative-disabled")
+        # Gate 3: mode is one of the supported values.
+        if req.mode not in ("whySimilar", "creatorAdvice"):
+            tel.set(error_code="unsupported-mode")
+            return _err(422, "unsupported-mode")
 
-    # Verify the token. TokenError.code maps directly to a typed HTTP response.
-    try:
-        verified = context_token.verify(
-            req.contextToken,
-            expected_model_sha=_model_sha or "unpinned",
-            expected_catalog_sha=_catalog_sha or "no-catalog",
+        # Verify the token. TokenError.code maps directly to a typed HTTP response.
+        try:
+            verified = context_token.verify(
+                req.contextToken,
+                expected_model_sha=_model_sha or "unpinned",
+                expected_catalog_sha=_catalog_sha or "no-catalog",
+            )
+        except context_token.TokenError as exc:
+            status, code = _TOKEN_ERROR_TO_HTTP.get(exc.code, (400, "malformed-token"))
+            tel.set(error_code=code)
+            return _err(status, code)
+
+        # Look up the requested trackId inside the verified token claims.
+        fragment = verified.neighbors.get(req.trackId)
+        if not fragment:
+            tel.set(error_code="not-in-context", trackId=req.trackId)
+            return _err(404, "not-in-context")
+
+        # Lazy-import Codex's module. Keeping this inside the handler means the
+        # FastAPI app boots and /neighbors keeps working even if rag_narrative
+        # hasn't shipped yet. If it's missing at request time, surface as 503
+        # narrative-disabled so the frontend's no-key fallback path handles it.
+        try:
+            from . import rag_narrative
+        except ImportError:
+            tel.set(error_code="narrative-disabled")
+            return _err(503, "narrative-disabled")
+
+        # Build NarrativeContext from the verified fragment. This is the Pydantic
+        # model Codex defined; instantiating it here also validates the shape.
+        try:
+            context = rag_narrative.NarrativeContext(
+                queryFingerprint=verified.queryFingerprint,
+                trackId=fragment["trackId"],
+                title=fragment.get("title", ""),
+                artist=fragment.get("artist"),
+                queryWindow=tuple(fragment["queryWindow"]),
+                matchWindow=tuple(fragment["matchWindow"]),
+                rawCosine=float(fragment["rawCosine"]),
+                criteria=[
+                    rag_narrative.CriterionContext(**c)
+                    for c in (fragment.get("criteria") or [])
+                ],
+                acrcloudCoverSongId=verified.acrcloudCoverSongId,
+            )
+        except Exception:
+            # If the token fragment fails to materialize into a NarrativeContext,
+            # surface as malformed rather than blowing up internally.
+            tel.set(error_code="malformed-context", trackId=req.trackId)
+            return _err(422, "malformed-context")
+
+        model_id = os.getenv("OPENAI_MODEL_ID", "gpt-4o-mini")
+        try:
+            result = rag_narrative.generate_narrative(
+                context,
+                req.mode,
+                model_sha=_model_sha or "unpinned",
+                catalog_sha=_catalog_sha or "no-catalog",
+                model_id=model_id,
+            )
+        except Exception as exc:
+            print(f"[api] /narrative generate_narrative raised: {exc!r}")
+            tel.set(error_code="narrative-error", trackId=req.trackId)
+            return _err(500, "narrative-error")
+
+        # Record the result kind. result.kind is the discriminator on all
+        # three Pydantic variants (NarrativeResponse / LowConfidence /
+        # NarrativeUnavailable). Approximate cost via prose char count;
+        # we don't have token counts without re-tokenizing, but char-count
+        # is the right directional signal for the stats endpoint.
+        result_kind = getattr(result, "kind", None)
+        completion_chars = 0
+        if result_kind == "narrative":
+            completion_chars = len(getattr(result, "prose", "") or "")
+        # Rough prompt size estimate — system + user prompt char count.
+        # narrative_telemetry treats this as char-not-token because tokenizer
+        # access isn't worth the overhead for an in-process counter.
+        prompt_chars_estimate = len(fragment.get("title", "")) + 600  # base + metadata
+        tel.set(
+            result_kind=result_kind,
+            openai_called=(result_kind == "narrative" or result_kind == "unavailable"),
+            gate_short_circuit=(result_kind == "low_confidence"),
+            prompt_chars=prompt_chars_estimate,
+            completion_chars=completion_chars,
+            trackId=req.trackId,
         )
-    except context_token.TokenError as exc:
-        status, code = _TOKEN_ERROR_TO_HTTP.get(exc.code, (400, "malformed-token"))
-        return _err(status, code)
 
-    # Look up the requested trackId inside the verified token claims.
-    fragment = verified.neighbors.get(req.trackId)
-    if not fragment:
-        return _err(404, "not-in-context")
+        # Pydantic v2 .model_dump() — uniform shape regardless of which result
+        # variant came back. The `kind` discriminator lets the frontend route
+        # rendering.
+        if hasattr(result, "model_dump"):
+            return result.model_dump()
+        return result
 
-    # Lazy-import Codex's module. Keeping this inside the handler means the
-    # FastAPI app boots and /neighbors keeps working even if rag_narrative
-    # hasn't shipped yet. If it's missing at request time, surface as 503
-    # narrative-disabled so the frontend's no-key fallback path handles it.
-    try:
-        from . import rag_narrative
-    except ImportError:
-        return _err(503, "narrative-disabled")
 
-    # Build NarrativeContext from the verified fragment. This is the Pydantic
-    # model Codex defined; instantiating it here also validates the shape.
-    try:
-        context = rag_narrative.NarrativeContext(
-            queryFingerprint=verified.queryFingerprint,
-            trackId=fragment["trackId"],
-            title=fragment.get("title", ""),
-            artist=fragment.get("artist"),
-            queryWindow=tuple(fragment["queryWindow"]),
-            matchWindow=tuple(fragment["matchWindow"]),
-            rawCosine=float(fragment["rawCosine"]),
-            criteria=[
-                rag_narrative.CriterionContext(**c)
-                for c in (fragment.get("criteria") or [])
-            ],
-            acrcloudCoverSongId=verified.acrcloudCoverSongId,
-        )
-    except Exception:
-        # If the token fragment fails to materialize into a NarrativeContext,
-        # surface as malformed rather than blowing up internally.
-        return _err(422, "malformed-context")
+@app.get("/narrative/stats")
+def narrative_stats_endpoint() -> dict:
+    """Return the in-process counters snapshot for the /narrative layer.
 
-    model_id = os.getenv("OPENAI_MODEL_ID", "gpt-4o-mini")
-    try:
-        result = rag_narrative.generate_narrative(
-            context,
-            req.mode,
-            model_sha=_model_sha or "unpinned",
-            catalog_sha=_catalog_sha or "no-catalog",
-            model_id=model_id,
-        )
-    except Exception as exc:
-        print(f"[api] /narrative generate_narrative raised: {exc!r}")
-        return _err(500, "narrative-error")
+    Senior-reviewer-friendly visibility into what's actually happening in
+    production — call counts, latency percentiles, mode distribution,
+    error distribution, rough cost estimate. Counters reset on restart;
+    this is not a long-term metrics store, it's a "right now" snapshot.
 
-    # Pydantic v2 .model_dump() — uniform shape regardless of which result
-    # variant (NarrativeResponse / LowConfidence / NarrativeUnavailable) came
-    # back. The `kind` discriminator lets the frontend route rendering.
-    if hasattr(result, "model_dump"):
-        return result.model_dump()
-    return result
+    Cost estimate is char-based × GPT-4o-mini pricing — directional, not
+    accounting-grade. The honest framing from ADR-0005 holds.
+    """
+    return narrative_telemetry.snapshot()
 
 
 def run() -> None:

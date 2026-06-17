@@ -158,12 +158,22 @@ export function audioUrlFor(track) {
  * @throws {Error} on non-2xx with the backend's `error` field as message
  */
 export async function fetchNarrative(contextToken, trackId, mode) {
-  if (!contextToken) throw new Error('narrative-disabled')
-  const r = await fetch(`${API_BASE}/narrative`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contextToken, trackId, mode }),
-  })
+  const t0 = performance.now()
+  if (!contextToken) {
+    _narrativeBreadcrumb({ level: 'warning', mode, kind: 'error', code: 'narrative-disabled' })
+    throw new Error('narrative-disabled')
+  }
+  let r
+  try {
+    r = await fetch(`${API_BASE}/narrative`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contextToken, trackId, mode }),
+    })
+  } catch (networkErr) {
+    _narrativeBreadcrumb({ level: 'error', mode, kind: 'error', code: 'network-error' })
+    throw new Error('network-error')
+  }
   if (!r.ok) {
     let code = ''
     try {
@@ -172,9 +182,54 @@ export async function fetchNarrative(contextToken, trackId, mode) {
     } catch {
       /* not json */
     }
+    const latencyMs = Math.round(performance.now() - t0)
+    _narrativeBreadcrumb({
+      level: r.status >= 500 ? 'error' : 'warning',
+      mode,
+      kind: 'error',
+      code: code || `http-${r.status}`,
+      latencyMs,
+    })
     throw new Error(code || `HTTP ${r.status}`)
   }
-  return r.json()
+  const body = await r.json()
+  const latencyMs = Math.round(performance.now() - t0)
+  _narrativeBreadcrumb({
+    level: body.kind === 'narrative' ? 'info' : 'warning',
+    mode,
+    kind: body.kind || 'unknown',
+    code: body.reason || null,
+    latencyMs,
+  })
+  return body
+}
+
+
+/**
+ * Drop a Sentry breadcrumb describing a narrative call outcome. No-op when
+ * Sentry isn't on the window (dev environment, no DSN). Stays cheap: one
+ * imported function call per /narrative call, no global mutation.
+ */
+async function _narrativeBreadcrumb({ level, mode, kind, code, latencyMs }) {
+  try {
+    // Dynamic-import @sentry/react so this module stays Sentry-agnostic.
+    // The bundle already includes Sentry from the app's existing wiring,
+    // so the import is free.
+    const Sentry = await import('@sentry/react')
+    Sentry.addBreadcrumb({
+      category: 'narrative',
+      level,
+      message: `narrative.${kind}`,
+      data: {
+        mode,
+        kind,
+        code: code || undefined,
+        latencyMs: latencyMs ?? undefined,
+      },
+    })
+  } catch {
+    /* Sentry not installed / not configured — no observability, no error */
+  }
 }
 
 /**

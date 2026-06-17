@@ -372,3 +372,84 @@ def test_narrative_unavailable_returns_typed_payload(configured_env):
             )
     assert r.status_code == 200
     assert r.json() == {"kind": "unavailable", "reason": "malformed-llm-output"}
+
+
+# ----- /narrative/stats endpoint -------------------------------------------
+
+
+def test_stats_endpoint_returns_telemetry_snapshot(configured_env):
+    """A real /narrative call should move counters that /narrative/stats reflects."""
+    from backend import narrative_telemetry
+    narrative_telemetry.reset()
+
+    token = _issue_test_token()
+    expected = rag_narrative.NarrativeResponse(
+        mode="whySimilar",
+        prose="Tracks share tempo and key.",
+        citations=[
+            rag_narrative.StructuredCitation(
+                trackId="tier1:itunes:380907765",
+                side="query",
+                timestampRange=(20.0, 30.0),
+                criterionIds=["tempo"],
+                citedValues={"tempo.queryValue": 100.0},
+            )
+        ],
+    )
+    with patch("backend.rag_narrative.generate_narrative", return_value=expected):
+        with _client() as c:
+            c.post(
+                "/narrative",
+                json={"contextToken": token, "trackId": "tier1:itunes:380907765", "mode": "whySimilar"},
+            )
+            stats_resp = c.get("/narrative/stats")
+
+    assert stats_resp.status_code == 200
+    stats = stats_resp.json()
+    assert stats["total_calls"] == 1
+    assert stats["by_mode"]["whySimilar"] == 1
+    assert stats["by_kind"]["narrative"] == 1
+    assert stats["openai_calls"] == 1
+    assert stats["latency_ms"]["sample_n"] == 1
+    assert stats["cost_cents_estimate"] >= 0  # at least the prompt-chars contribution
+
+
+def test_stats_endpoint_works_without_calls(configured_env):
+    """Empty stats endpoint should still return a sane snapshot, not error."""
+    from backend import narrative_telemetry
+    narrative_telemetry.reset()
+    with _client() as c:
+        r = c.get("/narrative/stats")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total_calls"] == 0
+    assert body["latency_ms"]["sample_n"] == 0
+    assert body["latency_ms"]["p50"] is None
+
+
+def test_stats_endpoint_tracks_low_confidence_and_errors(configured_env):
+    """Mix of success / gate / token error should land in correct buckets."""
+    from backend import narrative_telemetry
+    narrative_telemetry.reset()
+
+    token = _issue_test_token()
+    low_conf = rag_narrative.LowConfidence(reason="weak-evidence")
+
+    with patch("backend.rag_narrative.generate_narrative", return_value=low_conf):
+        with _client() as c:
+            # Call 1: gate short-circuits via low_confidence
+            c.post(
+                "/narrative",
+                json={"contextToken": token, "trackId": "tier1:itunes:380907765", "mode": "whySimilar"},
+            )
+            # Call 2: unknown trackId → 404 not-in-context
+            c.post(
+                "/narrative",
+                json={"contextToken": token, "trackId": "tier1:itunes:000000000", "mode": "whySimilar"},
+            )
+            stats = c.get("/narrative/stats").json()
+
+    assert stats["total_calls"] == 2
+    assert stats["by_kind"]["low_confidence"] == 1
+    assert stats["gate_short_circuits"] == 1
+    assert stats["by_error"]["not-in-context"] == 1
