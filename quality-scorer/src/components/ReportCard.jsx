@@ -58,6 +58,7 @@ export default function ReportCard({ neighbors, analyze, animate = true, queryFi
         topSegment={topSegment}
         querySpecificity={querySpecificity}
         queryFile={queryFile}
+        contextToken={neighbors.contextToken}
       />
 
       {/* ACRCloud signals — two independent rows, never composed into a verdict. */}

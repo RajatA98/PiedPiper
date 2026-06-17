@@ -27,7 +27,9 @@ export default function SimilarityRow({
   criteria,
   linkOut,
   track,
+  trackId,
   queryFile,
+  contextToken,
   expanded = false,
   onExpandToggle,
   isReference = false,
@@ -144,6 +146,8 @@ export default function SimilarityRow({
           criteria={criteria}
           queryFile={queryFile}
           catalogTrack={track}
+          trackId={trackId}
+          contextToken={contextToken}
         />
       )}
     </div>

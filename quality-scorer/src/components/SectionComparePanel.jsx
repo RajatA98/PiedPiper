@@ -1,28 +1,34 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import AudioPlayer from './AudioPlayer.jsx'
+import NarrativeBlock from './NarrativeBlock.jsx'
+import SpectrogramCompare from './SpectrogramCompare.jsx'
 import { audioUrlFor } from '../lib/api.js'
 
 /**
  * SectionComparePanel — the expandable panel under each SimilarityRow.
  *
- * Renders, per ADR-0004:
- *   - the matchTimestamp strip ("match: query 0:40–0:50 ↔ track 0:10–0:20")
- *   - two windowed snippet players, side-by-side:
- *       * the query window from the uploaded File (via createObjectURL)
- *       * the catalog window from the track's audio URL
- *     Both clamp playback to [startSec, endSec).
- *   - the four-criterion table (tempo / key / harmonic / timbre), one row per
- *     entry with a labeled bar driven by `agreement`.
+ * Layout (top to bottom):
+ *   1. matchTimestamp strip
+ *   2. Side-by-side snippet players, both clamped to [startSec, endSec) of
+ *      the matched window — always visible (no lazy load) because the
+ *      audio playback is the load-bearing primary evidence.
+ *   3. Criteria table (tempo / key / harmonic / timbre).
+ *   4. Three-tab interface (lazy):
+ *      - "Why these are similar"     → NarrativeBlock mode="whySimilar"
+ *      - "Make mine more distinctive" → NarrativeBlock mode="creatorAdvice"
+ *      - "Visual match"               → SpectrogramCompare
  *
- * Spectrograms are queued for a v2 follow-up — bundling WaveSurfer.js is a
- * separate dep decision. Snippet audio + criteria block is the load-bearing
- * payload now.
+ * When `contextToken` is null (no-key dev env), the two narrative tabs are
+ * disabled and a small no-key hint replaces their content. The visual tab
+ * always works because it doesn't depend on the backend.
  */
 export default function SectionComparePanel({
   matchTimestamp,
   criteria,
   queryFile,
   catalogTrack,
+  trackId,
+  contextToken,
 }) {
   const queryUrl = useMemo(() => {
     if (!queryFile) return null
@@ -41,6 +47,13 @@ export default function SectionComparePanel({
 
   const hasQueryWindow = Number.isFinite(qs) && Number.isFinite(qe) && qe > qs
   const hasCatalogWindow = Number.isFinite(cs) && Number.isFinite(ce) && ce > cs
+
+  // Tab state. Default: whySimilar — the LLM narrative is the headline
+  // value-add and the user came here to see it. Tabs lazy-mount: only the
+  // currently-active tab's content renders, so NarrativeBlock's fetch only
+  // fires on first click.
+  const [activeTab, setActiveTab] = useState('whySimilar')
+  const narrativeDisabled = !contextToken
 
   return (
     <div
@@ -92,7 +105,7 @@ export default function SectionComparePanel({
               fontWeight: 500,
             }}
           >
-            Why these are similar
+            Criteria comparison
           </div>
           <div className="mt-2 grid grid-cols-1 gap-1">
             <CriterionRow
@@ -112,6 +125,124 @@ export default function SectionComparePanel({
           </div>
         </div>
       )}
+
+      {/* Three-tab RAG explanatory layer + visual match — Commit B. */}
+      <div className="mt-5">
+        <div
+          className="flex gap-0 border-b"
+          style={{ borderColor: 'var(--color-line)' }}
+        >
+          <TabButton
+            label="Why these are similar"
+            isActive={activeTab === 'whySimilar'}
+            isDisabled={narrativeDisabled}
+            disabledHint="Narrative disabled — no API key set."
+            onClick={() => setActiveTab('whySimilar')}
+          />
+          <TabButton
+            label="Make mine more distinctive"
+            isActive={activeTab === 'creatorAdvice'}
+            isDisabled={narrativeDisabled}
+            disabledHint="Narrative disabled — no API key set."
+            onClick={() => setActiveTab('creatorAdvice')}
+          />
+          <TabButton
+            label="Visual match"
+            isActive={activeTab === 'visual'}
+            isDisabled={false}
+            onClick={() => setActiveTab('visual')}
+          />
+        </div>
+
+        <div className="mt-1">
+          {activeTab === 'whySimilar' && (
+            narrativeDisabled ? (
+              <NarrativeNoKeyFallback />
+            ) : (
+              <NarrativeBlock
+                contextToken={contextToken}
+                trackId={trackId}
+                mode="whySimilar"
+                modeLabel="explanation"
+              />
+            )
+          )}
+          {activeTab === 'creatorAdvice' && (
+            narrativeDisabled ? (
+              <NarrativeNoKeyFallback />
+            ) : (
+              <NarrativeBlock
+                contextToken={contextToken}
+                trackId={trackId}
+                mode="creatorAdvice"
+                modeLabel="advice"
+              />
+            )
+          )}
+          {activeTab === 'visual' && (
+            <SpectrogramCompare
+              queryFile={queryFile}
+              catalogTrack={catalogTrack}
+              matchTimestamp={matchTimestamp}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+function TabButton({ label, isActive, isDisabled, disabledHint, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={isDisabled ? undefined : onClick}
+      disabled={isDisabled}
+      title={isDisabled ? disabledHint : undefined}
+      className="px-3 py-2 font-mono text-[11px] uppercase transition-colors"
+      style={{
+        letterSpacing: '0.12em',
+        fontWeight: 500,
+        color: isDisabled
+          ? 'var(--color-faint)'
+          : isActive
+          ? 'var(--color-accent)'
+          : 'var(--color-dim)',
+        borderBottom: isActive ? '2px solid var(--color-accent)' : '2px solid transparent',
+        marginBottom: '-1px',
+        cursor: isDisabled ? 'not-allowed' : 'pointer',
+        opacity: isDisabled ? 0.55 : 1,
+      }}
+    >
+      {label}
+    </button>
+  )
+}
+
+
+function NarrativeNoKeyFallback() {
+  return (
+    <div className="px-1 py-3">
+      <div
+        className="font-mono text-[10px] uppercase"
+        style={{
+          color: 'var(--color-faint)',
+          letterSpacing: '0.14em',
+          fontWeight: 500,
+        }}
+      >
+        Narrative disabled
+      </div>
+      <p
+        className="mt-2 text-[13px] leading-relaxed"
+        style={{ color: 'var(--color-dim)' }}
+      >
+        The explanatory layer is off in this environment (no API key configured).
+        The criteria table above and the side-by-side audio above are the
+        available evidence. Switch to the "Visual match" tab for the
+        spectrogram view.
+      </p>
     </div>
   )
 }

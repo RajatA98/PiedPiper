@@ -127,6 +127,57 @@ export function audioUrlFor(track) {
 }
 
 /**
+ * POST to `/narrative` and return the typed RAG narrative result.
+ *
+ * ADR-0005 (Commit C) explanatory layer on top of /neighbors retrieval.
+ * The backend lazy-imports OpenAI's GPT-4o-mini and validates the LLM's
+ * structured citations against the per-neighbor context embedded inside
+ * the signed `contextToken` /neighbors issued at retrieval time.
+ *
+ * Returns a discriminated union by `kind`:
+ *   - `{kind: "narrative", mode, prose, citations: [...]}` → success
+ *   - `{kind: "low_confidence", reason: "..."}`            → gate short-circuited the LLM
+ *   - `{kind: "unavailable", reason: "..."}`               → LLM produced something unusable
+ *
+ * On HTTP error (4xx/5xx) throws `Error(code)` where `code` is the typed
+ * backend error string. UI components map these to specific fallback panels:
+ *   - "narrative-disabled" (503) → no OPENAI_API_KEY or HMAC key (no-key fallback)
+ *   - "token-expired"     (412) → contextToken aged out (TTL = 30 min)
+ *   - "stale-token"       (412) → catalog or model SHA changed since /neighbors
+ *   - "invalid-token"     (401) → tampered or wrong-secret token
+ *   - "malformed-token"   (400) → bad shape (shouldn't happen for valid clients)
+ *   - "not-in-context"    (404) → trackId wasn't in the token's allowlist
+ *   - "unsupported-mode"  (422) → mode not in {"whySimilar", "creatorAdvice"}
+ *   - "malformed-context" (422) → token decoded but context fragment failed validation
+ *   - "narrative-error"   (500) → unexpected backend failure
+ *
+ * @param {string} contextToken - opaque token from /neighbors response
+ * @param {string} trackId      - which neighbor to narrate
+ * @param {"whySimilar"|"creatorAdvice"} mode
+ * @returns {Promise<object>} the typed result with .kind discriminator
+ * @throws {Error} on non-2xx with the backend's `error` field as message
+ */
+export async function fetchNarrative(contextToken, trackId, mode) {
+  if (!contextToken) throw new Error('narrative-disabled')
+  const r = await fetch(`${API_BASE}/narrative`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contextToken, trackId, mode }),
+  })
+  if (!r.ok) {
+    let code = ''
+    try {
+      const body = await r.json()
+      code = body?.error || ''
+    } catch {
+      /* not json */
+    }
+    throw new Error(code || `HTTP ${r.status}`)
+  }
+  return r.json()
+}
+
+/**
  * Apply the locked threshold rule to a /neighbors response.
  * Returns the calibrated display headline per ADR-0001.
  *

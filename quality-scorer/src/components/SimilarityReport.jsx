@@ -54,6 +54,7 @@ export default function SimilarityReport({
   topSegment,
   querySpecificity,
   queryFile,
+  contextToken,
 }) {
   const top = neighbors?.[0]
   const top3 = (neighbors ?? []).slice(0, 3)
@@ -208,9 +209,11 @@ export default function SimilarityReport({
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
+                trackId={n.trackId}
                 matchTimestamp={n.matchTimestamp}
                 criteria={n.criteria}
                 queryFile={queryFile}
+                contextToken={contextToken}
                 expanded={openIndex === i}
                 onExpandToggle={() => setOpenIndex(openIndex === i ? null : i)}
               />
@@ -258,9 +261,11 @@ export default function SimilarityReport({
                 rawCosine={n.rawCosine ?? n.meanPooledSimilarity}
                 linkOut={n.track?.track_view_url ?? n.track?.source_url}
                 track={n.track}
+                trackId={n.trackId}
                 matchTimestamp={n.matchTimestamp}
                 criteria={n.criteria}
                 queryFile={queryFile}
+                contextToken={contextToken}
                 expanded={openIndex === i + 100}
                 onExpandToggle={() => setOpenIndex(openIndex === i + 100 ? null : i + 100)}
                 isReference
