@@ -28,6 +28,14 @@ runtime = [
   # MagnaTagATune zero-shot). Replaces LAION-CLAP as the primary similarity
   # backbone. CC-BY-NC 4.0 license — non-commercial use only.
   "muq>=0.1",
+  # ADR-0005 (Commit C): GPT-4o-mini powers the /narrative explanatory
+  # layer. Module is loaded lazily inside the endpoint so api.py still boots
+  # when OPENAI_API_KEY is unset (endpoint then returns 503 narrative-disabled).
+  "openai>=1.40",
+  # Pydantic v2 — already a transitive dep via fastapi, but pinned here
+  # explicitly because /narrative + rag_narrative both rely on v2 features
+  # (discriminated unions, model_dump).
+  "pydantic>=2.0",
 ]
 ingest = [
   "httpx>=0.27",

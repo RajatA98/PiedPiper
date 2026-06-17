@@ -2,7 +2,7 @@
 name: IMPLEMENTATION_LOG
 description: Per-phase implementation log — what shipped, what passed, what's still open
 status: In Progress
-last_updated: 2026-06-12
+last_updated: 2026-06-16
 ---
 
 # Implementation Log — PiedPiper
@@ -124,3 +124,14 @@ Approved. Phase 2 scaffold is the next thing to write.
 - **Implementation Summary:** Implemented the fast metric helpers, histogram generation, named-example audio copying, golden-set YAML validation, catalog loading, and a leave-one-out eval mode that reuses existing corpus embeddings instead of re-encoding audio. The LOO mode removes each query row from the temporary index, ranks the remaining catalog with the same `similarity.top_k_neighbors` path used by `/neighbors`, and scores whether another track by the same artist appears in the top-k. The generated `eval.json` keeps the locked frontend shape and includes methodology/limitations text that explicitly frames this as a catalog retrieval sanity check, not a definitive Suno-generation eval.
 - **Validation Result:** `tests/test_run_eval.py` passed 9/9. Corpus/neighbors regression passed with expected skips in offline mode. `run_eval --mode loo` wrote `quality-scorer/public/corpus/eval.json` with R@1=0.394, R@3=0.494, MRR=0.458, n=160, `eval_mode: "loo"`, and empty named FP/FN arrays.
 - **Known Issues:** The LOO histogram is a catalog top-1 score distribution, not a true unrelated-negatives noise floor. The generated methodology and limitations say this explicitly. Named FP/FN examples remain empty until user-provided Suno examples and curated notes exist.
+
+---
+
+## Entry 7 — 2026-06-16 — Codex
+
+- **Phase:** RAG narrative backend core — scoped implementation slice for Commit A
+- **Goal:** Build the pure-Python LLM narrative module that Claude can wire into `/narrative` without touching API/frontend/docs in this slice.
+- **Tests / Validation Targets:** Red/green `pytest -q tests/test_rag_narrative.py`; focused regression `pytest -q tests/test_rag_narrative.py tests/test_mir_features.py`; `/neighbors` fast regression `pytest -q tests/test_neighbors_endpoint.py -k "not slow"`.
+- **Files Changed:** `backend/backend/rag_narrative.py`, `backend/tests/test_rag_narrative.py`, `factory/artifacts/CODEX_RAG_NARRATIVE_IMPL_NOTES.md`, `factory/artifacts/IMPLEMENTATION_LOG.md`.
+- **Implementation Summary:** Added Pydantic models for trusted narrative context, structured citations, successful narratives, low-confidence skips, and unavailable states. Implemented context completeness gating, canonical SHA-256 cache keys with prompt/schema/criteria versions and rounded values, bounded prompt building, a single `_call_openai_json()` SDK adapter, one-call/no-retry OpenAI behavior, and citation validation against track ID, side-specific timestamps, criteria IDs, raw cosine, tempo/key values, and harmonic/timbre shape references. Tests mock the adapter boundary and cover valid output, malformed schema output, OpenAI failure, hallucinated criterion, wrong track ID, low-context short-circuit, cache key order stability, and prompt-template invalidation.
+- **Known Issues:** This slice intentionally does not add `POST /narrative`, signed context tokens, OpenAI dependency pins, frontend tabs, ADR-0005, or README changes; Claude owns those integration/doc slices.

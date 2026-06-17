@@ -20,6 +20,7 @@ Errors are returned as `{"error": "<code>"}` to match the frontend's `api.js`:
 
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import os
@@ -33,12 +34,13 @@ import soundfile as sf
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 
 # ADR-0002: clap_engine is no longer the primary encoder; muq_engine took its
 # place via clap_windowed's swap. We still import clap_engine here only because
 # legacy code paths may reference it; the encoder load + genre tagging both go
 # through muq_engine.
-from . import __version__, acrcloud_engine, muq_engine, clap_windowed, config, mir_features, similarity
+from . import __version__, acrcloud_engine, context_token, muq_engine, clap_windowed, config, mir_features, similarity
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
@@ -63,6 +65,7 @@ _corpus_by_id: dict[str, dict] = {}
 _flat_catalog: similarity.FlatCatalog | None = None
 _catalog_cosine_distribution: np.ndarray | None = None  # sorted upper-tri off-diag pairwise cosines
 _model_sha: str = ""
+_catalog_sha: str = ""  # sha256 of manifest.json bytes; used in contextToken claims
 _threshold_default: float = config.SIMILARITY_THRESHOLD_DEFAULT
 
 
@@ -77,7 +80,7 @@ def _load_corpus() -> None:
     """Populate corpus globals from disk if all corpus artifacts are present."""
     global _corpus_tracks, _corpus_embeddings, _corpus_by_id, _flat_catalog
     global _catalog_cosine_distribution
-    global _model_sha, _threshold_default
+    global _model_sha, _catalog_sha, _threshold_default
     corpus_dir = Path(os.getenv("CORPUS_DIR", str(_default_corpus_dir())))
     cpath = corpus_dir / "corpus.json"
     epath = corpus_dir / "embeddings.npy"
@@ -95,6 +98,7 @@ def _load_corpus() -> None:
         _corpus_by_id = {}
         _flat_catalog = None
         _model_sha = ""
+        _catalog_sha = ""
         _threshold_default = config.SIMILARITY_THRESHOLD_DEFAULT
         return
     try:
@@ -103,10 +107,16 @@ def _load_corpus() -> None:
         _corpus_embeddings = np.load(epath).astype(np.float32)
         with np.load(spath) as npz:
             segment_embeddings = {k: npz[k].astype(np.float32) for k in npz.files}
-        manifest = json.loads(mpath.read_text())
+        manifest_bytes = mpath.read_bytes()
+        manifest = json.loads(manifest_bytes.decode("utf-8"))
         _model_sha = str(manifest.get("model_sha") or "unpinned")
         if _model_sha == "unpinned":
             print("[api] WARNING manifest missing model_sha; using 'unpinned'")
+        # catalog_sha = sha256 of manifest.json bytes. Captures every
+        # meaningful catalog regeneration (model swap, threshold change,
+        # track count change) in a single stable hash. Embedded in every
+        # contextToken so /narrative can detect stale tokens after redeploy.
+        _catalog_sha = hashlib.sha256(manifest_bytes).hexdigest()
         _threshold_default = similarity.threshold_from_manifest(manifest)
         _flat_catalog = similarity.build_flat_catalog(_corpus_tracks, _corpus_embeddings, segment_embeddings)
         _catalog_cosine_distribution = similarity.compute_catalog_distribution(_flat_catalog)
@@ -128,6 +138,7 @@ def _load_corpus() -> None:
         _flat_catalog = None
         _catalog_cosine_distribution = None
         _model_sha = ""
+        _catalog_sha = ""
         _threshold_default = config.SIMILARITY_THRESHOLD_DEFAULT
 
 
@@ -332,6 +343,10 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
     raw = await file.read()
     if (err := _validate_upload(file, raw)) is not None:
         return err
+    # queryFingerprint: SHA-256 of the upload bytes. Embedded in contextToken
+    # so /narrative can verify the same query is still in play. Stable across
+    # re-uploads of the same file; cheap to compute.
+    query_fingerprint = hashlib.sha256(raw).hexdigest()
     ext = Path(file.filename or "").suffix.lower()
     pipeline = _decode_and_pipeline(raw, ext=ext)
     if isinstance(pipeline, JSONResponse):
@@ -348,6 +363,8 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
             "modelSha": _model_sha,
             "thresholdDefault": _threshold_default,
             "acrcloud": acrcloud_engine.to_response_dict(acrcloud_engine.disabled_response()),
+            "queryFingerprint": query_fingerprint,
+            "contextToken": None,
         }
 
     neighbors = similarity.top_k_neighbors(
@@ -394,6 +411,40 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
 
     specificity = float(similarity.query_specificity(pipeline["emb"].astype(np.float32), _flat_catalog))
     acr = acrcloud_engine.call_for_query(pipeline["acrcloud_audio"])
+    acr_response = acrcloud_engine.to_response_dict(acr)
+
+    # Codex round-2 Q3: stateless signed token replaces the in-memory cache.
+    # /narrative will verify this token and rebuild context server-side from
+    # the embedded claims. Token is None when HMAC key isn't configured —
+    # /narrative also 503s in that case so the gating is consistent.
+    ctx_token = None
+    if context_token.is_configured():
+        neighbor_fragments: dict[str, dict] = {}
+        for nb in neighbors:
+            track = nb.get("track") or {}
+            ts = nb.get("matchTimestamp") or {}
+            neighbor_fragments[str(nb["trackId"])] = context_token.neighbor_context_fragment(
+                track_id=str(nb["trackId"]),
+                title=str(track.get("title") or nb["trackId"]),
+                artist=track.get("artist"),
+                query_window=(
+                    float(ts.get("queryStartSec", 0.0)),
+                    float(ts.get("queryEndSec", 0.0)),
+                ),
+                match_window=(
+                    float(ts.get("catalogStartSec", 0.0)),
+                    float(ts.get("catalogEndSec", 0.0)),
+                ),
+                raw_cosine=float(nb.get("rawCosine", 0.0)),
+                criteria=_criteria_to_token_fragment(nb.get("criteria")),
+            )
+        ctx_token = context_token.issue(
+            query_fingerprint=query_fingerprint,
+            model_sha=_model_sha or "unpinned",
+            catalog_sha=_catalog_sha or "no-catalog",
+            neighbors=neighbor_fragments,
+            acrcloud_cover_song_id=acr_response.get("coverSongId"),
+        )
 
     return {
         "query": query_track,
@@ -405,8 +456,160 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
         "querySpecificity": specificity,
         "modelSha": _model_sha,
         "thresholdDefault": _threshold_default,
-        "acrcloud": acrcloud_engine.to_response_dict(acr),
+        "acrcloud": acr_response,
+        "queryFingerprint": query_fingerprint,
+        "contextToken": ctx_token,
     }
+
+
+def _criteria_to_token_fragment(criteria_block: dict | None) -> list[dict] | None:
+    """Reshape /neighbors' criteria block into the list-of-CriterionContext
+    form Codex's rag_narrative module expects.
+
+    The /neighbors response groups criteria by id under a top-level dict;
+    NarrativeContext takes a flat list of {id, queryValue, matchValue,
+    agreement, label}. Convert here so the token payload matches the
+    NarrativeContext shape directly.
+    """
+    if not criteria_block:
+        return None
+    out: list[dict] = []
+    for cid in ("tempo", "key", "harmonic", "timbre"):
+        entry = criteria_block.get(cid)
+        if not entry:
+            continue
+        # harmonic + timbre come back from /neighbors without queryValue /
+        # matchValue (only agreement + label) because we don't ship the raw
+        # vectors. Substitute a shape marker so Codex's citation validator
+        # has something to check the keys against without exposing internals.
+        q_val = entry.get("queryValue")
+        m_val = entry.get("matchValue")
+        if cid in ("harmonic", "timbre") and q_val is None and m_val is None:
+            q_val = {"vector": "elided"}
+            m_val = {"vector": "elided"}
+        out.append({
+            "id": cid,
+            "queryValue": q_val,
+            "matchValue": m_val,
+            "agreement": float(entry.get("agreement", 0.0)),
+            "label": str(entry.get("label", "")),
+        })
+    return out or None
+
+
+# --- /narrative -------------------------------------------------------------
+#
+# Stateless RAG explanatory layer over /neighbors. Client sends the
+# contextToken received from /neighbors plus the trackId + mode it wants
+# narrated; backend verifies the token (signature, expiry, model/catalog
+# version), rebuilds NarrativeContext from the embedded claims, and delegates
+# to Codex's rag_narrative module.
+#
+# Failure shape: typed `{"error": "<code>"}` JSON, status code by class:
+#   503 narrative-disabled  — OPENAI_API_KEY or CONTEXT_TOKEN_HMAC_KEY absent
+#   401 invalid-token       — signature mismatch (tampered or wrong secret)
+#   412 token-expired       — past expiresAt
+#   412 stale-token         — modelSha/catalogSha changed since issuance
+#   400 malformed-token     — bad shape; not <body>.<sig>
+#   404 not-in-context      — trackId wasn't part of the issued token
+#   422 unsupported-mode    — mode wasn't "whySimilar" or "creatorAdvice"
+
+
+class NarrativeRequest(BaseModel):
+    contextToken: str = Field(..., min_length=1)
+    trackId: str = Field(..., min_length=1)
+    mode: str = Field(..., min_length=1)
+
+
+_TOKEN_ERROR_TO_HTTP = {
+    "malformed": (400, "malformed-token"),
+    "invalid-signature": (401, "invalid-token"),
+    "token-expired": (412, "token-expired"),
+    "stale-model": (412, "stale-token"),
+    "stale-catalog": (412, "stale-token"),
+    "hmac-key-missing": (503, "narrative-disabled"),
+}
+
+
+@app.post("/narrative")
+async def narrative_endpoint(req: NarrativeRequest):
+    """RAG explanatory layer — see ADR-0005 (Commit C) for the full spec."""
+    # Gate 1: OpenAI key present. Without it we can't call GPT-4o-mini.
+    if not os.getenv("OPENAI_API_KEY", "").strip():
+        return _err(503, "narrative-disabled")
+    # Gate 2: HMAC key present. Without it we can't trust the token.
+    if not context_token.is_configured():
+        return _err(503, "narrative-disabled")
+    # Gate 3: mode is one of the supported values.
+    if req.mode not in ("whySimilar", "creatorAdvice"):
+        return _err(422, "unsupported-mode")
+
+    # Verify the token. TokenError.code maps directly to a typed HTTP response.
+    try:
+        verified = context_token.verify(
+            req.contextToken,
+            expected_model_sha=_model_sha or "unpinned",
+            expected_catalog_sha=_catalog_sha or "no-catalog",
+        )
+    except context_token.TokenError as exc:
+        status, code = _TOKEN_ERROR_TO_HTTP.get(exc.code, (400, "malformed-token"))
+        return _err(status, code)
+
+    # Look up the requested trackId inside the verified token claims.
+    fragment = verified.neighbors.get(req.trackId)
+    if not fragment:
+        return _err(404, "not-in-context")
+
+    # Lazy-import Codex's module. Keeping this inside the handler means the
+    # FastAPI app boots and /neighbors keeps working even if rag_narrative
+    # hasn't shipped yet. If it's missing at request time, surface as 503
+    # narrative-disabled so the frontend's no-key fallback path handles it.
+    try:
+        from . import rag_narrative
+    except ImportError:
+        return _err(503, "narrative-disabled")
+
+    # Build NarrativeContext from the verified fragment. This is the Pydantic
+    # model Codex defined; instantiating it here also validates the shape.
+    try:
+        context = rag_narrative.NarrativeContext(
+            queryFingerprint=verified.queryFingerprint,
+            trackId=fragment["trackId"],
+            title=fragment.get("title", ""),
+            artist=fragment.get("artist"),
+            queryWindow=tuple(fragment["queryWindow"]),
+            matchWindow=tuple(fragment["matchWindow"]),
+            rawCosine=float(fragment["rawCosine"]),
+            criteria=[
+                rag_narrative.CriterionContext(**c)
+                for c in (fragment.get("criteria") or [])
+            ],
+            acrcloudCoverSongId=verified.acrcloudCoverSongId,
+        )
+    except Exception:
+        # If the token fragment fails to materialize into a NarrativeContext,
+        # surface as malformed rather than blowing up internally.
+        return _err(422, "malformed-context")
+
+    model_id = os.getenv("OPENAI_MODEL_ID", "gpt-4o-mini")
+    try:
+        result = rag_narrative.generate_narrative(
+            context,
+            req.mode,
+            model_sha=_model_sha or "unpinned",
+            catalog_sha=_catalog_sha or "no-catalog",
+            model_id=model_id,
+        )
+    except Exception as exc:
+        print(f"[api] /narrative generate_narrative raised: {exc!r}")
+        return _err(500, "narrative-error")
+
+    # Pydantic v2 .model_dump() — uniform shape regardless of which result
+    # variant (NarrativeResponse / LowConfidence / NarrativeUnavailable) came
+    # back. The `kind` discriminator lets the frontend route rendering.
+    if hasattr(result, "model_dump"):
+        return result.model_dump()
+    return result
 
 
 def run() -> None:
