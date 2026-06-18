@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Hero from '../components/Hero.jsx'
 import DropZone from '../components/DropZone.jsx'
-import ExampleChips from '../components/ExampleChips.jsx'
 import ReportCard from '../components/ReportCard.jsx'
 import { neighborsUpload, analyzeUpload } from '../lib/api.js'
 
@@ -26,36 +25,6 @@ export default function ScorerPage() {
   const [queryFile, setQueryFile] = useState(null)
   const [analyze, setAnalyze] = useState(null)
   const [error, setError] = useState('')
-  const [examples, setExamples] = useState([])
-  const [activeExId, setActiveExId] = useState(null)
-
-  // Examples come from the precomputed corpus (built by Phase 1 / 6).
-  useEffect(() => {
-    let cancelled = false
-    fetch('/corpus/examples.json')
-      .then((r) => (r.ok ? r.json() : []))
-      .then((data) => { if (!cancelled) setExamples(Array.isArray(data) ? data : []) })
-      .catch(() => { if (!cancelled) setExamples([]) })
-    return () => { cancelled = true }
-  }, [])
-
-  // Picking an example renders its precomputed payload — no backend call.
-  const showExample = (ex) => {
-    setError('')
-    setActiveExId(ex.id)
-    const synthetic = {
-      query: { id: ex.id, title: ex.title, artist: ex.artist },
-      neighbors: ex.neighbors || [],
-      topMeanPooledSimilarity: ex.neighbors?.[0]?.meanPooledSimilarity ?? 0,
-      topMaxSegmentSimilarity: ex.neighbors?.[0]?.maxSegmentSimilarity ?? 0,
-      modelSha: 'cached',
-      thresholdDefault: 0.70,
-      acrcloud: ex.acrcloud,
-    }
-    setNeighbors(synthetic)
-    setAnalyze(ex.analyze ?? null)
-    setStatus('result')
-  }
 
   const onFile = async (file) => {
     if (!file) return
@@ -68,7 +37,6 @@ export default function ScorerPage() {
       return
     }
     setError('')
-    setActiveExId(null)
     setNeighbors(null)
     setAnalyze(null)
     setQueryFile(file)
@@ -95,9 +63,8 @@ export default function ScorerPage() {
     <>
       <Hero />
 
-      <section className="grid gap-10 py-10" style={{ gridTemplateColumns: '58fr 42fr' }}>
+      <section className="py-10">
         <DropZone onFile={onFile} disabled={status === 'analyzing'} />
-        <ExampleChips examples={examples} onPick={showExample} activeId={activeExId} />
       </section>
 
       <section className="py-2 pb-16">
@@ -113,7 +80,7 @@ export default function ScorerPage() {
           {status === 'error' && <ErrorState key="e" msg={error} />}
           {status === 'result' && neighbors && (
             <ReportCard
-              key={neighbors.query?.id || activeExId || 'result'}
+              key={neighbors.query?.id || 'result'}
               neighbors={neighbors}
               analyze={analyze}
               queryFile={queryFile}
@@ -215,7 +182,7 @@ function IdleState() {
         className="font-mono text-sm"
         style={{ color: 'var(--color-faint)' }}
       >
-        No track loaded — drop a file or pick an example.
+        No track loaded — drop a file above to get started.
       </p>
     </motion.div>
   )

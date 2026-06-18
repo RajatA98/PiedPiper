@@ -42,7 +42,7 @@ export default function Nav() {
         </NavLink>
 
         <div className="flex items-center gap-6">
-          <NavLinkItem to="/" exact active={isHome}>Examples</NavLinkItem>
+          <NavLinkItem to="/" exact active={isHome}>Home</NavLinkItem>
           <NavLinkItem to="/evaluation">Evaluation</NavLinkItem>
           <NavLinkItem to="/about">About</NavLinkItem>
         </div>
