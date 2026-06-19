@@ -44,3 +44,8 @@ piedpiper-hf-space/
 
 # Audio drops used during local eval runs but not part of the shipped catalog
 backend/eval_input/audio/
+
+# Project Factory artifacts — local-only working docs (plans, reviews,
+# audits, eval results). The historical ones tracked from before this
+# rule landed stay tracked; new ones stay local.
+factory/artifacts/
