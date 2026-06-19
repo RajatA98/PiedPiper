@@ -44,6 +44,23 @@ from . import __version__, acrcloud_engine, context_token, muq_engine, narrative
 from .librosa_engine import analyze_array
 from .scoring import compute_report
 
+# ADR-0007: SIMILARITY_BACKEND flag lets us swap NumPy → FAISS Flat without
+# changing any return shape. Default stays NumPy. The bench at
+# `python -m backend.scripts.bench_similarity` documents the crossover
+# (~10k tracks) where FAISS starts paying for itself.
+_SIMILARITY_BACKEND = os.getenv("SIMILARITY_BACKEND", "numpy").strip().lower()
+if _SIMILARITY_BACKEND == "faiss":
+    from . import similarity_faiss
+    if not similarity_faiss.is_available():
+        print("[api] SIMILARITY_BACKEND=faiss but faiss is not installed; falling back to numpy.")
+        _SIMILARITY_BACKEND = "numpy"
+        _top_k_neighbors = similarity.top_k_neighbors
+    else:
+        print("[api] SIMILARITY_BACKEND=faiss — using similarity_faiss.top_k_neighbors_faiss")
+        _top_k_neighbors = similarity_faiss.top_k_neighbors_faiss
+else:
+    _top_k_neighbors = similarity.top_k_neighbors
+
 # Optional Sentry error tracking. No-op when SENTRY_DSN is unset.
 _sentry_dsn = os.getenv("SENTRY_DSN", "").strip()
 if _sentry_dsn:
@@ -367,7 +384,7 @@ async def neighbors_endpoint(file: UploadFile = File(...), k: int = 5):
             "contextToken": None,
         }
 
-    neighbors = similarity.top_k_neighbors(
+    neighbors = _top_k_neighbors(
         pipeline["emb"].astype(np.float32),
         pipeline["segment_embeddings"].astype(np.float32),
         _flat_catalog,
